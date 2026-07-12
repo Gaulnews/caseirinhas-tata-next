@@ -1,13 +1,28 @@
 import { Metadata } from "next";
 import { BotaoWhatsApp } from "@/components/BotaoWhatsApp";
 
-// 1. Dicionário de Bairros (Adicione quantos quiser)
+// 1. Dicionário de Bairros (Alinhamento Absoluto com o Google Business Profile)
 const bairrosAtendidos = {
   "centro": "Centro",
-  "gleba-palhano": "Gleba Palhano",
-  "jardim-bancarios": "Jardim Bancários",
-  "centro-civico": "Centro Cívico",
-  "igapo": "Região do Igapó"
+  "coliseu": "Coliseu",
+  "perobinha": "Perobinha",
+  "ouro-verde": "Ouro Verde",
+  "vista-bela": "Vista Bela",
+  "maria-celina": "Maria Celina",
+  "alpes": "Alpes",
+  "heimtal": "Heimtal",
+  "parigot-de-souza-2": "Parigot de Souza 2",
+  "novo-amparo": "Novo Amparo",
+  "vivi-xavier": "Vivi Xavier",
+  "carnascialli": "Carnascialli",
+  "conjunto-parigot-de-souza-3": "Conj. Parigot de Souza 3",
+  "milton-gavetti": "Milton Gavetti",
+  "cinco-conjuntos": "Cinco Conjuntos",
+  "conjunto-alexandre-urbanas": "Conjunto Alexandre Urbanas",
+  "jardim-dos-alpes-1": "Jardim dos Alpes I",
+  "conjunto-habitacional-joao-paz": "Conj. Hab. João Paz",
+  "jardim-dos-alpes-2": "Jardim dos Alpes II",
+  "conjunto-parigot-de-souza-1": "Conj. Parigot de Souza 1"
 };
 
 type Props = {
@@ -21,7 +36,7 @@ export async function generateStaticParams() {
   }));
 }
 
-// 3. SEO Dinâmico (Metadados exclusivos para cada bairro)
+// 3. SEO Dinâmico (Metadados exclusivos para cada área de cobertura)
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const nomeBairro = bairrosAtendidos[params.bairro as keyof typeof bairrosAtendidos] || "Londrina";
   
@@ -39,7 +54,7 @@ export default function LocationPage({ params }: Props) {
   if (!nomeBairro) {
     return (
       <main className="min-h-screen flex items-center justify-center text-center px-4">
-        <h1 className="text-2xl text-amber-500 font-bold">Bairro não encontrado em nossa rota específica.</h1>
+        <h1 className="text-2xl text-amber-500 font-bold">Área de cobertura não encontrada em nossa rota específica.</h1>
       </main>
     );
   }
