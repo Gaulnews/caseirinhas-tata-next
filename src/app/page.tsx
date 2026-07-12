@@ -65,7 +65,20 @@ export default function Home() {
           ))}
         </div>
       </section>
-
+      
+      {/* Bloco Semântico de SEO Local (Injeção de Palavras-Chave) */}
+      <section className="max-w-xl mx-auto mt-12 mb-8 text-left border-t border-zinc-900 pt-8">
+        <h2 className="text-xl font-bold text-zinc-200 mb-3">
+          O Melhor Delivery de Marmita Caseira em Londrina
+        </h2>
+        <p className="text-zinc-400 text-sm leading-relaxed mb-4">
+          Bateu a fome no horário de almoço? A Caseirinhas da Tatá oferece a solução perfeita para quem busca <strong className="text-zinc-300 font-semibold">comida caseira de verdade com entrega rápida na região central de Londrina</strong>. Nosso cardápio é preparado diariamente com ingredientes frescos, garantindo aquele sabor de comida de mãe.
+        </p>
+        <p className="text-zinc-400 text-sm leading-relaxed">
+          Seja para o trabalho ou para casa, nosso <strong className="text-zinc-300 font-semibold">delivery de marmitex</strong> possui opções econômicas a partir de R$ 18,00. Atendemos pedidos focados em qualidade, tempero na medida certa e agilidade. Experimente hoje mesmo a marmita mais pedida da cidade!
+        </p>
+      </section>
+      
       <footer className="border-t border-zinc-900 pt-10 pb-8 text-sm text-zinc-500">
         <div className="bg-zinc-900/50 rounded-2xl p-6 mb-8 text-center border border-zinc-800/60">
           <h3 className="font-bold text-zinc-200 mb-2">🎁 Concorra a Marmitas Grátis!</h3>
