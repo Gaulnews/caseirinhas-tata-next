@@ -1,5 +1,6 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
+import { tags, tagSlug } from '@/lib/site-data';
 
 export const metadata: Metadata = {
   title: 'Tags e Regiões de Entrega | Caseirinhas da Tatá',
@@ -7,11 +8,6 @@ export const metadata: Metadata = {
   keywords: ['Zona Norte', 'Cinco Conjuntos', 'entrega grátis', 'marmita rápida', 'almoço barato'],
   alternates: { canonical: 'https://caseirinhasdatata.shop/tags' },
 };
-
-const tags = [
-  '#ZonaNorte', '#CincoConjuntos', '#AlmoçoRápido', '#ComidaCaseira', 
-  '#MarmitaLondrina', '#Coliseu', '#Alpes', '#Parigot', '#B2B'
-];
 
 export default function TagsPage() {
   return (
@@ -23,7 +19,7 @@ export default function TagsPage() {
 
       <div className="flex flex-wrap gap-4">
         {tags.map((tag) => (
-          <Link href={`/tags/${tag.replace('#', '').toLowerCase()}`} key={tag}>
+          <Link href={`/tags/${tagSlug(tag)}`} key={tag}>
             <span className="inline-block bg-zinc-900 border border-zinc-700 text-zinc-300 px-5 py-2.5 rounded-full text-sm font-semibold transition-all hover:bg-yellow-400 hover:text-zinc-950 hover:border-yellow-400 cursor-pointer shadow-sm">
               {tag}
             </span>

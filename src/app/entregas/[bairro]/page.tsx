@@ -1,29 +1,7 @@
 import { Metadata } from "next";
+import Link from "next/link";
 import { BotaoWhatsApp } from "@/components/BotaoWhatsApp";
-
-// 1. Dicionário de Bairros (Alinhamento Absoluto com o Google Business Profile)
-const bairrosAtendidos = {
-  "centro": "Centro",
-  "coliseu": "Coliseu",
-  "perobinha": "Perobinha",
-  "ouro-verde": "Ouro Verde",
-  "vista-bela": "Vista Bela",
-  "maria-celina": "Maria Celina",
-  "alpes": "Alpes",
-  "heimtal": "Heimtal",
-  "parigot-de-souza-2": "Parigot de Souza 2",
-  "novo-amparo": "Novo Amparo",
-  "vivi-xavier": "Vivi Xavier",
-  "carnascialli": "Carnascialli",
-  "conjunto-parigot-de-souza-3": "Conj. Parigot de Souza 3",
-  "milton-gavetti": "Milton Gavetti",
-  "cinco-conjuntos": "Cinco Conjuntos",
-  "conjunto-alexandre-urbanas": "Conjunto Alexandre Urbanas",
-  "jardim-dos-alpes-1": "Jardim dos Alpes I",
-  "conjunto-habitacional-joao-paz": "Conj. Hab. João Paz",
-  "jardim-dos-alpes-2": "Jardim dos Alpes II",
-  "conjunto-parigot-de-souza-1": "Conj. Parigot de Souza 1"
-};
+import { bairros as bairrosAtendidos } from "@/lib/site-data";
 
 type Props = {
   params: { bairro: string };
@@ -89,9 +67,9 @@ export default function LocationPage({ params }: Props) {
         </div>
       </div>
       
-      <a href="/" className="text-amber-500 hover:text-amber-400 text-sm font-bold underline underline-offset-4">
+      <Link href="/" className="text-amber-500 hover:text-amber-400 text-sm font-bold underline underline-offset-4">
         ← Voltar para a página inicial
-      </a>
+      </Link>
     </main>
   );
 }

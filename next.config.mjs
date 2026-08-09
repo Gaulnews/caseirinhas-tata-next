@@ -1,9 +1,11 @@
-/** @type {import('next').NextScript} */
+/** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
-  swcMinify: true,
   images: {
-    domains: ['caseirinhasdatata.shop', 'caseirinhas-tata-next.vercel.app'],
+    remotePatterns: [
+      { protocol: 'https', hostname: 'caseirinhasdatata.shop' },
+      { protocol: 'https', hostname: 'caseirinhas-tata-next.vercel.app' },
+    ],
     unoptimized: true,
   },
   async headers() {

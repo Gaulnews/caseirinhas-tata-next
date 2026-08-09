@@ -1,5 +1,6 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
+import { categorias } from '@/lib/site-data';
 
 // SEO Avançado injetado no Head da página
 export const metadata: Metadata = {
@@ -8,13 +9,6 @@ export const metadata: Metadata = {
   keywords: ['marmitex', 'almoço corporativo', 'comida caseira', 'delivery', 'cardápio do dia'],
   alternates: { canonical: 'https://caseirinhasdatata.shop/categorias' },
 };
-
-const categorias = [
-  { nome: 'Pratos do Dia', slug: 'pratos-do-dia', desc: 'Refeições frescas, como nosso famoso Bife à Parmegiana.' },
-  { nome: 'Pacotes B2B (Empresas)', slug: 'pacotes-b2b', desc: 'Soluções mensais para alimentar sua equipe com qualidade.' },
-  { nome: 'Opções Fit', slug: 'opcoes-fit', desc: 'Alimentação balanceada para manter a dieta em dia.' },
-  { nome: 'Sobremesas', slug: 'sobremesas', desc: 'O toque doce perfeito após o almoço.' }
-];
 
 export default function CategoriasPage() {
   return (
