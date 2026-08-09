@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { SiteHeader } from "@/components/SiteHeader";
+import { bairros } from "@/lib/site-data";
 
 export default function Home() {
   // Código Estruturado para dominar o Google Maps e Buscas por IA em Londrina
@@ -12,6 +13,7 @@ export default function Home() {
     "telephone": "+5543996749607",
     "url": "https://caseirinhasdatata.shop",
     "priceRange": "$$",
+    "hasMenu": "https://caseirinhasdatata.shop/cardapio",
     "address": {
       "@type": "PostalAddress",
       "streetAddress": "Região Central de Entregas",
@@ -24,7 +26,18 @@ export default function Home() {
       "@type": "GeoCoordinates",
       "latitude": "-23.3102",
       "longitude": "-51.1628"
-    }
+    },
+    "areaServed": Object.entries(bairros).map(([slug, nome]) => ({
+      "@type": "Place",
+      "name": nome,
+      "url": `https://caseirinhasdatata.shop/entregas/${slug}`,
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Londrina",
+        "addressRegion": "PR",
+        "addressCountry": "BR"
+      }
+    }))
   };
 
   const cardapio = [

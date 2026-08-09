@@ -14,7 +14,24 @@ export default function CardapioPage() {
     '@type': 'Menu',
     'name': 'Cardápio Oficial - Caseirinhas da Tatá',
     'url': 'https://caseirinhasdatata.shop/cardapio',
-    'offers': { '@type': 'Offer', 'priceCurrency': 'BRL', 'price': '18.00' }
+    'hasMenuSection': {
+      '@type': 'MenuSection',
+      'name': 'Pratos do Dia',
+      'hasMenuItem': [
+        {
+          '@type': 'MenuItem',
+          'name': 'Bife à Parmegiana',
+          'description': 'Nossa especialidade coberta com muito queijo e molho artesanal.',
+          'offers': { '@type': 'Offer', 'priceCurrency': 'BRL', 'price': '22.00' },
+        },
+        {
+          '@type': 'MenuItem',
+          'name': 'Prato Executivo',
+          'description': 'A escolha balanceada do dia com a proteína principal da casa.',
+          'offers': { '@type': 'Offer', 'priceCurrency': 'BRL', 'price': '18.00' },
+        },
+      ],
+    },
   };
 
   return (
