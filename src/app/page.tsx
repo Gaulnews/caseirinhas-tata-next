@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { SiteHeader } from "@/components/SiteHeader";
 import { bairros } from "@/lib/site-data";
+import { tamanhos, formatarPreco } from "@/lib/cardapio-semanal";
 
 export default function Home() {
   // Código Estruturado para dominar o Google Maps e Buscas por IA em Londrina
@@ -40,11 +41,19 @@ export default function Home() {
     }))
   };
 
-  const cardapio = [
-    { id: 1, nome: "🍱 Marmita Mini", nomeSimples: "Marmita Mini", preco: "18,00", desc: "Perfeita para refeição leve", destaque: false },
-    { id: 2, nome: "🍱 Marmita Média", nomeSimples: "Marmita Média", preco: "24,00", desc: "A escolha mais popular", destaque: true },
-    { id: 3, nome: "🍱 Marmita Grande", nomeSimples: "Marmita Grande", preco: "28,00", desc: "Para quem tem fome de verdade", destaque: false },
-  ];
+  const cardapio = tamanhos.map((t) => ({
+    id: t.id,
+    nome: `🍱 Marmita ${t.nome}`,
+    nomeSimples: `Marmita ${t.nome}`,
+    preco: formatarPreco(t.preco),
+    desc:
+      t.id === "mini"
+        ? "Perfeita para refeição leve"
+        : t.id === "media"
+          ? "A escolha mais popular"
+          : "Para quem tem fome de verdade",
+    destaque: t.id === "media",
+  }));
 
   return (
     <>

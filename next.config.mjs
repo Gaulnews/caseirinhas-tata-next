@@ -6,7 +6,6 @@ const nextConfig = {
       { protocol: 'https', hostname: 'caseirinhasdatata.shop' },
       { protocol: 'https', hostname: 'caseirinhas-tata-next.vercel.app' },
     ],
-    unoptimized: true,
   },
   async headers() {
     return [
