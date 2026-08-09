@@ -39,8 +39,6 @@ export const diasSemana: { key: DiaSemanaKey; label: string; jsDay: number }[] =
   { key: 'domingo', label: 'Domingo', jsDay: 0 },
 ];
 
-// Somente a segunda-feira foi definida até o momento. Os demais dias ficam
-// como `null` (cardápio "em preparação") até serem confirmados.
 export const cardapioSemanal: Record<DiaSemanaKey, PratoDoDia | null> = {
   segunda: {
     tema: 'Bife Acebolado com Sobrecoxa Assada',
@@ -114,9 +112,80 @@ export const cardapioSemanal: Record<DiaSemanaKey, PratoDoDia | null> = {
     imagemAltura: 1024,
     video: '/cardapio/quarta-ossobuco-file-milanesa.mp4',
   },
-  quinta: null,
-  sexta: null,
-  sabado: null,
+  quinta: {
+    tema: 'Carne Assada com Bistequinha de Porco Grelhada',
+    ingredientes: [
+      'Arroz',
+      'Feijão Carioca',
+      'Farofa de Ovo',
+      'Macarrão à Bolonhesa',
+      'Carne Assada',
+      'Bistequinha de Porco Grelhada',
+      'Salada Sortida',
+    ],
+    palavrasChave: [
+      'cardápio de quinta-feira',
+      'carne assada delivery Londrina',
+      'bistequinha de porco grelhada marmita',
+      'marmitex quinta-feira Londrina',
+      'marmita caseira Zona Norte',
+    ],
+    imagem: '/cardapio/quinta-carne-assada-bisteca.jpg',
+    imagemAlt: 'Marmita de quinta-feira da Caseirinhas da Tatá com arroz, feijão carioca, farofa de ovo, macarrão à bolonhesa, carne assada, bistequinha de porco grelhada e salada sortida',
+    imagemLargura: 1024,
+    imagemAltura: 1024,
+    video: '/cardapio/quinta-carne-assada-bisteca.mp4',
+  },
+  sexta: {
+    tema: 'Dia de Churrasco: Bisteca de Boi na Brasa',
+    ingredientes: [
+      'Arroz',
+      'Feijão Carioca',
+      'Farofa Crocante',
+      'Macarronese',
+      'Proteínas na Brasa',
+      'Bisteca de Boi',
+      'Coxinha de Frango',
+      'Linguiça Toscana',
+      'Salada Vinagrete',
+    ],
+    palavrasChave: [
+      'cardápio de sexta-feira',
+      'churrasco delivery Londrina',
+      'bisteca de boi na brasa marmita',
+      'marmitex sexta-feira Londrina',
+      'marmita caseira Zona Norte',
+    ],
+    imagem: '/cardapio/sexta-churrasco.jpg',
+    imagemAlt: 'Marmita de sexta-feira (dia de churrasco) da Caseirinhas da Tatá com arroz, feijão carioca, farofa crocante, macarronese, bisteca de boi, coxinha de frango, linguiça toscana e salada vinagrete',
+    imagemLargura: 1024,
+    imagemAltura: 1024,
+    video: '/cardapio/sexta-churrasco.mp4',
+  },
+  sabado: {
+    tema: 'Bife Acebolado com Pernil Suculento Assado',
+    ingredientes: [
+      'Arroz Soltinho',
+      'Feijão Carioca Bem Temperado',
+      'Tiras de Bife Acebolado',
+      'Pernil Suculento Assado',
+      'Couve ao Alho',
+      'Farofa com Bacon Crocante',
+      'Vinagrete',
+    ],
+    palavrasChave: [
+      'cardápio de sábado',
+      'bife acebolado delivery Londrina',
+      'pernil assado marmita',
+      'marmitex sábado Londrina',
+      'marmita caseira Zona Norte',
+    ],
+    imagem: '/cardapio/sabado-bife-acebolado-pernil.png',
+    imagemAlt: 'Marmita de sábado da Caseirinhas da Tatá com arroz soltinho, feijão carioca bem temperado, tiras de bife acebolado, pernil suculento assado, couve ao alho, farofa com bacon crocante e vinagrete',
+    imagemLargura: 1048,
+    imagemAltura: 851,
+    video: '/cardapio/sabado-bife-acebolado-pernil.mp4',
+  },
   domingo: {
     tema: 'Cardápio de Domingo: 3 Opções Especiais',
     ingredientes: [],
