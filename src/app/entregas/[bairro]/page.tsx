@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { BotaoWhatsApp } from "@/components/BotaoWhatsApp";
 import { bairros as bairrosAtendidos } from "@/lib/site-data";
+import { tamanhos, formatarPreco } from "@/lib/cardapio-semanal";
 
 type Props = {
   params: Promise<{ bairro: string }>;
@@ -22,7 +23,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   return {
     title: `Marmita Caseira Delivery no ${nomeBairro}`,
-    description: `Bateu a fome no ${nomeBairro}? Peça sua marmita caseira quentinha com entrega rápida. Opções a partir de R$ 18,00. Faça seu pedido!`,
+    description: `Bateu a fome no ${nomeBairro}? Peça sua marmita caseira quentinha com entrega rápida. Opções a partir de R$ ${formatarPreco(tamanhos[0].preco)}. Faça seu pedido!`,
   };
 }
 
@@ -64,7 +65,7 @@ export default async function LocationPage({ params }: Props) {
         <h2 className="text-2xl font-bold text-zinc-100 mb-4">Por que pedir com a gente?</h2>
         <ul className="space-y-3 text-zinc-400 mb-8">
           <li>✅ <strong className="text-zinc-300">Praticidade:</strong> Chega rapidinho aí no {nomeBairro}.</li>
-          <li>✅ <strong className="text-zinc-300">Economia:</strong> Marmitas super bem servidas a partir de R$ 18,00.</li>
+          <li>✅ <strong className="text-zinc-300">Economia:</strong> Marmitas super bem servidas a partir de R$ {formatarPreco(tamanhos[0].preco)}.</li>
           <li>✅ <strong className="text-zinc-300">Qualidade:</strong> Ingredientes frescos e preparo diário.</li>
         </ul>
         
