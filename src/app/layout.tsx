@@ -25,6 +25,14 @@ export const metadata: Metadata = {
     title: 'Caseirinhas da Tatá | Marmitas Caseiras em Londrina',
     description: 'Sabor de casa entregue quentinho na sua porta. Confira nosso cardápio do dia.',
     siteName: 'Caseirinhas da Tatá',
+    images: [
+      {
+        url: '/logo-caseirinhas-da-tata.jpg',
+        width: 1024,
+        height: 1024,
+        alt: 'Logomarca Caseirinhas da Tatá',
+      },
+    ],
   },
   robots: {
     index: true,
