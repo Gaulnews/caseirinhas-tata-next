@@ -2,6 +2,7 @@ import { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
 import { SeletorTamanho } from '@/components/SeletorTamanho';
+import { ScrollVideo } from '@/components/ScrollVideo';
 import {
   cardapioSemanal,
   diasSemana,
@@ -170,18 +171,13 @@ export default function CardapioPage() {
                   </div>
                 )}
                 {pratoHoje.video && (
-                  <video
+                  <ScrollVideo
                     src={pratoHoje.video}
                     poster={pratoHoje.imagem}
                     className="w-full rounded-2xl border border-zinc-800"
-                    controls
-                    muted
-                    loop
-                    playsInline
-                    preload="metadata"
                   >
                     Seu navegador não suporta vídeo. Confira o cardápio de {diaAtualLabel.toLowerCase()} no WhatsApp.
-                  </video>
+                  </ScrollVideo>
                 )}
               </div>
               <div>
@@ -207,18 +203,13 @@ export default function CardapioPage() {
                     </div>
                   )}
                   {opcao.video && (
-                    <video
+                    <ScrollVideo
                       src={opcao.video}
                       poster={opcao.imagem}
                       className="mb-4 w-full rounded-xl border border-zinc-800"
-                      controls
-                      muted
-                      loop
-                      playsInline
-                      preload="metadata"
                     >
                       Seu navegador não suporta vídeo. Confira a {opcao.tema} no WhatsApp.
-                    </video>
+                    </ScrollVideo>
                   )}
                   <h3 className="text-xl font-bold text-zinc-100 mb-2">{opcao.tema}</h3>
                   <ul className="mb-6 flex flex-wrap gap-2">
@@ -252,18 +243,13 @@ export default function CardapioPage() {
                 />
               </div>
               {pratoHoje.video && (
-                <video
+                <ScrollVideo
                   src={pratoHoje.video}
                   poster={pratoHoje.imagem}
                   className="w-full rounded-2xl border border-zinc-800"
-                  controls
-                  muted
-                  loop
-                  playsInline
-                  preload="metadata"
                 >
                   Seu navegador não suporta vídeo. Confira a marmita de {diaAtualLabel.toLowerCase()} no WhatsApp.
-                </video>
+                </ScrollVideo>
               )}
             </div>
 

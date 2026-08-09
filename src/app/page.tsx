@@ -1,10 +1,41 @@
+import { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { SiteHeader } from "@/components/SiteHeader";
 import { bairros } from "@/lib/site-data";
-import { tamanhos, formatarPreco } from "@/lib/cardapio-semanal";
+import {
+  tamanhos,
+  formatarPreco,
+  cardapioSemanal,
+  diasSemana,
+  getDiaSemanaAtual,
+} from "@/lib/cardapio-semanal";
+
+const SITE_URL = "https://caseirinhasdatata.shop";
+
+// Revalida a cada hora para que a prévia do "Cardápio de Hoje" na home
+// acompanhe o dia da semana sem precisar de um novo deploy.
+export const revalidate = 3600;
+
+export async function generateMetadata(): Promise<Metadata> {
+  return {
+    alternates: { canonical: SITE_URL },
+    keywords: [
+      "Caseirinhas da Tatá",
+      "marmitas Londrina",
+      "marmitex Zona Norte Londrina",
+      "delivery de comida Londrina",
+      "cardápio do dia Londrina",
+      ...Object.values(bairros).map((nome) => `marmita delivery ${nome} Londrina`),
+    ],
+  };
+}
 
 export default function Home() {
+  const diaAtual = getDiaSemanaAtual();
+  const diaAtualLabel = diasSemana.find((d) => d.key === diaAtual)?.label ?? diaAtual;
+  const pratoHoje = cardapioSemanal[diaAtual];
+
   // Código Estruturado para dominar o Google Maps e Buscas por IA em Londrina
   const localBusinessSchema = {
     "@context": "https://schema.org",
@@ -41,6 +72,47 @@ export default function Home() {
     }))
   };
 
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Como faço para pedir uma marmita da Caseirinhas da Tatá?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": `É só chamar no WhatsApp (43) 99674-9607, escolher o tamanho da marmita e informar seu bairro em Londrina para calcular a entrega. Confira o cardápio do dia em ${SITE_URL}/cardapio antes de pedir.`
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Quais tamanhos de marmita vocês oferecem e qual o preço?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": tamanhos
+            .map((t) => `${t.nome} por R$ ${formatarPreco(t.preco)}`)
+            .join(", ") + ". A taxa de entrega é calculada à parte, na finalização do pedido, de acordo com o bairro."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "O cardápio muda todos os dias?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Sim! Temos um cardápio rotativo diário, de segunda a domingo, com pratos diferentes a cada dia — aos domingos, inclusive, com 3 opções especiais à escolha."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Quais bairros de Londrina a Caseirinhas da Tatá entrega?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": `Entregamos em toda a Zona Norte de Londrina, incluindo ${Object.values(bairros).join(", ")}.`
+        }
+      }
+    ]
+  };
+
   const cardapio = tamanhos.map((t) => ({
     id: t.id,
     nome: `🍱 Marmita ${t.nome}`,
@@ -60,6 +132,10 @@ export default function Home() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
       />
 
       <div className="flex min-h-screen flex-col bg-[#f5f5f5]">
@@ -90,6 +166,43 @@ export default function Home() {
               </a>
             </div>
           </section>
+
+          {/* Cardápio de Hoje */}
+          {pratoHoje && (
+            <section className="bg-[#1a1a1a] px-5 py-16 text-center">
+              <div className="mx-auto max-w-4xl">
+                <span className="mb-4 inline-block rounded-full border border-[#ffc107]/20 bg-[#ffc107]/10 px-3 py-1 font-mono text-xs text-[#ffc107]">
+                  CARDÁPIO DE {diaAtualLabel.toUpperCase()}
+                </span>
+                <h2 className="mb-4 text-3xl font-bold text-white">
+                  {pratoHoje.opcoes ? "Hoje tem 3 Opções Especiais" : pratoHoje.tema}
+                </h2>
+                {pratoHoje.imagem && (
+                  <div className="mx-auto mb-6 max-w-md overflow-hidden rounded-2xl border border-zinc-700">
+                    <Image
+                      src={pratoHoje.imagem}
+                      alt={pratoHoje.imagemAlt ?? pratoHoje.tema}
+                      width={pratoHoje.imagemLargura ?? 1024}
+                      height={pratoHoje.imagemAltura ?? 1024}
+                      className="h-auto w-full object-cover"
+                    />
+                  </div>
+                )}
+                <p className="mx-auto mb-8 max-w-2xl text-zinc-400">
+                  {pratoHoje.opcoes
+                    ? pratoHoje.opcoes.map((o) => o.tema).join(" · ")
+                    : pratoHoje.ingredientes.join(", ")}
+                </p>
+                <Link
+                  href="/cardapio"
+                  className="inline-block rounded-full px-10 py-4 font-bold uppercase tracking-wide text-black shadow-[0_10px_30px_rgba(255,193,7,0.3)] transition-transform hover:scale-105"
+                  style={{ background: "linear-gradient(135deg, #ffc107, #ff9800)" }}
+                >
+                  Ver Cardápio de {diaAtualLabel} e Pedir
+                </Link>
+              </div>
+            </section>
+          )}
 
           {/* Cardápio */}
           <section
@@ -129,6 +242,27 @@ export default function Home() {
             <p className="mx-auto max-w-3xl rounded-2xl border border-[#ffc1071a] bg-[#ffc1070d] px-6 py-8 text-lg leading-relaxed text-zinc-400">
               Todas as marmitas incluem: Arroz, Feijão, Batata, Couve, Cenoura e Farofa
             </p>
+          </section>
+
+          {/* Áreas Atendidas */}
+          <section id="areas-atendidas" className="bg-black px-5 py-16 text-center">
+            <div className="mx-auto max-w-4xl">
+              <h2 className="mb-4 text-3xl font-bold text-white">Áreas Atendidas em Londrina</h2>
+              <p className="mx-auto mb-8 max-w-2xl text-zinc-400">
+                Entregamos marmitas caseiras quentinhas em toda a Zona Norte de Londrina:
+              </p>
+              <div className="flex flex-wrap justify-center gap-3">
+                {Object.entries(bairros).map(([slug, nome]) => (
+                  <Link
+                    key={slug}
+                    href={`/entregas/${slug}`}
+                    className="rounded-full border border-zinc-700 bg-zinc-900 px-4 py-2 text-sm text-zinc-300 transition-colors hover:border-[#ffc107] hover:text-[#ffc107]"
+                  >
+                    {nome}
+                  </Link>
+                ))}
+              </div>
+            </div>
           </section>
 
           {/* Contatos / Rodapé */}
