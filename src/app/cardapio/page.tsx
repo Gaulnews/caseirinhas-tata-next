@@ -105,8 +105,8 @@ export default function CardapioPage() {
                 <Image
                   src={pratoHoje.imagem!}
                   alt={pratoHoje.imagemAlt!}
-                  width={1200}
-                  height={896}
+                  width={pratoHoje.imagemLargura ?? 1200}
+                  height={pratoHoje.imagemAltura ?? 896}
                   className="h-auto w-full object-cover"
                   priority
                 />

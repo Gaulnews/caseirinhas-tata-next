@@ -10,6 +10,8 @@ export type PratoDoDia = {
   palavrasChave: string[];
   imagem?: string;
   imagemAlt?: string;
+  imagemLargura?: number;
+  imagemAltura?: number;
   video?: string;
 };
 
@@ -45,9 +47,34 @@ export const cardapioSemanal: Record<DiaSemanaKey, PratoDoDia | null> = {
     ],
     imagem: '/cardapio/segunda-bife-acebolado-sobrecoxa.png',
     imagemAlt: 'Marmita de segunda-feira da Caseirinhas da Tatá com arroz, feijão carioca, farofa temperada, batata frita, bife acebolado e sobrecoxa assada',
+    imagemLargura: 1200,
+    imagemAltura: 896,
     video: '/cardapio/segunda-bife-acebolado-sobrecoxa.mp4',
   },
-  terca: null,
+  terca: {
+    tema: 'Filé de Frango Grelhado com Panqueca de Carne',
+    ingredientes: [
+      'Arroz',
+      'Feijão',
+      'Farofa Temperada',
+      'Batatas à Dorê',
+      'Filé de Frango Grelhado',
+      'Panqueca de Carne',
+      'Salada Sortida',
+    ],
+    palavrasChave: [
+      'cardápio de terça-feira',
+      'frango grelhado delivery Londrina',
+      'panqueca de carne marmita',
+      'marmitex terça-feira Londrina',
+      'marmita caseira Zona Norte',
+    ],
+    imagem: '/cardapio/terca-frango-grelhado-panqueca.jpg',
+    imagemAlt: 'Marmita de terça-feira da Caseirinhas da Tatá com arroz, feijão, farofa temperada, batatas à dorê, filé de frango grelhado, panqueca de carne e salada sortida',
+    imagemLargura: 1024,
+    imagemAltura: 1024,
+    video: '/cardapio/terca-frango-grelhado-panqueca.mp4',
+  },
   quarta: null,
   quinta: null,
   sexta: null,
