@@ -16,16 +16,16 @@ export default function Home() {
     "hasMenu": "https://caseirinhasdatata.shop/cardapio",
     "address": {
       "@type": "PostalAddress",
-      "streetAddress": "Região Central de Entregas",
+      "streetAddress": "Rua Maria Sinopoli Francovig, 1142 - Conj. Semíramis Barros Braga",
       "addressLocality": "Londrina",
       "addressRegion": "PR",
-      "postalCode": "86000-000",
+      "postalCode": "86088-080",
       "addressCountry": "BR"
     },
     "geo": {
       "@type": "GeoCoordinates",
-      "latitude": "-23.3102",
-      "longitude": "-51.1628"
+      "latitude": "-23.26801",
+      "longitude": "-51.14480"
     },
     "areaServed": Object.entries(bairros).map(([slug, nome]) => ({
       "@type": "Place",
