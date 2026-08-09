@@ -16,11 +16,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const categoria = categorias.find((cat) => cat.slug === slug);
 
   if (!categoria) {
-    return { title: 'Categoria não encontrada | Caseirinhas da Tatá' };
+    return { title: 'Categoria não encontrada' };
   }
 
   return {
-    title: `${categoria.nome} | Caseirinhas da Tatá`,
+    title: categoria.nome,
     description: `${categoria.desc} Peça agora pelo WhatsApp e receba comida caseira com entrega rápida em Londrina.`,
     alternates: { canonical: `https://caseirinhasdatata.shop/categorias/${categoria.slug}` },
   };

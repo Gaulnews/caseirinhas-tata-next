@@ -2,7 +2,7 @@ import { Metadata } from 'next';
 import Link from 'next/link';
 
 export const metadata: Metadata = {
-  title: 'Cardápio do Dia e Marmitas Caseiras | Caseirinhas da Tatá',
+  title: 'Cardápio do Dia e Marmitas Caseiras',
   description: 'Conheça nosso cardápio de refeições caseiras. Bife à Parmegiana, pratos executivos e opções diárias com ingredientes frescos na Zona Norte de Londrina.',
   keywords: ['cardapio marmita londrina', 'bife a parmegiana delivery', 'almoço caseiro', 'marmitex zona norte londrina'],
   alternates: { canonical: 'https://caseirinhasdatata.shop/cardapio' },

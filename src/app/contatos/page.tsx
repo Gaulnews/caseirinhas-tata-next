@@ -2,7 +2,7 @@ import { Metadata } from 'next';
 import Link from 'next/link';
 
 export const metadata: Metadata = {
-  title: 'Contatos e Endereço | Caseirinhas da Tatá',
+  title: 'Contatos e Endereço',
   description: 'Fale com a Caseirinhas da Tatá via WhatsApp. Atendimento para pedidos, suporte e agendamento de degustações corporativas.',
   keywords: ['whatsapp caseirinhas da tata', 'telefone marmitaria londrina', 'contato delivery zona norte'],
   alternates: { canonical: 'https://caseirinhasdatata.shop/contatos' },

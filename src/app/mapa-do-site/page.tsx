@@ -2,7 +2,7 @@ import { Metadata } from 'next';
 import Link from 'next/link';
 
 export const metadata: Metadata = {
-  title: 'Mapa do Site | Caseirinhas da Tatá',
+  title: 'Mapa do Site',
   description: 'Estrutura completa do site Caseirinhas da Tatá. Acesse rapidamente todas as nossas páginas, cardápios e serviços.',
   alternates: { canonical: 'https://caseirinhasdatata.shop/mapa-do-site' },
 };

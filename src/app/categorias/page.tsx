@@ -4,7 +4,7 @@ import { categorias } from '@/lib/site-data';
 
 // SEO Avançado injetado no Head da página
 export const metadata: Metadata = {
-  title: 'Categorias de Refeições | Caseirinhas da Tatá',
+  title: 'Categorias de Refeições',
   description: 'Explore nossas categorias: Pratos do Dia, Pacotes Corporativos (B2B), Opções Fit e Sobremesas. Comida caseira com entrega rápida.',
   keywords: ['marmitex', 'almoço corporativo', 'comida caseira', 'delivery', 'cardápio do dia'],
   alternates: { canonical: 'https://caseirinhasdatata.shop/categorias' },
