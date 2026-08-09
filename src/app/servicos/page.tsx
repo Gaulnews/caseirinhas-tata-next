@@ -2,7 +2,7 @@ import { Metadata } from 'next';
 import Link from 'next/link';
 
 export const metadata: Metadata = {
-  title: 'Serviços B2B e Entrega de Refeições | Caseirinhas da Tatá',
+  title: 'Serviços B2B e Entrega de Refeições',
   description: 'Oferecemos delivery residencial na Zona Norte de Londrina e pacotes corporativos (B2B) para fornecimento de refeições em empresas.',
   keywords: ['pacotes refeicao empresa', 'fornecimento marmitex londrina', 'delivery zona norte'],
   alternates: { canonical: 'https://caseirinhasdatata.shop/servicos' },

@@ -1,10 +1,11 @@
 import { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { BotaoWhatsApp } from "@/components/BotaoWhatsApp";
 import { bairros as bairrosAtendidos } from "@/lib/site-data";
 
 type Props = {
-  params: { bairro: string };
+  params: Promise<{ bairro: string }>;
 };
 
 // 2. Geração Estática de Rotas (Build Validation - Core Web Vitals)
@@ -16,17 +17,19 @@ export async function generateStaticParams() {
 
 // 3. SEO Dinâmico (Metadados exclusivos para cada área de cobertura)
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const nomeBairro = bairrosAtendidos[params.bairro as keyof typeof bairrosAtendidos] || "Londrina";
-  
+  const { bairro } = await params;
+  const nomeBairro = bairrosAtendidos[bairro as keyof typeof bairrosAtendidos] || "Londrina";
+
   return {
-    title: `Marmita Caseira Delivery no ${nomeBairro} | Caseirinhas da Tatá`,
+    title: `Marmita Caseira Delivery no ${nomeBairro}`,
     description: `Bateu a fome no ${nomeBairro}? Peça sua marmita caseira quentinha com entrega rápida. Opções a partir de R$ 18,00. Faça seu pedido!`,
   };
 }
 
 // 4. O Server Component da Página
-export default function LocationPage({ params }: Props) {
-  const nomeBairro = bairrosAtendidos[params.bairro as keyof typeof bairrosAtendidos];
+export default async function LocationPage({ params }: Props) {
+  const { bairro } = await params;
+  const nomeBairro = bairrosAtendidos[bairro as keyof typeof bairrosAtendidos];
 
   // Se a pessoa digitar um bairro que não existe na URL, mostramos uma mensagem padrão
   if (!nomeBairro) {
@@ -39,8 +42,14 @@ export default function LocationPage({ params }: Props) {
 
   return (
     <main className="max-w-2xl mx-auto px-4 py-16 text-center">
-      <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-amber-500 text-zinc-950 font-black text-2xl mb-6 shadow-lg shadow-amber-500/20">
-        CT
+      <div className="inline-flex h-16 w-16 items-center justify-center overflow-hidden rounded-full bg-black ring-1 ring-amber-500/40 mb-6 shadow-lg shadow-amber-500/20">
+        <Image
+          src="/emblema-caseirinhas-da-tata.png"
+          alt="Emblema da logomarca Caseirinhas da Tatá: casa dourada com garfos cruzados"
+          width={64}
+          height={64}
+          className="h-full w-full object-cover"
+        />
       </div>
       
       <h1 className="text-4xl md:text-5xl font-black text-white mb-6 tracking-tight leading-tight">

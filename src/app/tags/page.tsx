@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { tags, tagSlug } from '@/lib/site-data';
 
 export const metadata: Metadata = {
-  title: 'Tags e Regiões de Entrega | Caseirinhas da Tatá',
+  title: 'Tags e Regiões de Entrega',
   description: 'Descubra nossos pratos filtrados por regiões de entrega rápida, incluindo Zona Norte, Cinco Conjuntos e mais.',
   keywords: ['Zona Norte', 'Cinco Conjuntos', 'entrega grátis', 'marmita rápida', 'almoço barato'],
   alternates: { canonical: 'https://caseirinhasdatata.shop/tags' },

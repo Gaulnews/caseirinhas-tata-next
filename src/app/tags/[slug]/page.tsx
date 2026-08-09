@@ -20,13 +20,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const tag = findTag(slug);
 
   if (!tag) {
-    return { title: 'Tag não encontrada | Caseirinhas da Tatá' };
+    return { title: 'Tag não encontrada' };
   }
 
   const nomeFormatado = tag.replace('#', '');
 
   return {
-    title: `${nomeFormatado} | Caseirinhas da Tatá`,
+    title: nomeFormatado,
     description: `Entrega rápida de marmitas caseiras filtradas por ${nomeFormatado} em Londrina. Comida quentinha e tempero caseiro. Peça pelo WhatsApp!`,
     alternates: { canonical: `https://caseirinhasdatata.shop/tags/${slug}` },
   };
