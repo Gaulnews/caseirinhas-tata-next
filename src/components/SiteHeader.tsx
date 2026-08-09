@@ -1,12 +1,14 @@
 'use client';
 
 import { useState } from 'react';
+import Image from 'next/image';
+import Link from 'next/link';
 
 const navItems = [
-  { label: 'Início', href: '#home' },
-  { label: 'Cardápio do Dia', href: '#cardapio' },
+  { label: 'Início', href: '/' },
+  { label: 'Cardápio do Dia', href: '/cardapio' },
   { label: 'Nossos Serviços', href: '/servicos' },
-  { label: 'Contatos', href: '#contatos' },
+  { label: 'Contatos', href: '/contatos' },
 ];
 
 export function SiteHeader() {
@@ -17,21 +19,28 @@ export function SiteHeader() {
       <div className="px-5 py-5">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <div className="flex h-[50px] w-[50px] items-center justify-center rounded-full bg-[#ffc107]">
-              <span className="text-xl font-bold text-black">CT</span>
+            <div className="flex h-[50px] w-[50px] items-center justify-center overflow-hidden rounded-full bg-black ring-1 ring-[#ffc107]/40">
+              <Image
+                src="/emblema-caseirinhas-da-tata.png"
+                alt="Emblema da logomarca Caseirinhas da Tatá: casa dourada com garfos cruzados"
+                width={50}
+                height={50}
+                className="h-full w-full object-cover"
+                priority
+              />
             </div>
             <span className="text-[22px] font-bold text-white">Caseirinhas da Tatá</span>
           </div>
 
           <nav className="hidden md:flex gap-8">
             {navItems.map((item) => (
-              <a
+              <Link
                 key={item.label}
                 href={item.href}
                 className="font-medium text-white transition-colors hover:text-[#ffc107]"
               >
                 {item.label}
-              </a>
+              </Link>
             ))}
           </nav>
 
@@ -51,14 +60,14 @@ export function SiteHeader() {
         {open && (
           <nav className="mt-6 flex flex-col gap-5 border-t border-zinc-800 pt-6 md:hidden">
             {navItems.map((item) => (
-              <a
+              <Link
                 key={item.label}
                 href={item.href}
                 onClick={() => setOpen(false)}
                 className="font-medium text-white transition-colors hover:text-[#ffc107]"
               >
                 {item.label}
-              </a>
+              </Link>
             ))}
           </nav>
         )}

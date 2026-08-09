@@ -1,4 +1,7 @@
+import Image from "next/image";
+import Link from "next/link";
 import { SiteHeader } from "@/components/SiteHeader";
+import { bairros } from "@/lib/site-data";
 
 export default function Home() {
   // Código Estruturado para dominar o Google Maps e Buscas por IA em Londrina
@@ -6,9 +9,11 @@ export default function Home() {
     "@context": "https://schema.org",
     "@type": "FoodEstablishment",
     "name": "Caseirinhas da Tatá",
+    "image": "https://caseirinhasdatata.shop/logo-caseirinhas-da-tata.jpg",
     "telephone": "+5543996749607",
     "url": "https://caseirinhasdatata.shop",
     "priceRange": "$$",
+    "hasMenu": "https://caseirinhasdatata.shop/cardapio",
     "address": {
       "@type": "PostalAddress",
       "streetAddress": "Região Central de Entregas",
@@ -21,7 +26,18 @@ export default function Home() {
       "@type": "GeoCoordinates",
       "latitude": "-23.3102",
       "longitude": "-51.1628"
-    }
+    },
+    "areaServed": Object.entries(bairros).map(([slug, nome]) => ({
+      "@type": "Place",
+      "name": nome,
+      "url": `https://caseirinhasdatata.shop/entregas/${slug}`,
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Londrina",
+        "addressRegion": "PR",
+        "addressCountry": "BR"
+      }
+    }))
   };
 
   const cardapio = [
@@ -112,8 +128,14 @@ export default function Home() {
               <div className="mb-10 grid gap-10" style={{ gridTemplateColumns: "repeat(auto-fit, minmax(250px, 1fr))" }}>
                 <div>
                   <div className="mb-4 flex items-center gap-3">
-                    <div className="flex h-[50px] w-[50px] items-center justify-center rounded-full bg-[#ffc107]">
-                      <span className="text-xl font-bold text-black">CT</span>
+                    <div className="flex h-[50px] w-[50px] items-center justify-center overflow-hidden rounded-full bg-black ring-1 ring-[#ffc107]/40">
+                      <Image
+                        src="/emblema-caseirinhas-da-tata.png"
+                        alt="Emblema da logomarca Caseirinhas da Tatá: casa dourada com garfos cruzados"
+                        width={50}
+                        height={50}
+                        className="h-full w-full object-cover"
+                      />
                     </div>
                     <span className="text-[22px] font-bold text-white">Caseirinhas da Tatá</span>
                   </div>
@@ -125,9 +147,9 @@ export default function Home() {
                 <div>
                   <h4 className="mb-4 text-lg font-bold">Links Rápidos</h4>
                   <ul className="space-y-3">
-                    <li><a href="#home" className="text-zinc-400 hover:text-[#ffc107] transition-colors">Início</a></li>
-                    <li><a href="#cardapio" className="text-zinc-400 hover:text-[#ffc107] transition-colors">Cardápio do Dia</a></li>
-                    <li><a href="/servicos" className="text-zinc-400 hover:text-[#ffc107] transition-colors">Nossos Serviços</a></li>
+                    <li><Link href="/" className="text-zinc-400 hover:text-[#ffc107] transition-colors">Início</Link></li>
+                    <li><Link href="/cardapio" className="text-zinc-400 hover:text-[#ffc107] transition-colors">Cardápio do Dia</Link></li>
+                    <li><Link href="/servicos" className="text-zinc-400 hover:text-[#ffc107] transition-colors">Nossos Serviços</Link></li>
                   </ul>
                 </div>
 
