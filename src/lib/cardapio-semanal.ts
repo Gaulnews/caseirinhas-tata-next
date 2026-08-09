@@ -146,6 +146,7 @@ export const cardapioSemanal: Record<DiaSemanaKey, PratoDoDia | null> = {
           'Molho de Parmesão Fit Low',
           'Queijo Colonial',
         ],
+        video: '/cardapio/domingo-salada-mounjaro.mp4',
       },
       {
         id: 'tradicional-domingo',
@@ -159,6 +160,7 @@ export const cardapioSemanal: Record<DiaSemanaKey, PratoDoDia | null> = {
           'Leitão no Tacho',
           'Mix de Salada',
         ],
+        video: '/cardapio/domingo-tradicional.mp4',
       },
       {
         id: 'feijoada',
