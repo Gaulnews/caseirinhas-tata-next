@@ -32,8 +32,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const paginasBairros: MetadataRoute.Sitemap = Object.keys(bairros).map((slug) => ({
     url: `${baseUrl}/entregas/${slug}`,
     lastModified,
-    changeFrequency: 'monthly',
-    priority: 0.5,
+    changeFrequency: 'daily',
+    priority: 0.7,
   }));
 
   return [...paginasFixas, ...paginasCategorias, ...paginasTags, ...paginasBairros];
