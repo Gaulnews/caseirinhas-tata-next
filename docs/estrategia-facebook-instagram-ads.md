@@ -23,7 +23,36 @@ O site já tem 20 landing pages locais (`/entregas/[bairro]`) com CTA de WhatsAp
 
 ---
 
-## 2. Funil recomendado: Click-to-WhatsApp, não link direto de grupo
+## 2. Plano de lançamento confirmado (Semana 1)
+
+Decisões já tomadas com a Tatá para a primeira semana de campanha:
+
+| Decisão | Valor confirmado |
+|---|---|
+| Orçamento diário | **R$ 10 a R$ 15/dia** (abaixo da faixa de teste inicial sugerida — ver ajuste na seção 4) |
+| Foco geográfico inicial | **Só o cluster Cinco Conjuntos / Zona Norte** (maior densidade de bairros atendidos) |
+| Business Manager | Conta existe, mas **vínculo da Página e do Instagram não confirmado** |
+| Pixel da Meta | **Ainda não existe** — precisa ser criado do zero |
+
+**Ajuste do plano por causa do orçamento menor:** com R$ 10–15/dia, **não faz sentido dividir em vários conjuntos de anúncios** — toda a verba deve ir para **1 campanha, 1 conjunto de anúncios**, mirando só o cluster Cinco Conjuntos/Zona Norte (raio de 5–6 km a partir do endereço-base). Isso concentra o volume necessário para o conjunto sair da fase de aprendizado mais rápido. Os outros 3 clusters (Centro/Gleba Palhano, Alpes, Leste) ficam para uma segunda fase, quando o orçamento aumentar ou quando o cluster inicial mostrar custo por conversa estável.
+
+### Checklist antes de subir a campanha
+
+**1. Confirmar vínculo Página + Instagram no Business Manager:**
+1. Acessar `business.facebook.com` → **Configurações do Negócio** → **Contas** → **Páginas**. Confirmar que "Caseirinhas da Tatá" aparece lá.
+2. Em **Contas** → **Contas do Instagram**, confirmar se `@caseirinhasdatata` aparece vinculada a esse Business Manager.
+3. Se o Instagram não aparecer: abrir a Página do Facebook → **Configurações** → **Contas vinculadas** → **Instagram** → conectar por lá, ou adicionar diretamente pelo Business Manager.
+4. Confirmar que a **Conta de Anúncios** ativa está no mesmo Business Manager e tem a Página disponível para uso em anúncios (sem isso, o formato Clique-para-WhatsApp não fica disponível na criação do anúncio).
+
+**2. Criar o Pixel da Meta (ainda não existe):**
+1. Acessar o **Gerenciador de Eventos** (`business.facebook.com/events_manager2`) → **Conectar fontes de dados** → **Web** → **Pixel da Meta**.
+2. Dar um nome (ex.: "Pixel Caseirinhas da Tatá") e informar a URL do site (`https://caseirinhasdatata.shop`).
+3. Quando a Meta oferecer opções de instalação (parceiro, Gerenciador de Tags do Google, código manual), escolher **"Adicionar código manualmente"** — o site é Next.js e a instalação será feita direto no código.
+4. Copiar o **Pixel ID** gerado (um número, ex.: `1234567890123456`) e repassar para instalação no `layout.tsx` (ver seção 7).
+
+---
+
+## 3. Funil recomendado: Click-to-WhatsApp, não link direto de grupo
 
 **Não usar o link do grupo (`chat.whatsapp.com/...`) como destino direto do anúncio.** Três motivos práticos:
 
@@ -53,21 +82,21 @@ A promoção de boas-vindas do grupo (`🎁 Concorra a Marmitas Grátis!`) já e
 
 ---
 
-## 3. Estrutura da campanha no Gerenciador de Anúncios
+## 4. Estrutura da campanha no Gerenciador de Anúncios
 
 - **Objetivo:** Cadastros (Leads) → formato "Anúncios que geram cliques para o WhatsApp".
-- **Orçamento:** definir no nível da campanha (CBO/Advantage+ campaign budget), não por conjunto — a Meta redistribui sozinha para onde o custo por resultado está menor.
+- **Orçamento:** com R$ 10–15/dia (decisão da Semana 1), definir orçamento **direto no único conjunto de anúncios** — não há necessidade de Advantage+ Campaign Budget (CBO) enquanto houver só 1 conjunto ativo. O CBO passa a fazer sentido só na Fase 2, quando mais de um cluster estiver rodando ao mesmo tempo.
 - **Lance:** custo mais baixo (sem teto de custo) — com orçamento pequeno, um teto de custo trava a entrega e prolonga a fase de aprendizado.
-- **Conjuntos de anúncios — agrupar por polo geográfico, não por bairro individual.** Com 20 bairros, segmentar 1 conjunto por bairro pulveriza o orçamento e cada conjunto nunca sai da fase de aprendizado (mínimo recomendado pela Meta: ~50 resultados/semana por conjunto). Agrupar em 4 clusters usando os links como referência de raio de entrega:
+- **Semana 1 — 1 único conjunto de anúncios**, mirando o cluster Cinco Conjuntos/Zona Norte:
 
-  | Cluster | Bairros | Raio sugerido |
-  |---|---|---|
-  | Centro/Gleba Palhano | Centro, Gleba Palhano | 3–4 km a partir do endereço-base |
-  | Cinco Conjuntos / Zona Norte | Cinco Conjuntos, Milton Gavetti, Vivi Xavier, Carnascialli, Heimtal, Conj. João Paz, Parigot 1/2/3, Maria Celina, Novo Amparo, Ouro Verde, Perobinha, Vista Bela, Coliseu | 5–6 km (é a região onde fica o endereço-base — maior densidade) |
-  | Alpes | Alpes, Jardim dos Alpes I, Jardim dos Alpes II | 3–4 km |
-  | Leste | Conjunto Alexandre Urbanas | 3–4 km |
+  | Cluster | Bairros | Raio sugerido | Fase |
+  |---|---|---|---|
+  | **Cinco Conjuntos / Zona Norte** | Cinco Conjuntos, Milton Gavetti, Vivi Xavier, Carnascialli, Heimtal, Conj. João Paz, Parigot 1/2/3, Maria Celina, Novo Amparo, Ouro Verde, Perobinha, Vista Bela, Coliseu | 5–6 km a partir do endereço-base (é a região onde a empresa fica — maior densidade) | **Semana 1 (ativo agora)** |
+  | Centro/Gleba Palhano | Centro, Gleba Palhano | 3–4 km | Fase 2 |
+  | Alpes | Alpes, Jardim dos Alpes I, Jardim dos Alpes II | 3–4 km | Fase 2 |
+  | Leste | Conjunto Alexandre Urbanas | 3–4 km | Fase 2 |
 
-  Isso conserva a granularidade dos links por bairro para o **site/SEO local** (cada `/entregas/[bairro]` continua indexável e serve de página de pouso para tráfego orgânico e para a variante de retargeting abaixo), mas evita fragmentar o orçamento de mídia paga em 20 públicos minúsculos.
+  Os outros 3 clusters só devem virar conjuntos de anúncios novos quando: (a) o orçamento diário subir, ou (b) o cluster Cinco Conjuntos/Zona Norte já tiver um custo por conversa estável por pelo menos 1 semana. Isso conserva a granularidade dos links por bairro para o **site/SEO local** (cada `/entregas/[bairro]` continua indexável e serve de página de pouso para tráfego orgânico), mas evita fragmentar um orçamento pequeno em públicos demais.
 
 - **Segmentação:** endereço + raio (acima), idade 22–55, sem restrição de interesse — deixar o público **amplo** e Advantage+ Audience ligado. Para o público de menor renda, segmentação por interesse tende a encarecer o CPM sem ganho de precisão; localização é o filtro que importa aqui.
 - **Posicionamentos:** Advantage+ (automático) — o algoritmo tende a priorizar Reels/Stories, que historicamente têm CPM mais barato que Feed para este tipo de público.
@@ -75,16 +104,16 @@ A promoção de boas-vindas do grupo (`🎁 Concorra a Marmitas Grátis!`) já e
 
 ---
 
-## 4. Orçamento e controle de custo
+## 5. Orçamento e controle de custo
 
-- **Fase de teste (primeiros 4–7 dias):** R$ 20–30/dia total, dividido nos 4 clusters — sem alterar orçamento ou segmentação nesse período (qualquer edição de orçamento acima de ~20% reinicia a fase de aprendizado).
-- **Depois do teste:** realocar o orçamento para o(s) cluster(s) com menor custo por conversa iniciada, cortando ou pausando o que estiver mais caro.
-- **3–4 criativos por conjunto**, trocando os que tiverem frequência alta (>3) ou CTR caindo — sinal de fadiga de anúncio.
+- **Fase de teste (primeiros 7 dias):** R$ 10–15/dia, **todo concentrado no único conjunto** (Cinco Conjuntos/Zona Norte) — sem alterar orçamento ou segmentação nesse período (qualquer edição de orçamento acima de ~20% reinicia a fase de aprendizado). Com essa verba, o volume de resultados/semana é baixo — por isso é ainda mais importante não fragmentar em vários conjuntos nem trocar a segmentação no meio da semana.
+- **Depois dos 7 dias:** se o custo por conversa estiver estável e dentro do ticket médio (R$ 20–28), decidir entre (a) aumentar o orçamento do mesmo conjunto em incrementos de até 20%, ou (b) abrir um segundo conjunto para o próximo cluster prioritário (Centro/Gleba Palhano), mantendo o primeiro rodando.
+- **2–3 criativos no conjunto** (menos que os 3–4 sugeridos originalmente, pois orçamento baixo dilui a entrega se houver criativos demais competindo entre si) — trocar o que tiver frequência alta (>3) ou CTR caindo.
 - **Regra prática de decisão:** comparar sempre **custo por conversa iniciada no WhatsApp**, não CPM nem CTR isoladamente — é a métrica mais próxima do resultado real (entrada no grupo → pedido).
 
 ---
 
-## 5. Criativos e copy
+## 6. Criativos e copy
 
 Recursos já existentes no site (`public/cardapio/`) podem ser reaproveitados direto nos anúncios — fotos e vídeos verticais dos pratos por dia da semana (segunda a domingo, incluindo os 3 vídeos das opções de domingo).
 
@@ -103,33 +132,33 @@ Recursos já existentes no site (`public/cardapio/`) podem ser reaproveitados di
 
 ---
 
-## 6. Retargeting e mensuração (lacuna técnica identificada)
+## 7. Retargeting e mensuração (Pixel a ser criado — ver checklist da seção 2)
 
-O site **não tem nenhum pixel de rastreamento da Meta instalado** hoje (`src/app/layout.tsx` não contém script de Pixel/Conversions API). Isso limita a otimização de campanha de duas formas:
+O site **não tem nenhum pixel de rastreamento da Meta instalado** hoje (`src/app/layout.tsx` não contém script de Pixel/Conversions API), e a conta de anúncios ainda não tem um Pixel criado. Isso limita a otimização de campanha de duas formas:
 
 1. A Meta não consegue otimizar entrega com base em quem de fato visitou o site vindo do anúncio.
 2. Não é possível criar públicos de remarketing ("quem visitou `/cardapio` mas não converteu", "quem visitou páginas de bairro específicas") nem públicos semelhantes (lookalike) a partir da base de clientes.
 
-**Recomendação (ação de acompanhamento, não incluída neste commit por depender de um dado que só existe na conta de anúncios do negócio):** criar um Pixel da Meta no Gerenciador de Eventos, obter o `Pixel ID`, e então instalar via `next/script` no `layout.tsx`, disparando `PageView` em todas as páginas e um evento `Lead` nos cliques dos botões de WhatsApp (`BotaoWhatsApp` e os CTAs de `page.tsx`/`entregas/[bairro]/page.tsx`). Isso é o pré-requisito técnico para: (a) otimização de entrega orientada a conversão real, não só a cliques, e (b) criar público semelhante (lookalike) a partir de quem já conversa no WhatsApp/grupo — o público mais barato de escalar depois da fase de teste.
+**Próximo passo (fora deste commit — depende do `Pixel ID`, que só existe depois do passo 2 do checklist na seção 2):** assim que o Pixel for criado no Gerenciador de Eventos e o `Pixel ID` for informado, instalar via `next/script` no `layout.tsx`, disparando `PageView` em todas as páginas e um evento `Lead` nos cliques dos botões de WhatsApp (`BotaoWhatsApp` e os CTAs de `page.tsx`/`entregas/[bairro]/page.tsx`). Isso é o pré-requisito técnico para: (a) otimização de entrega orientada a conversão real, não só a cliques, e (b) criar público semelhante (lookalike) a partir de quem já conversa no WhatsApp/grupo — o público mais barato de escalar depois da fase de teste. Não é bloqueante para subir a campanha da Semana 1, mas quanto antes for instalado, mais rápido a Meta acumula dados de conversão.
 
 ---
 
-## 7. Cronograma de acompanhamento
+## 8. Cronograma de acompanhamento
 
 | Frequência | Ação |
 |---|---|
 | Diária (primeiros 7 dias) | Checar se orçamento está sendo gasto e se as conversas estão chegando; não editar nada |
-| A cada 3–4 dias | Comparar custo por conversa iniciada entre os 4 clusters |
-| Semanal | Pausar/realocar orçamento dos clusters mais caros; trocar criativos com frequência alta |
+| A cada 3–4 dias | Acompanhar o custo por conversa iniciada no conjunto ativo |
+| Semanal | Decidir entre aumentar orçamento ou abrir o próximo cluster (Fase 2); trocar criativos com frequência alta |
 | Quinzenal | Revisar oferta do grupo (a promoção de entrada precisa girar para não perder força) |
 
 ---
 
-## 8. Resumo executivo
+## 9. Resumo executivo
 
 - **Não** usar o link do grupo como destino direto do anúncio — usar anúncios de Clique para o WhatsApp com o número comercial.
-- Agrupar os 20 bairros em **4 clusters geográficos** para os conjuntos de anúncios, não 20 conjuntos separados.
-- Orçamento de teste: **R$ 20–30/dia**, lance de custo mais baixo, Advantage+ Campaign Budget.
+- **Semana 1 confirmada:** R$ 10–15/dia, **1 único conjunto de anúncios**, focado no cluster Cinco Conjuntos/Zona Norte. Os outros 3 clusters (Centro/Gleba Palhano, Alpes, Leste) ficam para a Fase 2.
+- Antes de subir a campanha: confirmar no Business Manager que a Página e o Instagram estão vinculados corretamente (checklist na seção 2).
+- Criar o Pixel da Meta no Gerenciador de Eventos (ainda não existe) — não bloqueia a Semana 1, mas quanto antes instalado no site, melhor a otimização futura.
 - Reaproveitar as fotos/vídeos do cardápio semanal já existentes em `public/cardapio/` como criativo.
 - Métrica de decisão: **custo por conversa iniciada no WhatsApp**, revisado a cada 3–4 dias.
-- Pendência técnica para a próxima fase: instalar o Pixel da Meta (requer `Pixel ID` da conta de anúncios do negócio) para habilitar remarketing e públicos semelhantes.
