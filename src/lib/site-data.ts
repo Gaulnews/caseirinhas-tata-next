@@ -27,6 +27,7 @@ export function tagSlug(tag: string): string {
 // Dicionário de Bairros (Alinhamento Absoluto com o Google Business Profile)
 export const bairros: Record<string, string> = {
   'centro': 'Centro',
+  'gleba-palhano': 'Gleba Palhano',
   'coliseu': 'Coliseu',
   'perobinha': 'Perobinha',
   'ouro-verde': 'Ouro Verde',
