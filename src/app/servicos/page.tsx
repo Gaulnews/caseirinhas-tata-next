@@ -1,13 +1,15 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
 import { SiteHeader } from '@/components/SiteHeader';
+import { ScrollVideo } from '@/components/ScrollVideo';
 
 const SITE_URL = 'https://caseirinhasdatata.shop';
 const WHATSAPP = '5543996749607';
 
 type Servico = {
   id: string;
-  emoji: string;
+  video: string;
+  videoAlt: string;
   badge: string;
   nome: string;
   titulo: string;
@@ -21,7 +23,8 @@ type Servico = {
 const servicos: Servico[] = [
   {
     id: 'marmiflix',
-    emoji: '🎬',
+    video: '/servicos/marmiflix-caseirinhas-da-tata.mp4',
+    videoAlt: 'MarmiFlix: assinatura de almoço semanal, quinzenal ou mensal da Caseirinhas da Tatá',
     badge: 'PARA PESSOA FÍSICA E PESSOA JURÍDICA',
     nome: 'MarmiFlix',
     titulo: 'Assinatura de Almoço: Semanal, Quinzenal ou Mensal',
@@ -39,7 +42,8 @@ const servicos: Servico[] = [
   },
   {
     id: 'company',
-    emoji: '🏢',
+    video: '/servicos/company-caseirinhas-da-tata.mp4',
+    videoAlt: 'Company: estrutura de restaurante corporativo da Caseirinhas da Tatá no local da empresa',
     badge: 'EXCLUSIVO PARA EMPRESAS',
     nome: 'Company',
     titulo: 'Gestão de Nutrição e Alimentação Corporativa',
@@ -57,7 +61,8 @@ const servicos: Servico[] = [
   },
   {
     id: 'single',
-    emoji: '🥗',
+    video: '/servicos/single-caseirinhas-da-tata.mp4',
+    videoAlt: 'Single: refeições dietéticas sob medida da Caseirinhas da Tatá',
     badge: 'SOB MEDIDA PARA VOCÊ',
     nome: 'Single',
     titulo: 'Refeições Dietéticas Sob Medida',
@@ -122,6 +127,18 @@ export default function ServicosPage() {
     })),
   };
 
+  const videoObjectsSchema = {
+    '@context': 'https://schema.org',
+    '@graph': servicos.map((s) => ({
+      '@type': 'VideoObject',
+      name: `${s.nome} - Caseirinhas da Tatá`,
+      description: s.descricao,
+      thumbnailUrl: [`${SITE_URL}/logo-caseirinhas-da-tata.jpg`],
+      uploadDate: '2026-08-11',
+      contentUrl: `${SITE_URL}${s.video}`,
+    })),
+  };
+
   const breadcrumbSchema = {
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
@@ -181,6 +198,7 @@ export default function ServicosPage() {
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(servicesSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(videoObjectsSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
 
@@ -208,29 +226,31 @@ export default function ServicosPage() {
 
             <div className="grid gap-8 md:grid-cols-3">
               {servicos.map((s) => (
-                <div key={s.id} id={s.id} className="flex scroll-mt-24 flex-col rounded-2xl border border-zinc-800 bg-zinc-900 p-6">
-                  <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-xl bg-[#ffc107]/10 text-3xl">
-                    {s.emoji}
+                <div key={s.id} id={s.id} className="flex scroll-mt-24 flex-col overflow-hidden rounded-2xl border border-zinc-800 bg-zinc-900">
+                  <ScrollVideo src={s.video} className="w-full">
+                    Seu navegador não suporta vídeo. Confira o serviço {s.nome} no WhatsApp.
+                  </ScrollVideo>
+                  <div className="flex flex-1 flex-col p-6">
+                    <span className="mb-3 inline-block w-fit rounded-full border border-[#ffc107]/20 bg-[#ffc107]/10 px-3 py-1 font-mono text-[11px] text-[#ffc107]">
+                      {s.badge}
+                    </span>
+                    <h2 className="mb-1 text-2xl font-bold text-zinc-100">{s.nome}</h2>
+                    <p className="mb-4 text-sm font-semibold text-zinc-400">{s.titulo}</p>
+                    <p className="mb-6 text-sm leading-relaxed text-zinc-400">{s.descricao}</p>
+                    <ul className="mb-6 space-y-2 text-sm text-zinc-400">
+                      {s.bullets.map((b) => (
+                        <li key={b}>✅ <span className="text-zinc-300">{b}</span></li>
+                      ))}
+                    </ul>
+                    <a
+                      href={`https://wa.me/${WHATSAPP}?text=${encodeURIComponent(s.ctaMensagem)}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="mt-auto block rounded-xl bg-[#ffc107] py-3 text-center font-bold text-black transition-colors hover:bg-[#ffca28]"
+                    >
+                      {s.ctaTexto}
+                    </a>
                   </div>
-                  <span className="mb-3 inline-block w-fit rounded-full border border-[#ffc107]/20 bg-[#ffc107]/10 px-3 py-1 font-mono text-[11px] text-[#ffc107]">
-                    {s.badge}
-                  </span>
-                  <h2 className="mb-1 text-2xl font-bold text-zinc-100">{s.nome}</h2>
-                  <p className="mb-4 text-sm font-semibold text-zinc-400">{s.titulo}</p>
-                  <p className="mb-6 text-sm leading-relaxed text-zinc-400">{s.descricao}</p>
-                  <ul className="mb-6 space-y-2 text-sm text-zinc-400">
-                    {s.bullets.map((b) => (
-                      <li key={b}>✅ <span className="text-zinc-300">{b}</span></li>
-                    ))}
-                  </ul>
-                  <a
-                    href={`https://wa.me/${WHATSAPP}?text=${encodeURIComponent(s.ctaMensagem)}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="mt-auto block rounded-xl bg-[#ffc107] py-3 text-center font-bold text-black transition-colors hover:bg-[#ffca28]"
-                  >
-                    {s.ctaTexto}
-                  </a>
                 </div>
               ))}
             </div>
