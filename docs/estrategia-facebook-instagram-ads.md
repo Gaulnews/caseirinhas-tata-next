@@ -11,7 +11,7 @@
 | Endereço | R. Maria Sinopoli Francovig, 1142 - Conj. Semíramis Barros Braga, Londrina - PR, 86088-080 |
 | Telefone / WhatsApp pedidos | (43) 99674-9607 — `https://wa.me/5543996749607` |
 | Site | `https://caseirinhasdatata.shop` |
-| Facebook | `https://www.facebook.com/profile.php?id=61589396367560` |
+| Facebook (Página oficial dos anúncios) | `https://www.facebook.com/profile.php?id=61585142010817` — "Caseirinhas da Tatá \| Londrina PR" (confirmado em 13/08/2026 como a Página exibida no Painel Profissional vinculado à conta de anúncios) |
 | Instagram | `https://www.instagram.com/caseirinhasdatata` |
 | Grupo WhatsApp (isca atual) | `https://chat.whatsapp.com/Jb1zGlNNCR11iObZS6oNxk` |
 | Produto | Marmitex (marmitas caseiras), almoço |
@@ -31,7 +31,7 @@ Decisões já tomadas com a Tatá para a primeira semana de campanha:
 |---|---|
 | Orçamento diário | **R$ 10 a R$ 15/dia** (abaixo da faixa de teste inicial sugerida — ver ajuste na seção 4) |
 | Foco geográfico inicial | **Só o cluster Cinco Conjuntos / Zona Norte** (maior densidade de bairros atendidos) |
-| Business Manager | Conta existe, mas **vínculo da Página e do Instagram não confirmado** |
+| Business Manager | Conta existe. **Página confirmada:** "Caseirinhas da Tatá \| Londrina PR" (id 61585142010817) — ver auditoria completa na seção 2.1. **Vínculo do Instagram ainda não confirmado** |
 | Pixel da Meta | **Ainda não existe** — precisa ser criado do zero |
 
 **Ajuste do plano por causa do orçamento menor:** com R$ 10–15/dia, **não faz sentido dividir em vários conjuntos de anúncios** — toda a verba deve ir para **1 campanha, 1 conjunto de anúncios**, mirando só o cluster Cinco Conjuntos/Zona Norte (raio de 5–6 km a partir do endereço-base). Isso concentra o volume necessário para o conjunto sair da fase de aprendizado mais rápido. Os outros 3 clusters (Centro/Gleba Palhano, Alpes, Leste) ficam para uma segunda fase, quando o orçamento aumentar ou quando o cluster inicial mostrar custo por conversa estável.
@@ -39,10 +39,10 @@ Decisões já tomadas com a Tatá para a primeira semana de campanha:
 ### Checklist antes de subir a campanha
 
 **1. Confirmar vínculo Página + Instagram no Business Manager:**
-1. Acessar `business.facebook.com` → **Configurações do Negócio** → **Contas** → **Páginas**. Confirmar que "Caseirinhas da Tatá" aparece lá.
-2. Em **Contas** → **Contas do Instagram**, confirmar se `@caseirinhasdatata` aparece vinculada a esse Business Manager.
-3. Se o Instagram não aparecer: abrir a Página do Facebook → **Configurações** → **Contas vinculadas** → **Instagram** → conectar por lá, ou adicionar diretamente pelo Business Manager.
-4. Confirmar que a **Conta de Anúncios** ativa está no mesmo Business Manager e tem a Página disponível para uso em anúncios (sem isso, o formato Clique-para-WhatsApp não fica disponível na criação do anúncio).
+1. ✅ **Feito** — confirmado em Contas → Páginas: a Página oficial dos anúncios é "Caseirinhas da Tatá \| Londrina PR" (id 61585142010817).
+2. Em **Contas** → **Contas do Instagram**, confirmar se `@caseirinhasdatata` aparece vinculada a esse Business Manager, e se está associada especificamente à Página id 61585142010817 (não à outra Página).
+3. Se o Instagram não aparecer: abrir a Página do Facebook (id 61585142010817) → **Configurações** → **Contas vinculadas** → **Instagram** → conectar por lá, ou adicionar diretamente pelo Business Manager.
+4. Confirmar que a **Conta de Anúncios** ativa tem a Página id 61585142010817 disponível para uso em anúncios (sem isso, o formato Clique-para-WhatsApp não fica disponível na criação do anúncio).
 
 **2. Criar o Pixel da Meta (ainda não existe):**
 1. Acessar o **Gerenciador de Eventos** (`business.facebook.com/events_manager2`) → **Conectar fontes de dados** → **Web** → **Pixel da Meta**.
@@ -71,25 +71,16 @@ Analisando os prints de `business.facebook.com` → **Configurações de pagamen
    - Correto (informado pela Tatá): `R. Maria Sinopoli Francovig, 1142 - Conj. Semíramis Barros Braga, Londrina - PR, 86088-080`
    - Diferenças: "**Signopoli**" em vez de "**Sinopoli**", falta o número (**1142**) e o complemento (**Conj. Semíramis Barros Braga**). Recomendo corrigir em **Configurações do Negócio → Informações comerciais → Editar**, principalmente se em algum momento for necessário verificar o negócio (Meta Business Verification) ou emitir comprovante de pagamento.
 
-2. **Duas URLs diferentes de Página do Facebook apareceram em momentos diferentes desta conversa — precisa esclarecer qual é a certa:**
+2. **Duas Páginas do Facebook distintas existem — RESOLVIDO em 13/08/2026:**
 
-   | URL informada | Quando | Nome da Página (confirmado por consulta pública) |
+   | URL | Nome da Página | Papel |
    |---|---|---|
-   | `facebook.com/profile.php?id=61589396367560` | Na primeira mensagem desta tarefa | "Caseirinhas Da Tata" |
-   | `facebook.com/profile.php?id=61585142010817` | Nesta mensagem | "Caseirinhas da Tatá \| Londrina PR" |
+   | `facebook.com/profile.php?id=61585142010817` | "Caseirinhas da Tatá \| Londrina PR" | ✅ **Página oficial para os anúncios** — confirmado como a Página exibida no Painel Profissional vinculado à conta de anúncios |
+   | `facebook.com/profile.php?id=61589396367560` | "Caseirinhas Da Tata" | Também aparece em Contas → Páginas do Business Manager, mas **não é a usada nos anúncios** — decisão sobre mesclar ou despublicar essa Página fica pendente, sem urgência (não bloqueia a campanha) |
 
-   São **duas Páginas do Facebook distintas**, com nomes ligeiramente diferentes — não é a mesma Página com URLs diferentes.
+   Ambas apareceram em **Configurações do Negócio → Contas → Páginas**, ou seja, tecnicamente as duas estão vinculadas a este Business Manager e poderiam ser selecionadas na criação do anúncio — por isso a confirmação de qual é a "oficial" era necessária antes de montar a campanha, para não escolher a errada por engano na hora de configurar o Clique-para-WhatsApp.
 
-   **Confirmado pela Tatá: as duas Páginas existem de fato** (não foi erro de digitação) e é preciso decidir o que fazer com elas antes de subir a campanha. Roteiro de decisão:
-
-   **Passo 1 — Descobrir qual está vinculada à conta de anúncios (obrigatório, define qual pode veicular o Clique-para-WhatsApp):**
-   - `business.facebook.com` → **Configurações do Negócio** → **Contas** → **Páginas**. A(s) Página(s) listada(s) ali são as que esse Business Manager controla. Se as duas aparecerem, ambas podem ser usadas em anúncios; se só uma aparecer, é ela que tem que ser a Página do anúncio.
-
-   **Passo 2 — Se só uma estiver vinculada:** usar essa como Página oficial do anúncio, e decidir depois (sem pressa, não bloqueia a campanha) o que fazer com a outra — normalmente **mesclar** (se as duas representam o mesmo endereço/negócio, o Facebook oferece "Solicitar mesclagem de Páginas" em Configurações da Página → Geral, quando os critérios batem) ou **despublicar** a mais antiga/com menos atividade, redirecionando os seguidores para a que ficar ativa.
-
-   **Passo 3 — Se as duas estiverem vinculadas ao Business Manager:** escolher a que tem mais seguidores, avaliações e posts como Página "principal" para: (a) veicular os anúncios, (b) ser a única referência em `caseirinhasdatata.shop`, bio do Instagram, Google Business Profile e catálogo do WhatsApp. Ter dois links de Facebook circulando divide avaliações/seguidores e confunde quem está pesquisando o negócio — mesmo rodando ads só numa delas, vale unificar a referência pública nos outros canais depois.
-
-   **Enquanto isso não for decidido, a campanha da Semana 1 não deve ser criada** — o Clique-para-WhatsApp exige selecionar uma Página específica na configuração do anúncio, e usar a Página errada (a que não representa bem o negócio, ou que não está de fato ativa) desperdiça o pouco orçamento de teste.
+   **Pendência não-bloqueante para depois:** como as duas Páginas continuam ativas e vinculadas, decidir em algum momento se vale mesclar (Configurações da Página → Geral → "Solicitar mesclagem de Páginas", se os critérios do Facebook permitirem) ou despublicar a "Caseirinhas Da Tata" (id 61589396367560), para não dividir avaliações/seguidores entre as duas. Enquanto isso não for feito, manter todos os links públicos (site, Instagram, Google Business Profile) apontando só para a Página oficial (id 61585142010817).
 
 ---
 
