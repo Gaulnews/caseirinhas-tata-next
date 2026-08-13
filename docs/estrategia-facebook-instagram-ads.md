@@ -50,6 +50,36 @@ Decisões já tomadas com a Tatá para a primeira semana de campanha:
 3. Quando a Meta oferecer opções de instalação (parceiro, Gerenciador de Tags do Google, código manual), escolher **"Adicionar código manualmente"** — o site é Next.js e a instalação será feita direto no código.
 4. Copiar o **Pixel ID** gerado (um número, ex.: `1234567890123456`) e repassar para instalação no `layout.tsx` (ver seção 7).
 
+### 2.1 Auditoria da conta de anúncios (confirmado via prints do Business Manager em 13/08/2026)
+
+Analisando os prints de `business.facebook.com` → **Configurações de pagamento**:
+
+| Campo | Valor visto na conta | Leitura |
+|---|---|---|
+| Saldo disponível | **R$ 89,99** | Praticamente intacto — confirma que **nenhuma campanha rodou de fato ainda** (só R$ 0,01 de diferença do depósito, provavelmente arredondamento interno da Meta, não gasto real) |
+| Forma de pagamento | **Saldo disponível (pré-pago)** — nenhum cartão cadastrado | Bom para controle de orçamento: a Meta debita do saldo 1x/dia; **sem saldo, os anúncios pausam sozinhos** — não há risco de cobrança além do que for depositado manualmente |
+| Limite de gastos diário definido pela Meta | R$ 186,09 | É um teto de segurança automático da plataforma, **não é o orçamento da campanha**. Não conflita com o plano de R$ 10–15/dia — só entraria em jogo se algum dia o orçamento diário configurado ultrapassasse esse valor |
+| Última atividade de pagamento | 05/mai/2026, pagamento manual, **R$ 90,00**, status "Com fundos" | Único depósito feito até agora; é esse saldo que vai cobrir a Semana 1 |
+| Nome da empresa | Caseirinhas da Tatá | Confere |
+| Moeda | Real brasileiro (BRL) | Correto |
+| Identificação fiscal | `11045046930` (11 dígitos) | Formato de **CPF**, não CNPJ (14 dígitos) — a conta está registrada como pessoa física. Não bloqueia a veiculação de anúncios, mas vale confirmar se é intencional (negócio informal/MEI) ou se deveria ser o CNPJ da empresa, por causa de nota fiscal/comprovante de despesa |
+
+**Dois pontos que precisam de confirmação/correção antes de subir a campanha:**
+
+1. **Endereço cadastrado nas Informações Comerciais está incompleto e com erro de digitação:**
+   - Cadastrado: `Maria Signopoli Francovig, 86088080 Londrina, Brasil`
+   - Correto (informado pela Tatá): `R. Maria Sinopoli Francovig, 1142 - Conj. Semíramis Barros Braga, Londrina - PR, 86088-080`
+   - Diferenças: "**Signopoli**" em vez de "**Sinopoli**", falta o número (**1142**) e o complemento (**Conj. Semíramis Barros Braga**). Recomendo corrigir em **Configurações do Negócio → Informações comerciais → Editar**, principalmente se em algum momento for necessário verificar o negócio (Meta Business Verification) ou emitir comprovante de pagamento.
+
+2. **Duas URLs diferentes de Página do Facebook apareceram em momentos diferentes desta conversa — precisa esclarecer qual é a certa:**
+
+   | URL informada | Quando | Nome da Página (confirmado por consulta pública) |
+   |---|---|---|
+   | `facebook.com/profile.php?id=61589396367560` | Na primeira mensagem desta tarefa | "Caseirinhas Da Tata" |
+   | `facebook.com/profile.php?id=61585142010817` | Nesta mensagem | "Caseirinhas da Tatá \| Londrina PR" |
+
+   São **duas Páginas do Facebook distintas**, com nomes ligeiramente diferentes — não é a mesma Página com URLs diferentes. Antes de configurar o anúncio de Clique-para-WhatsApp é indispensável confirmar **qual das duas está de fato vinculada a este Business Manager/conta de anúncios** (a outra pode ser uma Página antiga, duplicada, ou criada por engano). Ver pergunta de esclarecimento enviada junto com esta atualização.
+
 ---
 
 ## 3. Funil recomendado: Click-to-WhatsApp, não link direto de grupo
