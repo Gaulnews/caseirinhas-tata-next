@@ -78,7 +78,18 @@ Analisando os prints de `business.facebook.com` → **Configurações de pagamen
    | `facebook.com/profile.php?id=61589396367560` | Na primeira mensagem desta tarefa | "Caseirinhas Da Tata" |
    | `facebook.com/profile.php?id=61585142010817` | Nesta mensagem | "Caseirinhas da Tatá \| Londrina PR" |
 
-   São **duas Páginas do Facebook distintas**, com nomes ligeiramente diferentes — não é a mesma Página com URLs diferentes. Antes de configurar o anúncio de Clique-para-WhatsApp é indispensável confirmar **qual das duas está de fato vinculada a este Business Manager/conta de anúncios** (a outra pode ser uma Página antiga, duplicada, ou criada por engano). Ver pergunta de esclarecimento enviada junto com esta atualização.
+   São **duas Páginas do Facebook distintas**, com nomes ligeiramente diferentes — não é a mesma Página com URLs diferentes.
+
+   **Confirmado pela Tatá: as duas Páginas existem de fato** (não foi erro de digitação) e é preciso decidir o que fazer com elas antes de subir a campanha. Roteiro de decisão:
+
+   **Passo 1 — Descobrir qual está vinculada à conta de anúncios (obrigatório, define qual pode veicular o Clique-para-WhatsApp):**
+   - `business.facebook.com` → **Configurações do Negócio** → **Contas** → **Páginas**. A(s) Página(s) listada(s) ali são as que esse Business Manager controla. Se as duas aparecerem, ambas podem ser usadas em anúncios; se só uma aparecer, é ela que tem que ser a Página do anúncio.
+
+   **Passo 2 — Se só uma estiver vinculada:** usar essa como Página oficial do anúncio, e decidir depois (sem pressa, não bloqueia a campanha) o que fazer com a outra — normalmente **mesclar** (se as duas representam o mesmo endereço/negócio, o Facebook oferece "Solicitar mesclagem de Páginas" em Configurações da Página → Geral, quando os critérios batem) ou **despublicar** a mais antiga/com menos atividade, redirecionando os seguidores para a que ficar ativa.
+
+   **Passo 3 — Se as duas estiverem vinculadas ao Business Manager:** escolher a que tem mais seguidores, avaliações e posts como Página "principal" para: (a) veicular os anúncios, (b) ser a única referência em `caseirinhasdatata.shop`, bio do Instagram, Google Business Profile e catálogo do WhatsApp. Ter dois links de Facebook circulando divide avaliações/seguidores e confunde quem está pesquisando o negócio — mesmo rodando ads só numa delas, vale unificar a referência pública nos outros canais depois.
+
+   **Enquanto isso não for decidido, a campanha da Semana 1 não deve ser criada** — o Clique-para-WhatsApp exige selecionar uma Página específica na configuração do anúncio, e usar a Página errada (a que não representa bem o negócio, ou que não está de fato ativa) desperdiça o pouco orçamento de teste.
 
 ---
 
