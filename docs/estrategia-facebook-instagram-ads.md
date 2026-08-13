@@ -38,11 +38,23 @@ Decisões já tomadas com a Tatá para a primeira semana de campanha:
 
 ### Checklist antes de subir a campanha
 
-**1. Confirmar vínculo Página + Instagram no Business Manager:**
+**1. Confirmar vínculo Página + Instagram + saldo, todos apontando para a Página correta (id 61585142010817):**
+
 1. ✅ **Feito** — confirmado em Contas → Páginas: a Página oficial dos anúncios é "Caseirinhas da Tatá \| Londrina PR" (id 61585142010817).
-2. Em **Contas** → **Contas do Instagram**, confirmar se `@caseirinhasdatata` aparece vinculada a esse Business Manager, e se está associada especificamente à Página id 61585142010817 (não à outra Página).
-3. Se o Instagram não aparecer: abrir a Página do Facebook (id 61585142010817) → **Configurações** → **Contas vinculadas** → **Instagram** → conectar por lá, ou adicionar diretamente pelo Business Manager.
-4. Confirmar que a **Conta de Anúncios** ativa tem a Página id 61585142010817 disponível para uso em anúncios (sem isso, o formato Clique-para-WhatsApp não fica disponível na criação do anúncio).
+
+2. **Confirmar que o saldo (R$ 89,99) está na Conta de Anúncios que tem acesso a essa Página** — o saldo pertence à **Conta de Anúncios**, não à Página diretamente, então o que precisa ser garantido é que a Conta de Anúncios com esse saldo tem a Página id 61585142010817 atribuída como ativo utilizável:
+   - `business.facebook.com` → **Configurações do Negócio** → **Contas** → **Contas de anúncios**. Confirmar o nome/ID da conta de anúncios (a mesma que aparece na tela de "Saldo disponível" dos prints anteriores).
+   - Clicar nessa Conta de Anúncios → aba **Páginas** (ou "Ativos atribuídos") → conferir se "Caseirinhas da Tatá \| Londrina PR" (id 61585142010817) aparece com permissão de **Anunciar/Advertise**.
+   - Confirmação cruzada: abrir a Página id 61585142010817 → **Configurações do Negócio** → **Contas** → **Páginas** → clicar nela → aba **Contas de anúncios** → a mesma Conta de Anúncios do saldo deve aparecer listada ali.
+   - Se a Conta de Anúncios do saldo **não** tiver essa Página atribuída, é preciso atribuir manualmente nessa mesma tela ("Atribuir contas de anúncios" → selecionar a conta → conceder acesso de "Anunciar") antes de criar a campanha — senão a Página não vai aparecer como opção na hora de montar o anúncio.
+
+3. **Confirmar a conta do Instagram vinculada** — a conta informada é `https://www.instagram.com/caseirinhasdatata` (usuário `@caseirinhasdatata`):
+   - `business.facebook.com` → **Configurações do Negócio** → **Contas** → **Contas do Instagram**. Verificar se `@caseirinhasdatata` aparece na lista.
+   - Clicar em `@caseirinhasdatata` → conferir em **"Página conectada"** se ela está associada à Página id 61585142010817 (e não à outra Página, id 61589396367560) — uma conta do Instagram só pode estar conectada oficialmente a uma Página do Facebook por vez.
+   - Na mesma tela, em **"Contas de anúncios com acesso"**, confirmar que a Conta de Anúncios com o saldo de R$ 89,99 está listada com permissão de uso — sem isso, os anúncios não conseguem veicular usando o perfil `@caseirinhasdatata` (a Meta usaria um perfil genérico do Facebook no lugar, o que é ruim para quem clica ver o Instagram real da Tatá).
+   - Se `@caseirinhasdatata` **não** aparecer na lista: abrir o app do Instagram → Perfil → **Configurações** → **Contas** → **Compartilhamento em outros apps/Contas conectadas** → **Facebook**, e conectar a essa Página especificamente (id 61585142010817). Depois repetir o passo acima para conceder acesso à Conta de Anúncios.
+
+4. **Atalho para verificar tudo de uma vez, direto na criação do anúncio:** no Gerenciador de Anúncios, iniciar a criação de um anúncio (sem publicar) até a etapa **"Identidade"** — ali a Meta mostra exatamente qual Página e qual conta do Instagram estão disponíveis para essa Conta de Anúncios. Se `@caseirinhasdatata` não aparecer como opção nessa etapa, é sinal de que o vínculo (passo 3) ainda não está correto.
 
 **2. Criar o Pixel da Meta (ainda não existe):**
 1. Acessar o **Gerenciador de Eventos** (`business.facebook.com/events_manager2`) → **Conectar fontes de dados** → **Web** → **Pixel da Meta**.
