@@ -112,15 +112,15 @@ Isso pode ser (a) o mesmo Business Manager acessado por rotas diferentes com um 
 | Usuário (Pessoas) | "caseirinhasdatata restaurante" — Acesso total ("Tudo"), atribuído à conta do Instagram `@caseirinhasdatata` |
 | Parceiros | 2 parceiros; 1 detalhado, nome exibido como **"unknown"**, Identificação `2805008196564390` |
 | Catálogo | "WhatsApp Product Catalog" — Acesso total |
-| Conta do Instagram | `@caseirinhasdatata`, Identificação `17841477428364093`, propriedade de "caseirinhasdatata" — ✅ confirma que a conta profissional do Instagram existe como ativo dentro deste portfólio |
-| Conta de WhatsApp (WABA) | **"Caseirinhas Da Tata"** (sem acento — mesmo nome da Página duplicada, id 61589396367560, não da Página oficial dos anúncios), Identificação `1348408177111724`, propriedade de "caseirinhasdatata", tipo "Aplicativo WhatsApp Business" |
+| Conta do Instagram | `@caseirinhasdatata`, Identificação `17841477428364093`, propriedade de "caseirinhasdatata" — ✅ **confirmado pela Tatá como o ativo a ser usado nos anúncios** |
+| Conta de WhatsApp (WABA) | **"Caseirinhas Da Tata"**, Identificação `1348408177111724`, propriedade de "caseirinhasdatata", tipo "Aplicativo WhatsApp Business" — ✅ **confirmado pela Tatá como a conta de WhatsApp a ser usada nos anúncios**. Nome bate com o da Página duplicada (id 61589396367560), não da Página oficial dos anúncios (id 61585142010817) — isso por si só não impede o uso, mas falta confirmar 2 coisas antes de travar a ficha da seção 4.1: (a) **qual número de telefone** está registrado nessa WABA — ainda não informado, a ficha da seção 4.1 está usando `(43) 99674-9607` como suposição, não confirmação; (b) se essa WABA aparece disponível para seleção quando o anúncio é montado a partir da Página id 61585142010817 (Página e WABA precisam estar "conectadas" ou pelo menos compartilhadas na mesma Conta de Anúncios para isso funcionar) |
 | Perfil ativo no navegador | Instagram `@caseirinhasdatata` |
 | Outros perfis salvos no navegador | Facebook "Bentt Gau"; Instagram `@gaulsamuyenga` (perfis pessoais de quem está operando a conta, não do negócio) |
 
 **Pontos que precisam de decisão/confirmação da Tatá antes de prosseguir — não vou presumir a resposta:**
 
 1. **Parceiro "unknown" (id `2805008196564390`) com acesso total ao catálogo do WhatsApp — investigado, achado: provável acesso órfão.** Abrindo os detalhes do parceiro dentro do Business Manager, tanto o campo **Nome** quanto **Detalhes** aparecem literalmente como "unknown", sem nenhum app associado, sem data de concessão visível — e o único ativo compartilhado é o "WhatsApp Product Catalog" (Acesso total). Quando a Meta não consegue resolver nem o nome do parceiro, o padrão mais comum é que o **Business Manager de origem desse parceiro foi excluído, desativado ou banido** depois que o acesso foi concedido — ou seja, não existe mais um dono identificável do outro lado para perguntar "é seu?". **Leitura de risco:** esse parceiro não tem acesso à Página, à Conta de Anúncios nem ao saldo — só ao catálogo de produtos do WhatsApp — então não é um risco financeiro direto para as campanhas, mas é uma permissão órfã (sem dono verificável) que fica sem função. **Recomendação:** revogar esse acesso (Ativos atribuídos → Catálogo → remover parceiro) por higiene, já que não há como confirmar legitimidade nem uso ativo. Decisão final é da Tatá — não vou revogar por conta própria.
-2. **A Conta de WhatsApp (WABA) chama "Caseirinhas Da Tata"** — mesmo nome da Página *não*-oficial. Preciso saber **qual número de telefone está por trás dessa WABA**: se é o `(43) 99674-9607` (número real de pedidos) ou outro número — isso define se essa é a conta que deve ser usada como destino dos anúncios de Clique-para-WhatsApp.
+2. ✅ **Resolvido quanto a qual conta usar** — a Tatá confirmou que os anúncios devem usar a WABA "Caseirinhas Da Tata" (id `1348408177111724`) e a conta do Instagram `@caseirinhasdatata` (id `17841477428364093`). **Ainda em aberto:** o número de telefone por trás dessa WABA não foi informado — a ficha da seção 4.1 está assumindo `(43) 99674-9607` (o número de pedidos informado originalmente), mas isso precisa de confirmação explícita antes de considerar a ficha travada, porque um WhatsApp Business App pode estar registrado em qualquer número, não necessariamente o de pedidos.
 3. **Confirmar se `business_id=1839641340307117` é o mesmo Business Manager onde está o saldo de R$ 89,99 e a Página id 61585142010817 — ainda em aberto.** A Tatá tentou localizar a Conta de Anúncios com o saldo dentro deste Business Manager e não conseguiu, o que é um indício (não uma confirmação) de que a conta com saldo pode estar em outro Business Manager, possivelmente o `566690120345061` visto na etapa de confirmação de telefone. Passos para achar de forma definitiva, na seção "Como localizar a Conta de Anúncios com o saldo" logo abaixo.
 
 ### Como localizar a Conta de Anúncios com o saldo (quando ela não aparece em Contas de anúncios do Business Manager atual)
@@ -228,7 +228,9 @@ Não depende do link do grupo nem do Pixel para ser criada — o objetivo Clique
 |---|---|
 | Nome | `Cinco Conjuntos - Zona Norte` |
 | Página | Caseirinhas da Tatá \| Londrina PR (id 61585142010817) |
-| Número de WhatsApp | (43) 99674-9607 |
+| Conta de WhatsApp (WABA) | "Caseirinhas Da Tata" (id 1348408177111724) — confirmada pela Tatá como a conta a usar |
+| Conta do Instagram | `@caseirinhasdatata` (id 17841477428364093) — confirmada |
+| Número de WhatsApp | **⚠️ Suposição, não confirmada:** `(43) 99674-9607` — falta confirmar que é este o número registrado na WABA acima antes de travar o anúncio |
 | Orçamento diário | R$ 10 a R$ 15 |
 | Lance | Custo mais baixo (sem teto) |
 | Otimização para | Conversas iniciadas |
