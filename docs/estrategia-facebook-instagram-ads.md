@@ -159,6 +159,27 @@ Cada bairro mantém seu link individual de aterrissagem (`/entregas/[bairro]`, t
 
 **Depois de criados:** enviar os links aqui. Assim que eu tiver o link do cluster Cinco Conjuntos/Zona Norte, eu: (a) atualizo o CTA de grupo na home (`src/app/page.tsx`, hoje aponta para o grupo único genérico) para direcionar por região, e (b) ajusto o funil da seção 3 deste documento para descrever o encaminhamento correto por cluster em vez de um único grupo genérico.
 
+## 2.4 Calendário de promoções do grupo Cinco Conjuntos/Zona Norte
+
+**⏰ Prazo apertado:** hoje é 16/08/2026 e a Promoção 1 começa **amanhã, 17/08**. O grupo precisa estar criado e com as regras publicadas ainda hoje, ou a janela da Promoção 1 já começa a correr sem ninguém dentro do grupo.
+
+Estrutura das 3 promoções, como recebida — mecânica em comum: **as 5 primeiras pessoas do grupo que baterem a meta de compras dentro da janela de datas** levam o prêmio por retirada direta, sem sorteio. Todos os prêmios são retirados a partir de **01/09/26**.
+
+| # | Nome | Janela | Meta (uma das duas opções) | Prêmio |
+|---|---|---|---|---|
+| 1 | Kit de Facas | 17/08 a 24/08 | 8 Marmitas Mini **ou** 6 Marmitas Grandes | Kit/Jogo de Facas (imagens `promo-grupo-jogo-face-marmita-mini-caseirinhas-da-tata_01` a `_06`) |
+| 2 | Kit de Ferramentas 46 peças | 20/08 a 27/08 | 5 Marmitas Grandes **ou** 6 Marmitas Grandes ⚠️ | Kit de Ferramentas 46 peças (imagens `promo-grupo-kit-ferramentas-marmita-mini-caseirinhas-da-tata_01` a `_05`) |
+| 3 | Kit Churrasqueiro | 24/08 a 31/08 | 7 Marmitas Mini **ou** 6 Marmitas Médias | ⚠️ Texto recebido diz "Kit/Ferramentas de 46 Peças" — ver ponto 1 abaixo |
+
+**Antes de eu travar isso como regra final e escrever o texto de divulgação, 4 pontos precisam da sua confirmação — não vou presumir nenhum deles:**
+
+1. **Promoção 3 (Kit Churrasqueiro) — prêmio e imagens não batem com o nome.** O texto do prêmio recebido diz "Kit/Ferramentas de 46 Peças" (igual ao prêmio da Promoção 2) e cita os arquivos `promo-grupo-kit-churrasqueiro-marmita-mini-caseirinhas-da-tata_01` a `_04` — mas essas imagens **não vieram anexadas** nesta mensagem (só vieram fotos de facas e do kit de ferramentas de 46 peças, sem nenhum item de churrasco como espeto, avental ou garras). Parece um copiar-e-colar da Promoção 2. Preciso das imagens reais do Kit Churrasqueiro e da confirmação de que o prêmio da Promoção 3 não é o mesmo da 2.
+2. **Promoção 2 — as duas opções de meta são idênticas.** "5 Marmitas Grandes ou 6 Marmitas Grandes" repete o mesmo tamanho nas duas opções. Nas outras duas promoções, as opções usam tamanhos diferentes (ex.: Promoção 1: 8 Mini *ou* 6 Grandes — valores próximos, ~R$ 160–168; Promoção 3: 7 Mini *ou* 6 Médias, ~R$ 140–150), o que faz sentido porque tamanhos diferentes te dão valores parecidos. Aqui, "6 Grandes" só sendo estritamente melhor que "5 Grandes" para o cliente não faz sentido como duas opções alternativas — bate com o padrão de erro de digitação. Qual era o tamanho certo da segunda opção?
+3. **As janelas se sobrepõem — é intencional?** Promoção 1 (17–24/08) e Promoção 2 (20–27/08) se sobrepõem de 20 a 24/08; Promoção 2 e Promoção 3 (24–31/08) se sobrepõem no dia 24/08. Isso significa que uma compra feita, por exemplo, em 21/08, pode contar ao mesmo tempo para a meta da Promoção 1 **e** da Promoção 2. É isso mesmo que você quer (uma compra pode valer para mais de uma promoção ativa ao mesmo tempo), ou cada compra deveria contar só para uma promoção por vez?
+4. **Critério de desempate:** se mais de 5 pessoas baterem a meta no mesmo dia (bem provável, já que o disparo é "as 5 primeiras"), como decidir quem são as 5 — ordem de horário da mensagem confirmando a compra? Ordem de horário do pedido em si? Vale definir isso antes de anunciar, para não ter que decidir na hora com clientes reais esperando resposta.
+
+**O que já está pronto para usar, independente dessas 4 confirmações:** a mecânica (5 primeiros, retirada direta sem sorteio), a Promoção 1 por completo (nome, janela, meta, prêmio, imagens), e a data de retirada única (01/09/26) para todos os prêmios.
+
 ---
 
 ## 3. Funil recomendado: Click-to-WhatsApp, não link direto de grupo
