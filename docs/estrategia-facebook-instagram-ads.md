@@ -167,18 +167,25 @@ Estrutura das 3 promoções, como recebida — mecânica em comum: **as 5 primei
 
 | # | Nome | Janela | Meta (uma das duas opções) | Prêmio |
 |---|---|---|---|---|
-| 1 | Kit de Facas | 17/08 a 24/08 | 8 Marmitas Mini **ou** 6 Marmitas Grandes | Kit/Jogo de Facas (imagens `promo-grupo-jogo-face-marmita-mini-caseirinhas-da-tata_01` a `_06`) |
-| 2 | Kit de Ferramentas 46 peças | 20/08 a 27/08 | 5 Marmitas Grandes **ou** 6 Marmitas Grandes ⚠️ | Kit de Ferramentas 46 peças (imagens `promo-grupo-kit-ferramentas-marmita-mini-caseirinhas-da-tata_01` a `_05`) |
-| 3 | Kit Churrasqueiro | 24/08 a 31/08 | 7 Marmitas Mini **ou** 6 Marmitas Médias | ⚠️ Texto recebido diz "Kit/Ferramentas de 46 Peças" — ver ponto 1 abaixo |
+| 1 | Kit de Facas | 17/08 a 24/08 | 8 Marmitas Mini **ou** 6 Marmitas Grandes | Kit/Jogo de Facas (imagens `promo-grupo-jogo-face-marmita-mini-caseirinhas-da-tata_01` a `_06`) — ✅ imagens recebidas |
+| 2 | Kit de Ferramentas 46 peças | 20/08 a 27/08 | 5 Marmitas Grandes **ou** 7 Marmitas Mini — ✅ confirmado | Kit de Ferramentas 46 peças (imagens `promo-grupo-kit-ferramentas-marmita-mini-caseirinhas-da-tata_01` a `_05`) — ✅ imagens recebidas |
+| 3 | Kit Churrasqueiro | 24/08 a 31/08 | 7 Marmitas Mini **ou** 6 Marmitas Médias | Kit Churrasqueiro — ✅ confirmado que é um prêmio distinto (não é o kit de ferramentas), imagens `promo-grupo-kit-churrasqueiro-marmita-mini-caseirinhas-da-tata_01` a `_04` — ⚠️ **ainda não recebidas nesta conversa**, ver ponto 1 abaixo |
 
-**Antes de eu travar isso como regra final e escrever o texto de divulgação, 4 pontos precisam da sua confirmação — não vou presumir nenhum deles:**
+**Regra de desempate entre promoções sobrepostas — cada compra conta para uma única promoção (confirmado), usando a regra "a promoção mais antiga que ainda estiver na janela tem prioridade":**
 
-1. **Promoção 3 (Kit Churrasqueiro) — prêmio e imagens não batem com o nome.** O texto do prêmio recebido diz "Kit/Ferramentas de 46 Peças" (igual ao prêmio da Promoção 2) e cita os arquivos `promo-grupo-kit-churrasqueiro-marmita-mini-caseirinhas-da-tata_01` a `_04` — mas essas imagens **não vieram anexadas** nesta mensagem (só vieram fotos de facas e do kit de ferramentas de 46 peças, sem nenhum item de churrasco como espeto, avental ou garras). Parece um copiar-e-colar da Promoção 2. Preciso das imagens reais do Kit Churrasqueiro e da confirmação de que o prêmio da Promoção 3 não é o mesmo da 2.
-2. **Promoção 2 — as duas opções de meta são idênticas.** "5 Marmitas Grandes ou 6 Marmitas Grandes" repete o mesmo tamanho nas duas opções. Nas outras duas promoções, as opções usam tamanhos diferentes (ex.: Promoção 1: 8 Mini *ou* 6 Grandes — valores próximos, ~R$ 160–168; Promoção 3: 7 Mini *ou* 6 Médias, ~R$ 140–150), o que faz sentido porque tamanhos diferentes te dão valores parecidos. Aqui, "6 Grandes" só sendo estritamente melhor que "5 Grandes" para o cliente não faz sentido como duas opções alternativas — bate com o padrão de erro de digitação. Qual era o tamanho certo da segunda opção?
-3. **As janelas se sobrepõem — é intencional?** Promoção 1 (17–24/08) e Promoção 2 (20–27/08) se sobrepõem de 20 a 24/08; Promoção 2 e Promoção 3 (24–31/08) se sobrepõem no dia 24/08. Isso significa que uma compra feita, por exemplo, em 21/08, pode contar ao mesmo tempo para a meta da Promoção 1 **e** da Promoção 2. É isso mesmo que você quer (uma compra pode valer para mais de uma promoção ativa ao mesmo tempo), ou cada compra deveria contar só para uma promoção por vez?
-4. **Critério de desempate:** se mais de 5 pessoas baterem a meta no mesmo dia (bem provável, já que o disparo é "as 5 primeiras"), como decidir quem são as 5 — ordem de horário da mensagem confirmando a compra? Ordem de horário do pedido em si? Vale definir isso antes de anunciar, para não ter que decidir na hora com clientes reais esperando resposta.
+| Período | Promoção que recebe a compra | Por quê |
+|---|---|---|
+| 17/08 a 24/08 | Promoção 1 (Kit de Facas) | É a única aberta até o dia 20, e mesmo depois disso é a que fecha primeiro |
+| 25/08 a 27/08 | Promoção 2 (Kit de Ferramentas) | Promoção 1 já fechou; Promoção 2 fecha antes da 3 |
+| 28/08 a 31/08 | Promoção 3 (Kit Churrasqueiro) | Únicas promoções 1 e 2 já fecharam |
 
-**O que já está pronto para usar, independente dessas 4 confirmações:** a mecânica (5 primeiros, retirada direta sem sorteio), a Promoção 1 por completo (nome, janela, meta, prêmio, imagens), e a data de retirada única (01/09/26) para todos os prêmios.
+Na prática, isso transforma as janelas sobrepostas em **3 blocos exclusivos de datas** — mais simples de anunciar e de controlar manualmente. Se preferir uma regra diferente, é só avisar antes de eu finalizar o texto de divulgação.
+
+**Critério de desempate entre clientes (confirmado):** quando mais de 5 pessoas baterem a meta na mesma promoção, valem as 5 com o **pedido mais antigo** (horário do pedido feito no WhatsApp de pedidos `(43) 99674-9607`), não o horário de quem avisou primeiro no grupo.
+
+**Pendência única antes de eu travar tudo e escrever o texto de divulgação:** as 4 imagens do Kit Churrasqueiro (`promo-grupo-kit-churrasqueiro-marmita-mini-caseirinhas-da-tata_01.jpg` a `_04.jpg`) ainda não chegaram nesta conversa — todas as imagens recebidas até agora são de facas e do kit de ferramentas de 46 peças. Preciso que você as anexe numa próxima mensagem para eu confirmar que são de fato um produto de churrasco e fechar a tabela acima.
+
+**O que já está pronto para usar:** a mecânica (5 primeiros por pedido mais antigo, retirada direta sem sorteio), as Promoções 1 e 2 por completo, a regra de blocos exclusivos de data, e a data de retirada única (01/09/26) para todos os prêmios.
 
 ---
 
