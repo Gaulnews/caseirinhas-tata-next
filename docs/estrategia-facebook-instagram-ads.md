@@ -169,7 +169,9 @@ Estrutura das 3 promoções, como recebida — mecânica em comum: **as 5 primei
 |---|---|---|---|---|
 | 1 | Kit de Facas | 17/08 a 24/08 | 8 Marmitas Mini **ou** 6 Marmitas Grandes | Kit/Jogo de Facas (imagens `promo-grupo-jogo-face-marmita-mini-caseirinhas-da-tata_01` a `_06`) — ✅ imagens recebidas |
 | 2 | Kit de Ferramentas 46 peças | 20/08 a 27/08 | 5 Marmitas Grandes **ou** 7 Marmitas Mini — ✅ confirmado | Kit de Ferramentas 46 peças (imagens `promo-grupo-kit-ferramentas-marmita-mini-caseirinhas-da-tata_01` a `_05`) — ✅ imagens recebidas |
-| 3 | Kit Churrasqueiro | 24/08 a 31/08 | 7 Marmitas Mini **ou** 6 Marmitas Médias | Kit Churrasqueiro — ✅ confirmado que é um prêmio distinto (não é o kit de ferramentas), imagens `promo-grupo-kit-churrasqueiro-marmita-mini-caseirinhas-da-tata_01` a `_04` — ⚠️ **ainda não recebidas nesta conversa**, ver ponto 1 abaixo |
+| 3 | Kit Churrasqueiro | 24/08 a 31/08 | 7 Marmitas Mini **ou** 6 Marmitas Médias | ⚠️ **Ainda não resolvido** — ver nota abaixo |
+
+**⚠️ Segunda tentativa de envio das imagens da Promoção 3 ainda não resolve o problema.** As 4 imagens enviadas depois de eu apontar a pendência são: o anúncio "CORTE PRECISO E SEM ESFORÇO" (faca cortando bife + garras de urso) e três variações da caixa "KIT FACAS 8 PEÇAS" (marca RL-ZONE, uma delas com o texto visivelmente distorcido "QL ZONE"). **Essas são exatamente as mesmas 4 imagens já usadas para ilustrar a Promoção 1 (Kit de Facas)** — não há nenhum item exclusivo de churrasco (espeto, avental, carvão, kit de churrasqueiro dedicado). Ou seja: ou (a) a Promoção 3 realmente dá o mesmo kit de facas da Promoção 1 como prêmio (o que seria incomum — duas promoções, mesma janela de produto, mesmo prêmio físico), ou (b) as imagens certas do Kit Churrasqueiro ainda não foram anexadas por engano (talvez estejam salvas com nome parecido ao das imagens de facas). Não vou marcar isso como resolvido até essa confirmação.
 
 **Regra de desempate entre promoções sobrepostas — cada compra conta para uma única promoção (confirmado), usando a regra "a promoção mais antiga que ainda estiver na janela tem prioridade":**
 
@@ -183,7 +185,7 @@ Na prática, isso transforma as janelas sobrepostas em **3 blocos exclusivos de 
 
 **Critério de desempate entre clientes (confirmado):** quando mais de 5 pessoas baterem a meta na mesma promoção, valem as 5 com o **pedido mais antigo** (horário do pedido feito no WhatsApp de pedidos `(43) 99674-9607`), não o horário de quem avisou primeiro no grupo.
 
-**Pendência única antes de eu travar tudo e escrever o texto de divulgação:** as 4 imagens do Kit Churrasqueiro (`promo-grupo-kit-churrasqueiro-marmita-mini-caseirinhas-da-tata_01.jpg` a `_04.jpg`) ainda não chegaram nesta conversa — todas as imagens recebidas até agora são de facas e do kit de ferramentas de 46 peças. Preciso que você as anexe numa próxima mensagem para eu confirmar que são de fato um produto de churrasco e fechar a tabela acima.
+**Pendência única antes de eu travar tudo e escrever o texto de divulgação:** confirmar se o prêmio da Promoção 3 é mesmo o kit de facas (repetindo o prêmio da Promoção 1) ou se as imagens corretas do Kit Churrasqueiro ainda precisam ser localizadas e enviadas.
 
 **O que já está pronto para usar:** a mecânica (5 primeiros por pedido mais antigo, retirada direta sem sorteio), as Promoções 1 e 2 por completo, a regra de blocos exclusivos de data, e a data de retirada única (01/09/26) para todos os prêmios.
 
