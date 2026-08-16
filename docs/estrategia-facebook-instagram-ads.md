@@ -94,6 +94,35 @@ Analisando os prints de `business.facebook.com` → **Configurações de pagamen
 
    **Pendência não-bloqueante para depois:** como as duas Páginas continuam ativas e vinculadas, decidir em algum momento se vale mesclar (Configurações da Página → Geral → "Solicitar mesclagem de Páginas", se os critérios do Facebook permitirem) ou despublicar a "Caseirinhas Da Tata" (id 61589396367560), para não dividir avaliações/seguidores entre as duas. Enquanto isso não for feito, manter todos os links públicos (site, Instagram, Google Business Profile) apontando só para a Página oficial (id 61585142010817).
 
+### 2.2 Auditoria de Usuários, Parceiros e Ativos — `business_id=1839641340307117` (relatada em 13/08/2026)
+
+**⚠️ Achado crítico ainda não resolvido:** apareceram **dois IDs de Business Manager diferentes** nesta conversa:
+
+| Contexto | `business_id` |
+|---|---|
+| Tela de confirmação de telefone (sessão anterior) | `566690120345061` |
+| Tela de Usuários/Ativos (esta sessão) | `1839641340307117` |
+
+Isso pode ser (a) o mesmo Business Manager acessado por rotas diferentes com um parâmetro secundário confuso, ou (b) **dois Business Managers realmente distintos** — o que seria grave, porque a Conta de Anúncios com o saldo de R$ 89,99 e a Página oficial (id 61585142010817) precisam estar **no mesmo Business Manager** (ou compartilhadas via parceiro) para serem usadas juntas numa campanha. Enquanto isso não for confirmado, não dá para garantir que o saldo relatado está de fato disponível para os ativos descritos abaixo.
+
+**Resumo do que foi reportado em `business_id=1839641340307117`:**
+
+| Categoria | Detalhe |
+|---|---|
+| Usuário (Pessoas) | "caseirinhasdatata restaurante" — Acesso total ("Tudo"), atribuído à conta do Instagram `@caseirinhasdatata` |
+| Parceiros | 2 parceiros; 1 detalhado, nome exibido como **"unknown"**, Identificação `2805008196564390` |
+| Catálogo | "WhatsApp Product Catalog" — Acesso total |
+| Conta do Instagram | `@caseirinhasdatata`, Identificação `17841477428364093`, propriedade de "caseirinhasdatata" — ✅ confirma que a conta profissional do Instagram existe como ativo dentro deste portfólio |
+| Conta de WhatsApp (WABA) | **"Caseirinhas Da Tata"** (sem acento — mesmo nome da Página duplicada, id 61589396367560, não da Página oficial dos anúncios), Identificação `1348408177111724`, propriedade de "caseirinhasdatata", tipo "Aplicativo WhatsApp Business" |
+| Perfil ativo no navegador | Instagram `@caseirinhasdatata` |
+| Outros perfis salvos no navegador | Facebook "Bentt Gau"; Instagram `@gaulsamuyenga` (perfis pessoais de quem está operando a conta, não do negócio) |
+
+**Pontos que precisam de decisão/confirmação da Tatá antes de prosseguir — não vou presumir a resposta:**
+
+1. **Parceiro "unknown" (id `2805008196564390`) com acesso total ao catálogo do WhatsApp** — nome não identificado é motivo de atenção. Pode ser uma ferramenta legítima (ex.: um sistema de automação de mensagens/CRM que já era usado pelo negócio) ou um acesso que ninguém reconhece e deveria ser removido. Precisa clicar nesse parceiro para ver mais detalhes (app associado, data de concessão de acesso) antes de decidir manter ou revogar.
+2. **A Conta de WhatsApp (WABA) chama "Caseirinhas Da Tata"** — mesmo nome da Página *não*-oficial. Preciso saber **qual número de telefone está por trás dessa WABA**: se é o `(43) 99674-9607` (número real de pedidos) ou outro número — isso define se essa é a conta que deve ser usada como destino dos anúncios de Clique-para-WhatsApp.
+3. **Confirmar se `business_id=1839641340307117` é o mesmo Business Manager onde está o saldo de R$ 89,99 e a Página id 61585142010817**, ou se são contas diferentes.
+
 ---
 
 ## 3. Funil recomendado: Click-to-WhatsApp, não link direto de grupo
