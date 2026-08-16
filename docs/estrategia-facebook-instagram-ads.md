@@ -191,6 +191,61 @@ Na prática, isso transforma as janelas sobrepostas em **3 blocos exclusivos de 
 
 **O que já está pronto para usar:** a mecânica (5 primeiros por pedido mais antigo, retirada direta sem sorteio), as Promoções 1 e 2 por completo, a regra de blocos exclusivos de data, e a data de retirada única (01/09/26) para todos os prêmios.
 
+## 2.5 Texto de divulgação — pronto para postar no grupo
+
+Usa os **3 blocos de data exclusivos** (seção acima) em vez das janelas originalmente sobrepostas — assim ninguém no grupo precisa entender uma regra de desempate entre promoções, só a data de cada uma. Formatação já em padrão WhatsApp (`*negrito*`), pronta para copiar e colar.
+
+```
+🎁 *PROMOÇÕES EXCLUSIVAS DO GRUPO — CASEIRINHAS DA TATÁ* 🎁
+
+Chegou a vez de quem tá aqui dentro ganhar de verdade! 🍱
+
+📌 *Como funciona:*
+As *5 primeiras pessoas* do grupo que baterem a meta de marmitas dentro do período de cada promoção *levam o prêmio na hora, sem sorteio* — vale a ordem de quem fez o pedido primeiro. Cada compra conta pra *uma promoção só*, sempre a que estiver rolando naquele dia.
+
+Todos os prêmios são retirados a partir de *01/09*.
+
+━━━━━━━━━━━━━━━
+
+🔪 *PROMOÇÃO 1 — KIT DE FACAS*
+📅 De *17/08* a *24/08*
+
+Peça *8 Marmitas Mini* OU *6 Marmitas Grandes* dentro desse período (pode ser em pedidos separados, vale o total) e garanta seu Jogo de Facas! As 5 primeiras pessoas a bater a meta levam. 🔪
+
+━━━━━━━━━━━━━━━
+
+🧰 *PROMOÇÃO 2 — KIT DE FERRAMENTAS 46 PEÇAS*
+📅 De *25/08* a *27/08*
+
+Peça *5 Marmitas Grandes* OU *7 Marmitas Mini* dentro desse período e concorra ao Kit de Ferramentas 46 peças — ótimo pra casa, moto, carro e muito mais! As 5 primeiras a bater a meta ganham. 🧰
+
+━━━━━━━━━━━━━━━
+
+🍖 *PROMOÇÃO 3 — KIT CHURRASQUEIRO*
+📅 De *28/08* a *31/08*
+
+Peça *7 Marmitas Mini* OU *6 Marmitas Médias* dentro desse período e leve o Kit Churrasqueiro pra casa — pronto pro seu próximo churrasco! As 5 primeiras a bater a meta levam. 🍖
+
+━━━━━━━━━━━━━━━
+
+⚠️ *Fica de olho:*
+✅ Cada promoção vale só na sua própria data — não acumula com as outras.
+✅ Quem bate a meta primeiro (pelo horário do pedido) é quem ganha, então não deixa pra última hora!
+✅ Pra contar pra promoção, é só pedir no nosso WhatsApp de sempre: *(43) 99674-9607* 😉
+
+Bora aproveitar? Só quem tá no grupo participa! 💛
+```
+
+### Imagens a usar em cada post — ambíguas removidas
+
+| Promoção | Imagens a postar | Imagens removidas (ambíguas) |
+|---|---|---|
+| 1 — Kit de Facas | As 6 fotos do jogo de facas solto (tábua/granito) | Nenhuma |
+| 2 — Kit de Ferramentas | As 5 fotos do kit de ferramentas 46 peças | Nenhuma |
+| 3 — Kit Churrasqueiro | Só o anúncio "Corte Preciso e Sem Esforço" (faca + garras cortando bife) | As 2 fotos da caixa "Kit Facas 8 Peças" e a foto da caixa com texto distorcido "QL Zone" — todas têm texto impresso contradizendo o nome da promoção ou com erros visuais de renderização, o que passaria pouca confiança se postado direto para clientes |
+
+Com isso, a Promoção 3 fica só com uma imagem no post — se a Tatá tiver (ou conseguir) uma foto real e sem ambiguidade do Kit Churrasqueiro depois, vale substituir antes de publicar.
+
 ---
 
 ## 3. Funil recomendado: Click-to-WhatsApp, não link direto de grupo
