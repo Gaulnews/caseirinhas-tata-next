@@ -269,6 +269,46 @@ Bora aproveitar as promoções? 🎉
 
 ---
 
+## 2.7 Campanha Sprint — meta de 150 entradas no grupo Cinco Conjuntos
+
+**Pedido:** campanha "altamente avançada e profissional", exclusivamente direcionada ao bairro Cinco Conjuntos (usando `https://caseirinhasdatata.shop/entregas/cinco-conjuntos` como referência), com pelo menos **150 entradas no grupo neste final de semana**.
+
+### ⚠️ Checagem de realismo antes de tudo — o orçamento confirmado (R$ 10–15/dia) não sustenta essa meta no prazo pedido
+
+Isso não é falta de qualidade de campanha — é matemática de custo por resultado. Estimativa de mercado para anúncios de Clique-para-WhatsApp no Brasil, nicho de comida local, público amplo: custo por conversa iniciada gira entre **R$ 2 e R$ 7** (varia com concorrência, qualidade do criativo e sazonalidade — só se sabe o número real depois de rodar). Nem toda conversa iniciada vira de fato entrada no grupo — uma parte da conversa não segue até clicar no link do grupo; uso aqui uma taxa de conversão de **60%** como premissa de planejamento (conversa → entra no grupo), não um dado medido.
+
+| Orçamento do fim de semana (2 dias) | Conversas/dia (a R$ 4, ponto médio) | Entradas no grupo/dia (60%) | Total em 2 dias |
+|---|---|---|---|
+| R$ 10–15/dia (orçamento atual confirmado) | ~3 | ~2 | **~4 a 6 pessoas** |
+| R$ 50/dia | ~12,5 | ~7,5 | ~15 pessoas |
+| R$ 150/dia | ~37,5 | ~22,5 | ~45 pessoas |
+| R$ 300/dia | ~75 | ~45 | ~90 pessoas |
+| R$ 500/dia | ~125 | ~75 | **~150 pessoas** |
+
+Ou seja: bater 150 entradas *só* com anúncio pago, *só* no fim de semana, exige algo na faixa de **R$ 400 a R$ 600 no fim de semana inteiro** (R$ 200–300/dia) no cenário médio — **20 a 40 vezes** o orçamento de R$ 10–15/dia já confirmado. Não vou desenhar uma campanha que promete 150 pessoas com R$ 10–15/dia; isso seria alimentar uma expectativa que a verba não sustenta.
+
+**Três caminhos possíveis — preciso que você escolha, é decisão de orçamento e não algo que eu deva presumir:**
+
+- **A) Aumentar o orçamento só para o fim de semana** para algo na faixa de R$ 150–300/dia (sábado e domingo), mantendo os R$ 10–15/dia como padrão depois disso. É o caminho mais direto para chegar perto de 150 só com pago.
+- **B) Manter R$ 10–15/dia e esticar o prazo da meta** — 150 pessoas em ~3–4 semanas é uma meta condizente com esse orçamento, em vez de um único fim de semana.
+- **C) Híbrido:** orçamento pago moderado (ex.: R$ 50–80/dia no fim de semana) **+ push orgânico agressivo** para fechar a diferença — pedir para os clientes atuais convidarem vizinhos, postar Stories/Feed do Instagram e Facebook direcionando pro grupo, divulgar no grupo genérico antigo, post no Google Business Profile. Orgânico não tem CPL, mas depende de alcance social real, que eu não consigo prever com precisão.
+
+### Confirmar também: o que significa "este final de semana"
+
+Hoje (16/08/2026) é **domingo**. "Este final de semana" pode ser hoje mesmo (que já está acabando) ou o próximo, sábado e domingo (22–23/08). Isso muda quantos dias de campanha existem antes do prazo — preciso dessa data exata para calcular o orçamento diário necessário em qualquer um dos 3 caminhos acima.
+
+### O que já está pronto, independente da decisão de orçamento — parte "avançada e profissional" da campanha
+
+- **Segmentação hiper-focada, mais estreita que o cluster inteiro:** em vez do raio de 5–6 km usado na campanha padrão do cluster Cinco Conjuntos/Zona Norte (seção 4), esta campanha sprint mira só o entorno imediato do bairro Cinco Conjuntos — raio de **1,5 a 2 km** a partir do bairro, para máxima precisão geográfica e menor CPM por sobreposição de público.
+- **Formato:** Clique-para-WhatsApp (mesma lógica da seção 3 — menos fricção, mais barato que levar pro site primeiro), com o texto pré-preenchido já citando o bairro: *"Oi! Vi o anúncio e quero entrar no grupo de promoções do Cinco Conjuntos 🎁"*.
+- **Papel da landing page `/entregas/cinco-conjuntos`:** não é o destino do anúncio (isso encareceria o CPL, ver seção 3) — usar como (a) link para compartilhar organicamente em Stories/bio/Google Business Profile, reforçando a campanha paga sem custo de mídia, e (b) já atualizada nesta sessão com um botão "Entrar no Grupo de Promoções" (ver commit em `src/app/entregas/[bairro]/page.tsx`), então qualquer tráfego orgânico que já chegasse ali agora também converte em entrada no grupo, não só em pedido.
+- **Gancho de escassez real (não artificial):** a copy pode citar a meta real — *"Ajuda a gente a chegar em 150 pessoas no grupo esse fim de semana e ganha prioridade nas próximas promoções"* — different de escassez falsa, porque a meta é verdadeira e verificável pelos próprios membros do grupo.
+- **Criativo:** mesma lógica de reaproveitamento dos vídeos/fotos do cardápio semanal (seção 6), priorizando os pratos com melhor imagem/vídeo disponível para o fim de semana em questão.
+
+**Assim que você confirmar o caminho de orçamento (A/B/C) e a data exata do "fim de semana", eu fecho a ficha completa desta campanha sprint (nome, orçamento por dia, texto final dos anúncios) no mesmo padrão da seção 4.1.**
+
+---
+
 ## 3. Funil recomendado: Click-to-WhatsApp, não link direto de grupo
 
 **Não usar o link do grupo (`chat.whatsapp.com/...`) como destino direto do anúncio.** Três motivos práticos:
