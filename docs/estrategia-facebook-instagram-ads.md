@@ -13,7 +13,7 @@
 | Site | `https://caseirinhasdatata.shop` |
 | Facebook (Página oficial dos anúncios) | `https://www.facebook.com/profile.php?id=61585142010817` — "Caseirinhas da Tatá \| Londrina PR" (confirmado em 13/08/2026 como a Página exibida no Painel Profissional vinculado à conta de anúncios) |
 | Instagram | `https://www.instagram.com/caseirinhasdatata` |
-| Grupo WhatsApp (isca atual) | `https://chat.whatsapp.com/Jb1zGlNNCR11iObZS6oNxk` |
+| Grupo WhatsApp — Cinco Conjuntos/Zona Norte (criado em 16/08/2026) | `https://chat.whatsapp.com/FpdiveKJ4Mx8bxXk0bipxQ?s=cl&p=a&ilr=0` — substitui o grupo genérico antigo (`.../Jb1zGlNNCR11iObZS6oNxk`) como CTA principal do site |
 | Produto | Marmitex (marmitas caseiras), almoço |
 | Horário de funcionamento | Seg. a Dom., 11:00–14:30 |
 | Ticket médio | R$ 20–28 |
@@ -132,18 +132,18 @@ Isso pode ser (a) o mesmo Business Manager acessado por rotas diferentes com um 
 
 ---
 
-## 2.3 Estrutura de grupos de promoção por região (a serem criados)
+## 2.3 Estrutura de grupos de promoção por região
 
-Decisão confirmada: em vez de manter só o grupo único atual (`chat.whatsapp.com/Jb1zGlNNCR11iObZS6oNxk`), a Tatá quer **grupos novos organizados por região**, seguindo a mesma lista de bairros/links já usada nos clusters de anúncio (seção 4) — o que é a escolha certa, porque mantém 1:1 a relação entre "de onde vem o anúncio" e "para qual grupo a pessoa é convidada".
+Decisão confirmada: em vez de manter só o grupo único genérico antigo, a Tatá quer **grupos novos organizados por região**, seguindo a mesma lista de bairros/links já usada nos clusters de anúncio (seção 4) — o que é a escolha certa, porque mantém 1:1 a relação entre "de onde vem o anúncio" e "para qual grupo a pessoa é convidada".
 
 **Para não fragmentar demais** (20 bairros ≠ 20 grupos administráveis por uma única pessoa), a estrutura reaproveita os **mesmos 4 clusters geográficos já definidos para os anúncios** — 1 grupo por cluster, não por bairro individual:
 
-| Cluster (grupo) | Bairros incluídos | Prioridade de criação |
+| Cluster (grupo) | Bairros incluídos | Status |
 |---|---|---|
-| **Caseirinhas da Tatá — Promoções Cinco Conjuntos/Zona Norte** | Cinco Conjuntos, Milton Gavetti, Vivi Xavier, Carnascialli, Heimtal, Conj. Hab. João Paz, Parigot de Souza 1/2/3, Maria Celina, Novo Amparo, Ouro Verde, Perobinha, Vista Bela, Coliseu | 🔴 **Urgente — é o cluster da campanha da Semana 1** |
-| Caseirinhas da Tatá — Promoções Centro/Gleba Palhano | Centro, Gleba Palhano | 🟡 Fase 2 |
-| Caseirinhas da Tatá — Promoções Alpes | Alpes, Jardim dos Alpes I, Jardim dos Alpes II | 🟡 Fase 2 |
-| Caseirinhas da Tatá — Promoções Leste | Conjunto Alexandre Urbanas | 🟡 Fase 2 |
+| **Caseirinhas da Tatá — Promoções Cinco Conjuntos/Zona Norte** | Cinco Conjuntos, Milton Gavetti, Vivi Xavier, Carnascialli, Heimtal, Conj. Hab. João Paz, Parigot de Souza 1/2/3, Maria Celina, Novo Amparo, Ouro Verde, Perobinha, Vista Bela, Coliseu | ✅ **Criado em 16/08/2026** — `https://chat.whatsapp.com/FpdiveKJ4Mx8bxXk0bipxQ?s=cl&p=a&ilr=0` |
+| Caseirinhas da Tatá — Promoções Centro/Gleba Palhano | Centro, Gleba Palhano | 🟡 Fase 2 — ainda não criado |
+| Caseirinhas da Tatá — Promoções Alpes | Alpes, Jardim dos Alpes I, Jardim dos Alpes II | 🟡 Fase 2 — ainda não criado |
+| Caseirinhas da Tatá — Promoções Leste | Conjunto Alexandre Urbanas | 🟡 Fase 2 — ainda não criado |
 
 Cada bairro mantém seu link individual de aterrissagem (`/entregas/[bairro]`, tabela completa na seção 4) — o grupo é que é compartilhado entre os bairros do mesmo cluster.
 
@@ -157,7 +157,7 @@ Cada bairro mantém seu link individual de aterrissagem (`/entregas/[bairro]`, t
 6. Gerar o link de convite em **Configurações do grupo → Convidar via link de convite do grupo** → copiar.
 7. Repetir para os demais clusters, na ordem de prioridade da tabela acima (o cluster Cinco Conjuntos/Zona Norte primeiro, os outros 3 só quando a Fase 2 começar).
 
-**Depois de criados:** enviar os links aqui. Assim que eu tiver o link do cluster Cinco Conjuntos/Zona Norte, eu: (a) atualizo o CTA de grupo na home (`src/app/page.tsx`, hoje aponta para o grupo único genérico) para direcionar por região, e (b) ajusto o funil da seção 3 deste documento para descrever o encaminhamento correto por cluster em vez de um único grupo genérico.
+**✅ Feito para o cluster Cinco Conjuntos/Zona Norte:** o CTA de grupo na home (`src/app/page.tsx`) foi atualizado para o link real do grupo, e o texto do card também foi corrigido — antes dizia "participe do sorteio diário", o que contradizia a mecânica real das promoções (5 primeiros, sem sorteio, ver seção 2.4); agora diz "garanta prêmios sendo uma das 5 primeiras pessoas a bater a meta — sem sorteio". Os demais 3 clusters entram nessa mesma home só quando forem criados na Fase 2 (por enquanto a home aponta só para o grupo já existente).
 
 ## 2.4 Calendário de promoções do grupo Cinco Conjuntos/Zona Norte
 
@@ -361,7 +361,7 @@ Não depende do link do grupo nem do Pixel para ser criada — o objetivo Clique
 > Oi! Vi o anúncio de Cinco Conjuntos/Zona Norte e quero entrar no grupo de promoções 🎁
 
 **Script de resposta manual (até ter automação), a ser usado por quem responde no WhatsApp do número (43) 99674-9607:**
-> Oi! Que bom que você chegou 😊 Aqui está o link do nosso grupo de promoções exclusivas da sua região: **[link do grupo Cinco Conjuntos/Zona Norte — criar seguindo a seção 2.3]**. Lá a gente avisa toda vez que tem desconto e novidade no cardápio do dia! 🍱 Me confirma seu bairro pra eu já anotar sua região de entrega?
+> Oi! Que bom que você chegou 😊 Aqui está o link do nosso grupo de promoções exclusivas da sua região: **https://chat.whatsapp.com/FpdiveKJ4Mx8bxXk0bipxQ?s=cl&p=a&ilr=0**. Lá a gente avisa toda vez que tem desconto e novidade no cardápio do dia! 🍱 Me confirma seu bairro pra eu já anotar sua região de entrega?
 
 Esse script já pode ser usado assim que o grupo do cluster Cinco Conjuntos/Zona Norte existir — não precisa esperar o restante do checklist técnico (Pixel, Instagram, saldo) para começar a testar manualmente as respostas.
 

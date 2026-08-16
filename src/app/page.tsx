@@ -311,15 +311,15 @@ export default function Home() {
               </div>
 
               <div className="mb-10 rounded-2xl bg-[#ffc107] p-10 text-center text-black">
-                <h4 className="mb-2 text-xl font-bold">🎁 Concorra a Marmitas Grátis!</h4>
-                <p className="mb-6">Entre no nosso grupo e participe do sorteio diário</p>
+                <h4 className="mb-2 text-xl font-bold">🎁 Promoções Exclusivas de Grupo!</h4>
+                <p className="mb-6">Entre no grupo e garanta prêmios sendo uma das 5 primeiras pessoas a bater a meta — sem sorteio</p>
                 <a
-                  href="https://chat.whatsapp.com/Jb1zGlNNCR11iObZS6oNxk"
+                  href="https://chat.whatsapp.com/FpdiveKJ4Mx8bxXk0bipxQ?s=cl&p=a&ilr=0"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-block rounded-lg bg-black px-6 py-3 font-bold text-white transition-colors hover:bg-zinc-800"
                 >
-                  Entrar no Grupão
+                  Entrar no Grupo de Promoções
                 </a>
               </div>
 
