@@ -119,9 +119,38 @@ Isso pode ser (a) o mesmo Business Manager acessado por rotas diferentes com um 
 
 **Pontos que precisam de decisão/confirmação da Tatá antes de prosseguir — não vou presumir a resposta:**
 
-1. **Parceiro "unknown" (id `2805008196564390`) com acesso total ao catálogo do WhatsApp** — nome não identificado é motivo de atenção. Pode ser uma ferramenta legítima (ex.: um sistema de automação de mensagens/CRM que já era usado pelo negócio) ou um acesso que ninguém reconhece e deveria ser removido. Precisa clicar nesse parceiro para ver mais detalhes (app associado, data de concessão de acesso) antes de decidir manter ou revogar.
+1. **Parceiro "unknown" (id `2805008196564390`) com acesso total ao catálogo do WhatsApp** — nome não identificado é motivo de atenção. Pode ser uma ferramenta legítima (ex.: um sistema de automação de mensagens/CRM que já era usado pelo negócio) ou um acesso que ninguém reconhece e deveria ser removido. **Busca pública pelo ID não retornou nada identificável** (IDs de Business Manager/Parceiro não são indexados publicamente, ao contrário de Page IDs) — a única forma de identificar é clicando no parceiro dentro do próprio Business Manager, que costuma revelar o nome do app conectado, o "Business Portfolio" de origem e a data em que o acesso foi concedido. Ação pendente: abrir esse parceiro e reportar o que aparece.
 2. **A Conta de WhatsApp (WABA) chama "Caseirinhas Da Tata"** — mesmo nome da Página *não*-oficial. Preciso saber **qual número de telefone está por trás dessa WABA**: se é o `(43) 99674-9607` (número real de pedidos) ou outro número — isso define se essa é a conta que deve ser usada como destino dos anúncios de Clique-para-WhatsApp.
-3. **Confirmar se `business_id=1839641340307117` é o mesmo Business Manager onde está o saldo de R$ 89,99 e a Página id 61585142010817**, ou se são contas diferentes.
+3. **Confirmar se `business_id=1839641340307117` é o mesmo Business Manager onde está o saldo de R$ 89,99 e a Página id 61585142010817**, ou se são contas diferentes. Forma mais direta de checar: reabrir a tela de "Saldo disponível"/Configurações de pagamento e comparar o `business_id` que aparece na URL com `1839641340307117`.
+
+---
+
+## 2.3 Estrutura de grupos de promoção por região (a serem criados)
+
+Decisão confirmada: em vez de manter só o grupo único atual (`chat.whatsapp.com/Jb1zGlNNCR11iObZS6oNxk`), a Tatá quer **grupos novos organizados por região**, seguindo a mesma lista de bairros/links já usada nos clusters de anúncio (seção 4) — o que é a escolha certa, porque mantém 1:1 a relação entre "de onde vem o anúncio" e "para qual grupo a pessoa é convidada".
+
+**Para não fragmentar demais** (20 bairros ≠ 20 grupos administráveis por uma única pessoa), a estrutura reaproveita os **mesmos 4 clusters geográficos já definidos para os anúncios** — 1 grupo por cluster, não por bairro individual:
+
+| Cluster (grupo) | Bairros incluídos | Prioridade de criação |
+|---|---|---|
+| **Caseirinhas da Tatá — Promoções Cinco Conjuntos/Zona Norte** | Cinco Conjuntos, Milton Gavetti, Vivi Xavier, Carnascialli, Heimtal, Conj. Hab. João Paz, Parigot de Souza 1/2/3, Maria Celina, Novo Amparo, Ouro Verde, Perobinha, Vista Bela, Coliseu | 🔴 **Urgente — é o cluster da campanha da Semana 1** |
+| Caseirinhas da Tatá — Promoções Centro/Gleba Palhano | Centro, Gleba Palhano | 🟡 Fase 2 |
+| Caseirinhas da Tatá — Promoções Alpes | Alpes, Jardim dos Alpes I, Jardim dos Alpes II | 🟡 Fase 2 |
+| Caseirinhas da Tatá — Promoções Leste | Conjunto Alexandre Urbanas | 🟡 Fase 2 |
+
+Cada bairro mantém seu link individual de aterrissagem (`/entregas/[bairro]`, tabela completa na seção 4) — o grupo é que é compartilhado entre os bairros do mesmo cluster.
+
+### Passo a passo para criar cada grupo (WhatsApp)
+
+1. Abrir o WhatsApp do número oficial `(43) 99674-9607` → **Novo grupo**.
+2. Nome: `Caseirinhas da Tatá — Promoções [Nome do Cluster]` (ex.: "Promoções Cinco Conjuntos/Zona Norte").
+3. Foto do grupo: usar a logomarca já existente no site (`logo-caseirinhas-da-tata.jpg` ou `emblema-caseirinhas-da-tata.png`, em `public/`).
+4. Descrição do grupo: explicar que é um canal de ofertas exclusivas, com o horário de funcionamento (Seg. a Dom., 11h–14h30).
+5. Em **Configurações do grupo → Enviar mensagens**, considerar restringir só para admins — mantém o grupo como canal de ofertas (broadcast), evita spam entre os próprios clientes e reduz trabalho de moderação.
+6. Gerar o link de convite em **Configurações do grupo → Convidar via link de convite do grupo** → copiar.
+7. Repetir para os demais clusters, na ordem de prioridade da tabela acima (o cluster Cinco Conjuntos/Zona Norte primeiro, os outros 3 só quando a Fase 2 começar).
+
+**Depois de criados:** enviar os links aqui. Assim que eu tiver o link do cluster Cinco Conjuntos/Zona Norte, eu: (a) atualizo o CTA de grupo na home (`src/app/page.tsx`, hoje aponta para o grupo único genérico) para direcionar por região, e (b) ajusto o funil da seção 3 deste documento para descrever o encaminhamento correto por cluster em vez de um único grupo genérico.
 
 ---
 
