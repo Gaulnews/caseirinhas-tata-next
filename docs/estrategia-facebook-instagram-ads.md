@@ -121,12 +121,8 @@ Isso pode ser (a) o mesmo Business Manager acessado por rotas diferentes com um 
 
 1. **Parceiro "unknown" (id `2805008196564390`) com acesso total ao catálogo do WhatsApp — investigado, achado: provável acesso órfão.** Abrindo os detalhes do parceiro dentro do Business Manager, tanto o campo **Nome** quanto **Detalhes** aparecem literalmente como "unknown", sem nenhum app associado, sem data de concessão visível — e o único ativo compartilhado é o "WhatsApp Product Catalog" (Acesso total). Quando a Meta não consegue resolver nem o nome do parceiro, o padrão mais comum é que o **Business Manager de origem desse parceiro foi excluído, desativado ou banido** depois que o acesso foi concedido — ou seja, não existe mais um dono identificável do outro lado para perguntar "é seu?". **Leitura de risco:** esse parceiro não tem acesso à Página, à Conta de Anúncios nem ao saldo — só ao catálogo de produtos do WhatsApp — então não é um risco financeiro direto para as campanhas, mas é uma permissão órfã (sem dono verificável) que fica sem função. **Recomendação:** revogar esse acesso (Ativos atribuídos → Catálogo → remover parceiro) por higiene, já que não há como confirmar legitimidade nem uso ativo. Decisão final é da Tatá — não vou revogar por conta própria.
 2. ✅ **Totalmente resolvido** — a Tatá confirmou que os anúncios devem usar a WABA "Caseirinhas Da Tata" (id `1348408177111724`), registrada no mesmo número de pedidos `(43) 99674-9607`, e a conta do Instagram `@caseirinhasdatata` (id `17841477428364093`). A ficha da seção 4.1 já reflete isso como confirmado, não mais como suposição.
-3. ✅ **Número corrigido e confirmado:** `(43) 99982-1401` — agora bate com o padrão de celular brasileiro (11 dígitos, DDD + 9 dígitos). Este será um **novo WhatsApp Business ainda a ser implementado** (a Tatá indicou que esse número "deverá ser implementado", diferente da WABA de pedidos do item 2, que já existe e está ativa). **Pendente de confirmação — não vou presumir:** qual é o papel exato desse novo número no funil:
-   - **Opção A (o que foi dito inicialmente):** só administração interna dos grupos — posta promoções, responde dúvidas dentro dos grupos — enquanto os anúncios de Clique-para-WhatsApp continuam abrindo conversa no número de pedidos `(43) 99674-9607` (o da WABA já confirmada no item 2).
-   - **Opção B:** os anúncios passam a abrir conversa direto nesse **novo** número `(43) 99982-1401`, e ele assume o papel que a ficha da seção 4.1 hoje atribui a `(43) 99674-9607`.
-
-   Essa distinção muda o que vai na ficha pronta da campanha (seção 4.1) — por isso preciso da confirmação antes de considerar a ficha travada.
-3. **Confirmar se `business_id=1839641340307117` é o mesmo Business Manager onde está o saldo de R$ 89,99 e a Página id 61585142010817 — ainda em aberto.** A Tatá tentou localizar a Conta de Anúncios com o saldo dentro deste Business Manager e não conseguiu, o que é um indício (não uma confirmação) de que a conta com saldo pode estar em outro Business Manager, possivelmente o `566690120345061` visto na etapa de confirmação de telefone. Passos para achar de forma definitiva, na seção "Como localizar a Conta de Anúncios com o saldo" logo abaixo.
+3. ✅ **Totalmente resolvido — `(43) 99982-1401` confirmado como número exclusivo de criação e administração dos grupos** (Opção A). Não é destino de anúncio — só é usado para criar os grupos de WhatsApp e postar/administrar as promoções dentro deles. Os anúncios de Clique-para-WhatsApp continuam abrindo conversa no número de pedidos `(43) 99674-9607` (WABA do item 2), sem mudança na ficha da seção 4.1.
+4. **Confirmar se `business_id=1839641340307117` é o mesmo Business Manager onde está o saldo de R$ 89,99 e a Página id 61585142010817 — ainda em aberto.** A Tatá tentou localizar a Conta de Anúncios com o saldo dentro deste Business Manager e não conseguiu, o que é um indício (não uma confirmação) de que a conta com saldo pode estar em outro Business Manager, possivelmente o `566690120345061` visto na etapa de confirmação de telefone. Passos para achar de forma definitiva, na seção "Como localizar a Conta de Anúncios com o saldo" logo abaixo.
 
 ### Como localizar a Conta de Anúncios com o saldo (quando ela não aparece em Contas de anúncios do Business Manager atual)
 
@@ -153,7 +149,7 @@ Cada bairro mantém seu link individual de aterrissagem (`/entregas/[bairro]`, t
 
 ### Passo a passo para criar cada grupo (WhatsApp)
 
-1. Abrir o WhatsApp do número oficial `(43) 99674-9607` → **Novo grupo**.
+1. Instalar/configurar o WhatsApp Business no número `(43) 99982-1401` (número novo, dedicado à criação e administração dos grupos — não é o número de pedidos). Abrir esse WhatsApp → **Novo grupo**.
 2. Nome: `Caseirinhas da Tatá — Promoções [Nome do Cluster]` (ex.: "Promoções Cinco Conjuntos/Zona Norte").
 3. Foto do grupo: usar a logomarca já existente no site (`logo-caseirinhas-da-tata.jpg` ou `emblema-caseirinhas-da-tata.png`, em `public/`).
 4. Descrição do grupo: explicar que é um canal de ofertas exclusivas, com o horário de funcionamento (Seg. a Dom., 11h–14h30).
@@ -236,7 +232,7 @@ Não depende do link do grupo nem do Pixel para ser criada — o objetivo Clique
 | Conta de WhatsApp (WABA) | "Caseirinhas Da Tata" (id 1348408177111724) — confirmada pela Tatá como a conta a usar |
 | Conta do Instagram | `@caseirinhasdatata` (id 17841477428364093) — confirmada |
 | Número de WhatsApp (pedidos, destino do anúncio) | `(43) 99674-9607` — ✅ confirmado como o número da WABA acima |
-| Número de WhatsApp (gestão dos grupos) | `(43) 99982-1401` — número confirmado, mas é um **WhatsApp Business novo, ainda a ser implementado**. **Papel no funil ainda não confirmado** (ver seção 2.2, item 3): só administração dos grupos, ou também destino do anúncio no lugar do número de pedidos? A tabela acima ("destino do anúncio") continua com `(43) 99674-9607` até essa confirmação chegar. |
+| Número de WhatsApp (gestão dos grupos, uso interno — não é destino de anúncio) | `(43) 99982-1401` — ✅ confirmado, papel exclusivo de criar/administrar os grupos (Opção A). WhatsApp Business novo, ainda a ser implementado nesse número. |
 | Orçamento diário | R$ 10 a R$ 15 |
 | Lance | Custo mais baixo (sem teto) |
 | Otimização para | Conversas iniciadas |
