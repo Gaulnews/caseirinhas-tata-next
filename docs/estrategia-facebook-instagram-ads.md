@@ -246,6 +246,27 @@ Bora aproveitar? Só quem tá no grupo participa! 💛
 
 Com isso, a Promoção 3 fica só com uma imagem no post — se a Tatá tiver (ou conseguir) uma foto real e sem ambiguidade do Kit Churrasqueiro depois, vale substituir antes de publicar.
 
+## 2.6 Mensagem de boas-vindas para novos membros
+
+**Atenção a uma limitação técnica real:** grupos comuns do WhatsApp (e do WhatsApp Business App) **não têm um recurso nativo de mensagem automática de boas-vindas** quando alguém entra — isso só existe via bot/automação externa (ex.: o motor de mensagens do próprio negócio, se ele fizer esse tipo de integração) ou manualmente, digitada por um admin toda vez que alguém novo entra. Sem automação, o uso prático é: (a) deixar essa mensagem **fixada** (📌 Fixar mensagem) logo na criação do grupo, para quem entra já ver ao abrir a conversa, e (b) copiar e colar rapidamente sempre que alguém novo entrar, marcando a pessoa (@) se possível.
+
+```
+👋 *Seja bem-vindo(a) ao grupo oficial de promoções da Caseirinhas da Tatá!* 🍱💛
+
+Aqui é onde a gente avisa em primeira mão os descontos e promoções exclusivas pra quem tá no grupo — ninguém de fora vê essas ofertas antes de você. 😉
+
+📌 *Como funciona:*
+De tempos em tempos rolam promoções por aqui — geralmente "as 5 primeiras pessoas que baterem tal meta de marmitas ganham tal prêmio", sem sorteio, vale a ordem de quem pediu primeiro. Fica de olho nas mensagens fixadas pra não perder nenhuma!
+
+🕚 *Horário de funcionamento:* Segunda a domingo, das 11h às 14h30.
+
+🛵 Pra fazer seu pedido, é só chamar no nosso WhatsApp: *(43) 99674-9607*
+
+Me conta qual o seu bairro que eu já confirmo a entrega! 🏠
+
+Bora aproveitar as promoções? 🎉
+```
+
 ---
 
 ## 3. Funil recomendado: Click-to-WhatsApp, não link direto de grupo
