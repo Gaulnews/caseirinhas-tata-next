@@ -167,11 +167,13 @@ Estrutura das 3 promoções, como recebida — mecânica em comum: **as 5 primei
 
 | # | Nome | Janela | Meta (uma das duas opções) | Prêmio |
 |---|---|---|---|---|
-| 1 | Kit de Facas | 17/08 a 24/08 | 8 Marmitas Mini **ou** 6 Marmitas Grandes | Kit/Jogo de Facas (imagens `promo-grupo-jogo-face-marmita-mini-caseirinhas-da-tata_01` a `_06`) — ✅ imagens recebidas |
+| 1 | Kit de Facas | 17/08 a 24/08 | 8 Marmitas Mini **ou** 6 Marmitas Grandes | Jogo de Facas — fotos avulsas do kit sobre tábua de madeira/bancada de granito (imagens `promo-grupo-jogo-face-marmita-mini-caseirinhas-da-tata_01` a `_06`) — ✅ confirmado |
 | 2 | Kit de Ferramentas 46 peças | 20/08 a 27/08 | 5 Marmitas Grandes **ou** 7 Marmitas Mini — ✅ confirmado | Kit de Ferramentas 46 peças (imagens `promo-grupo-kit-ferramentas-marmita-mini-caseirinhas-da-tata_01` a `_05`) — ✅ imagens recebidas |
-| 3 | Kit Churrasqueiro | 24/08 a 31/08 | 7 Marmitas Mini **ou** 6 Marmitas Médias | ⚠️ **Ainda não resolvido** — ver nota abaixo |
+| 3 | Kit Churrasqueiro | 24/08 a 31/08 | 7 Marmitas Mini **ou** 6 Marmitas Médias | Kit Churrasqueiro — anúncio "Corte Preciso e Sem Esforço" + caixa do kit (imagens `promo-grupo-kit-churrasqueiro-marmita-mini-caseirinhas-da-tata_01` a `_04`) — ✅ confirmado pela Tatá |
 
-**⚠️ Duas tentativas de envio das imagens da Promoção 3 chegaram como o mesmo kit de facas da Promoção 1** — a segunda tentativa (em resposta direta à pergunta "é o mesmo kit de facas, ou faltam as fotos certas?") trouxe de novo o anúncio "CORTE PRECISO E SEM ESFORÇO" e as caixas "KIT FACAS 8 PEÇAS" (RL-ZONE), sem responder objetivamente qual das opções é a certa. Isso sugere um problema técnico do lado de quem está anexando (provavelmente o seletor de galeria/fotos do celular está reabrindo o mesmo álbum/imagens recentes, não necessariamente um arquivo escolhido por nome) — não um erro de julgamento. **Ainda não resolvido.** Sugestão registrada para destravar: em vez de anexar pela galeria de fotos, usar a busca do gerenciador de arquivos do celular pelo termo "churrasqueiro" para localizar e abrir o arquivo certo antes de anexar; ou, alternativamente, descrever em texto o que tem dentro do Kit Churrasqueiro (quantas peças, quais itens) para eu registrar isso sem depender da imagem.
+**✅ Resolvido — mapeamento final confirmado pela Tatá (terceira mensagem sobre o tema, com a ordem exata dos 10 anexos):** os 4 primeiros anexos (anúncio de corte de bife + as 3 variações da caixa) são o Kit Churrasqueiro; os 6 anexos seguintes (fotos do jogo de facas solto sobre tábua/granito, sem caixa) são o Kit de Facas da Promoção 1. Registrado como está.
+
+**Nota de cautela (não bloqueia, é só um alerta para conferência física antes de anunciar):** nas fotos usadas para ilustrar o Kit Churrasqueiro, a própria caixa do produto está impressa com o texto "**KIT FACAS 8 PEÇAS**" (marca RL-ZONE) — ou seja, a embalagem no anúncio se identifica como um kit de facas, não como um "kit churrasqueiro". Isso pode ser só a arte de divulgação genérica do fornecedor (comum em anúncio de marketplace, onde a mesma linha de produto é vendida com nomes/ângulos de marketing diferentes) e não necessariamente significa que o prêmio físico está errado — mas vale a Tatá conferir se o item que será de fato entregue para quem ganhar a Promoção 3 é o produto correto antes de publicar as regras, para não ter uma surpresa na hora da retirada em 01/09.
 
 **Regra de desempate entre promoções sobrepostas — cada compra conta para uma única promoção (confirmado), usando a regra "a promoção mais antiga que ainda estiver na janela tem prioridade":**
 
@@ -185,7 +187,7 @@ Na prática, isso transforma as janelas sobrepostas em **3 blocos exclusivos de 
 
 **Critério de desempate entre clientes (confirmado):** quando mais de 5 pessoas baterem a meta na mesma promoção, valem as 5 com o **pedido mais antigo** (horário do pedido feito no WhatsApp de pedidos `(43) 99674-9607`), não o horário de quem avisou primeiro no grupo.
 
-**Pendência única antes de eu travar tudo e escrever o texto de divulgação:** confirmar se o prêmio da Promoção 3 é mesmo o kit de facas (repetindo o prêmio da Promoção 1) ou se as imagens corretas do Kit Churrasqueiro ainda precisam ser localizadas e enviadas.
+**✅ Sem pendências bloqueantes.** As 3 promoções estão com nome, janela, meta e prêmio definidos — pronto para eu escrever o texto de divulgação para o grupo.
 
 **O que já está pronto para usar:** a mecânica (5 primeiros por pedido mais antigo, retirada direta sem sorteio), as Promoções 1 e 2 por completo, a regra de blocos exclusivos de data, e a data de retirada única (01/09/26) para todos os prêmios.
 
