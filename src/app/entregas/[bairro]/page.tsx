@@ -2,7 +2,7 @@ import { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { BotaoWhatsApp } from "@/components/BotaoWhatsApp";
-import { bairros as bairrosAtendidos } from "@/lib/site-data";
+import { bairros as bairrosAtendidos, bairroParaCluster, linkGrupoPromocionalPorCluster } from "@/lib/site-data";
 import { tamanhos, formatarPreco } from "@/lib/cardapio-semanal";
 
 type Props = {
@@ -31,6 +31,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 export default async function LocationPage({ params }: Props) {
   const { bairro } = await params;
   const nomeBairro = bairrosAtendidos[bairro as keyof typeof bairrosAtendidos];
+  const cluster = bairroParaCluster[bairro];
+  const linkGrupo = cluster ? linkGrupoPromocionalPorCluster[cluster] : undefined;
 
   // Se a pessoa digitar um bairro que não existe na URL, mostramos uma mensagem padrão
   if (!nomeBairro) {
@@ -76,7 +78,24 @@ export default async function LocationPage({ params }: Props) {
           />
         </div>
       </div>
-      
+
+      {linkGrupo && (
+        <div className="mb-10 rounded-2xl bg-amber-500 p-8 text-center text-black">
+          <h2 className="mb-2 text-xl font-bold">🎁 Grupo de Promoções do {nomeBairro}</h2>
+          <p className="mb-6">
+            Entre no grupo exclusivo da sua região e garanta prêmios sendo uma das 5 primeiras pessoas a bater a meta — sem sorteio.
+          </p>
+          <a
+            href={linkGrupo}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-block rounded-lg bg-black px-6 py-3 font-bold text-white transition-colors hover:bg-zinc-800"
+          >
+            Entrar no Grupo de Promoções
+          </a>
+        </div>
+      )}
+
       <Link href="/" className="text-amber-500 hover:text-amber-400 text-sm font-bold underline underline-offset-4">
         ← Voltar para a página inicial
       </Link>
