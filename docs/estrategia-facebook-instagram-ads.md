@@ -168,23 +168,25 @@ Cada bairro mantém seu link individual de aterrissagem (`/entregas/[bairro]`, t
 2. Um link de convite de grupo é um recurso que a Meta e o próprio WhatsApp podem limitar ou invalidar sem aviso (grupos têm teto de 1024 membros, e o link expira se for redefinido) — um anúncio ativo apontando pra um link morto queima orçamento sem ninguém perceber até tarde.
 3. Abrir a conversa direto com o número comercial gera uma lista de contatos que **pode ser reaproveitada** (retargeting, campanhas futuras, integração com o motor de mensagens já existente no ecossistema do negócio) — o grupo sozinho não dá isso.
 
-**Funil proposto:**
+**Funil proposto (atualizado para grupos por região — ver seção 2.3):**
 
 ```
-Anúncio (Feed/Reels/Stories)
+Anúncio do cluster Cinco Conjuntos/Zona Norte (Feed/Reels/Stories)
    │  CTA: "Enviar mensagem"
    ▼
-WhatsApp abre com mensagem pré-preenchida
-   (ex.: "Oi! Vi o anúncio e quero entrar no grupo de promoções 🎁")
+WhatsApp abre com mensagem pré-preenchida JÁ IDENTIFICANDO A REGIÃO
+   ("Oi! Vi o anúncio de Cinco Conjuntos/Zona Norte e quero
+     entrar no grupo de promoções 🎁")
    ▼
-Resposta automática/manual envia o link do grupo
-   + pergunta o bairro (todos os 20 links de /entregas/[bairro]
-     já existem para confirmar área de entrega)
+Resposta (manual por enquanto) envia o link do grupo
+   DESSE cluster especificamente
    ▼
-Cliente entra no grupo → recebe promoção de boas-vindas
+Cliente entra no grupo do cluster → recebe promoção de boas-vindas
    ▼
 Primeiro pedido no mesmo dia (janela 11h–14h30)
 ```
+
+**Por que a mensagem pré-preenchida já identifica a região:** como cada conjunto de anúncios mira um cluster geográfico específico (seção 4), o texto que abre no WhatsApp já pode citar o cluster (ex.: "vi o anúncio de Cinco Conjuntos/Zona Norte") — assim quem responde sabe **na hora**, sem precisar checar o painel de anúncios, qual dos 4 links de grupo enviar. Isso importa principalmente a partir da Fase 2, quando mais de um cluster estiver ativo ao mesmo tempo e as mensagens começarem a chegar misturadas.
 
 A promoção de boas-vindas do grupo (`🎁 Concorra a Marmitas Grátis!`) já existe na home (`src/app/page.tsx`) — reaproveitar o mesmo gancho nos criativos do anúncio mantém consistência de mensagem entre anúncio → clique → grupo.
 
@@ -209,6 +211,47 @@ A promoção de boas-vindas do grupo (`🎁 Concorra a Marmitas Grátis!`) já e
 - **Segmentação:** endereço + raio (acima), idade 22–55, sem restrição de interesse — deixar o público **amplo** e Advantage+ Audience ligado. Para o público de menor renda, segmentação por interesse tende a encarecer o CPM sem ganho de precisão; localização é o filtro que importa aqui.
 - **Posicionamentos:** Advantage+ (automático) — o algoritmo tende a priorizar Reels/Stories, que historicamente têm CPM mais barato que Feed para este tipo de público.
 - **Programação de anúncios (dayparting):** só é possível fora do Advantage+ Campaign Budget (exige orçamento por conjunto + lance manual). Se o orçamento total for pequeno, o ganho do CBO automático costuma compensar mais do que restringir horário. Se optar por restringir, concentrar a veiculação entre **9h e 13h**, para capturar a decisão de almoço do mesmo dia.
+
+### 4.1 Ficha pronta da campanha — Semana 1 (pode ser digitada direto no Gerenciador de Anúncios)
+
+Não depende do link do grupo nem do Pixel para ser criada — o objetivo Clique-para-WhatsApp já mede "conversas iniciadas" nativamente, sem precisar de Pixel. Só depende da Página confirmada (id 61585142010817) e, se disponível, da conta do Instagram (`@caseirinhasdatata`).
+
+**Campanha**
+| Campo | Valor |
+|---|---|
+| Nome | `Captação WhatsApp - Cinco Conjuntos Zona Norte - S1` |
+| Objetivo | Interesse/Cadastros → destino **WhatsApp** (o rótulo exato varia com a versão do Gerenciador; procurar a opção que abre conversa no WhatsApp, não "Tráfego" para o site) |
+| Orçamento no nível da campanha | Não usar CBO — orçamento fica no conjunto de anúncios (só 1 conjunto ativo por enquanto) |
+
+**Conjunto de anúncios**
+| Campo | Valor |
+|---|---|
+| Nome | `Cinco Conjuntos - Zona Norte` |
+| Página | Caseirinhas da Tatá \| Londrina PR (id 61585142010817) |
+| Número de WhatsApp | (43) 99674-9607 |
+| Orçamento diário | R$ 10 a R$ 15 |
+| Lance | Custo mais baixo (sem teto) |
+| Otimização para | Conversas iniciadas |
+| Localização | Raio de 5–6 km a partir de R. Maria Sinopoli Francovig, 1142, Londrina-PR — cobre Cinco Conjuntos, Milton Gavetti, Vivi Xavier, Carnascialli, Heimtal, Conj. João Paz, Parigot 1/2/3, Maria Celina, Novo Amparo, Ouro Verde, Perobinha, Vista Bela, Coliseu |
+| Idade | 22–55 |
+| Interesses | Nenhum (público amplo) + Advantage+ Audience ligado |
+| Posicionamentos | Advantage+ (automático) |
+
+**Anúncios (criar 2–3 e revezar):**
+
+| Anúncio | Criativo (já existe em `public/cardapio/`) | Copy |
+|---|---|---|
+| 1 — Isca do grupo (prioridade) | Vídeo do prato do dia em rotação (ex. `segunda-bife-acebolado-sobrecoxa.mp4`) | "🎁 Entra no nosso grupo de ofertas e garanta desconto na sua marmita de hoje! Só R$ 20 pra quem entrar agora. Chama no WhatsApp 👇" |
+| 2 — Prova social / prato do dia | Foto do prato do dia (ex. `terca-frango-grelhado-panqueca.jpg`) | "Hoje tem [prato do dia] fresquinho, R$ 25. Entrega rápida na sua região. Chama no zap!" |
+| 3 — Urgência de horário | Vídeo de churrasco de sexta ou feijoada de domingo | "Só até as 14h30! Marmita caseira quentinha, R$ 20 a R$ 28. Peça agora." |
+
+**Mensagem pré-preenchida do botão "Enviar mensagem" (ou "pergunta rápida" configurável no anúncio):**
+> Oi! Vi o anúncio de Cinco Conjuntos/Zona Norte e quero entrar no grupo de promoções 🎁
+
+**Script de resposta manual (até ter automação), a ser usado por quem responde no WhatsApp do número (43) 99674-9607:**
+> Oi! Que bom que você chegou 😊 Aqui está o link do nosso grupo de promoções exclusivas da sua região: **[link do grupo Cinco Conjuntos/Zona Norte — criar seguindo a seção 2.3]**. Lá a gente avisa toda vez que tem desconto e novidade no cardápio do dia! 🍱 Me confirma seu bairro pra eu já anotar sua região de entrega?
+
+Esse script já pode ser usado assim que o grupo do cluster Cinco Conjuntos/Zona Norte existir — não precisa esperar o restante do checklist técnico (Pixel, Instagram, saldo) para começar a testar manualmente as respostas.
 
 ---
 
