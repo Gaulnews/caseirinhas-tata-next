@@ -12,6 +12,11 @@ export const revalidate = 3600;
 
 const SITE_URL = 'https://caseirinhasdatata.shop';
 
+// Mesmas coordenadas usadas no schema.org da home/entregas (endereço real
+// da loja). Raio de entrega informado pelo negócio: 10km a partir da loja.
+const ORIGEM_ENTREGA = '-23.26801,-51.14480';
+const RAIO_ENTREGA = '10km';
+
 function csvField(value: string): string {
   return `"${value.replace(/"/g, '""')}"`;
 }
@@ -28,6 +33,8 @@ export async function GET() {
     'image_link',
     'brand',
     'google_product_category',
+    'availability_circle_origin',
+    'availability_circle_radius',
   ];
 
   const linhas = tamanhos.map((t) => {
@@ -47,6 +54,8 @@ export async function GET() {
       `${SITE_URL}/logo-caseirinhas-da-tata.jpg`,
       'Caseirinhas da Tatá',
       'Food, Beverages & Tobacco > Food Items > Prepared Foods',
+      ORIGEM_ENTREGA,
+      RAIO_ENTREGA,
     ]
       .map(csvField)
       .join(',');
