@@ -1,16 +1,18 @@
-import { tamanhos } from '@/lib/cardapio-semanal';
+import { cardapioSemanal, diasSemana, tamanhos } from '@/lib/cardapio-semanal';
 
 // Feed de produtos no formato CSV aceito pelo Gerenciador de Comércio da Meta
 // (Catálogo do WhatsApp Business, Facebook Shops e Instagram Shopping).
 // Referência: https://www.facebook.com/business/help/120325381656392
 //
-// Modela as 3 marmitas (Mini/Média/Grande) como produtos fixos e sempre
-// disponíveis — o prato específico muda todo dia (ver /cardapio), então o
-// link e a descrição de cada produto apontam para o cardápio do dia em vez
-// de fixar uma foto/prato que ficaria desatualizado no catálogo.
+// Espelha integralmente o cardápio semanal do site (/cardapio): um produto
+// por combinação de prato (ou opção, no caso de domingo) × tamanho, com
+// foto real, ingredientes e link direto para o dia correspondente. Produtos
+// do mesmo prato são agrupados por item_group_id, com o tamanho como
+// variante — mesmo padrão de catálogo com variantes recomendado pela Meta.
 export const revalidate = 3600;
 
 const SITE_URL = 'https://caseirinhasdatata.shop';
+const CATEGORIA = 'Food, Beverages & Tobacco > Food Items > Prepared Foods';
 
 // Mesmas coordenadas usadas no schema.org da home/entregas (endereço real
 // da loja). Raio de entrega informado pelo negócio: 10km a partir da loja.
@@ -21,9 +23,22 @@ function csvField(value: string): string {
   return `"${value.replace(/"/g, '""')}"`;
 }
 
+type LinhaProduto = {
+  id: string;
+  itemGroupId: string;
+  title: string;
+  description: string;
+  price: number;
+  link: string;
+  imageLink: string;
+  size: string;
+  customLabel0: string;
+};
+
 export async function GET() {
   const header = [
     'id',
+    'item_group_id',
     'title',
     'description',
     'availability',
@@ -33,33 +48,76 @@ export async function GET() {
     'image_link',
     'brand',
     'google_product_category',
+    'size',
+    'custom_label_0',
     'availability_circle_origin',
     'availability_circle_radius',
   ];
 
-  const linhas = tamanhos.map((t) => {
-    const id = `marmita-${t.id}`;
-    const title = `Marmita Caseira ${t.nome} - Caseirinhas da Tatá`;
-    const description = `Marmita caseira tamanho ${t.nome}, feita na hora. Cardápio rotativo diário (segunda a domingo) com pratos diferentes todo dia — confira o prato de hoje em ${SITE_URL}/cardapio. Entrega rápida na Zona Norte de Londrina. Taxa de entrega calculada à parte, de acordo com o bairro.`;
-    const price = `${t.preco.toFixed(2)} BRL`;
+  const produtos: LinhaProduto[] = [];
 
-    return [
-      id,
-      title,
-      description,
+  for (const dia of diasSemana) {
+    const prato = cardapioSemanal[dia.key];
+    if (!prato) continue;
+
+    const linkDia = `${SITE_URL}/cardapio#${dia.key}`;
+
+    if (prato.opcoes) {
+      for (const opcao of prato.opcoes) {
+        const imagem = opcao.imagem ?? prato.imagem ?? `${SITE_URL}/logo-caseirinhas-da-tata.jpg`;
+        for (const t of tamanhos) {
+          produtos.push({
+            id: `cardapio-domingo-${opcao.id}-${t.id}`,
+            itemGroupId: `cardapio-domingo-${opcao.id}`,
+            title: `${opcao.tema} (Domingo) - ${t.nome} - Caseirinhas da Tatá`,
+            description: `${opcao.ingredientes.join(', ')}. Uma das 3 opções especiais de domingo da Caseirinhas da Tatá. Marmita caseira feita na hora, entrega rápida na Zona Norte de Londrina.`,
+            price: t.preco,
+            link: linkDia,
+            imageLink: imagem.startsWith('http') ? imagem : `${SITE_URL}${imagem}`,
+            size: t.nome,
+            customLabel0: dia.label,
+          });
+        }
+      }
+    } else {
+      const imagem = prato.imagem ?? `${SITE_URL}/logo-caseirinhas-da-tata.jpg`;
+      for (const t of tamanhos) {
+        produtos.push({
+          id: `cardapio-${dia.key}-${t.id}`,
+          itemGroupId: `cardapio-${dia.key}`,
+          title: `${prato.tema} (${dia.label}) - ${t.nome} - Caseirinhas da Tatá`,
+          description: `${prato.ingredientes.join(', ')}. Disponível toda ${dia.label} no cardápio rotativo da Caseirinhas da Tatá. Marmita caseira feita na hora, entrega rápida na Zona Norte de Londrina.`,
+          price: t.preco,
+          link: linkDia,
+          imageLink: imagem.startsWith('http') ? imagem : `${SITE_URL}${imagem}`,
+          size: t.nome,
+          customLabel0: dia.label,
+        });
+      }
+    }
+  }
+
+  const linhas = produtos.map((p) =>
+    [
+      p.id,
+      p.itemGroupId,
+      p.title,
+      p.description,
       'in stock',
       'new',
-      price,
-      `${SITE_URL}/cardapio`,
-      `${SITE_URL}/logo-caseirinhas-da-tata.jpg`,
+      `${p.price.toFixed(2)} BRL`,
+      p.link,
+      p.imageLink,
       'Caseirinhas da Tatá',
-      'Food, Beverages & Tobacco > Food Items > Prepared Foods',
+      CATEGORIA,
+      p.size,
+      p.customLabel0,
       ORIGEM_ENTREGA,
       RAIO_ENTREGA,
     ]
       .map(csvField)
-      .join(',');
-  });
+      .join(','),
+  );
 
   const csv = [header.join(','), ...linhas].join('\n') + '\n';
 
