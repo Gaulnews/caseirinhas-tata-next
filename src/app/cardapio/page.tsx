@@ -288,7 +288,8 @@ export default function CardapioPage() {
               return (
                 <div
                   key={dia.key}
-                  className={`rounded-xl border p-4 text-center ${
+                  id={dia.key}
+                  className={`scroll-mt-24 rounded-xl border p-4 text-center ${
                     ehHoje ? 'border-[#ffc107] bg-[#ffc107]/5' : 'border-zinc-800 bg-zinc-900'
                   }`}
                 >
