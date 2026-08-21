@@ -2,18 +2,19 @@ import { createHmac, timingSafeEqual } from 'crypto';
 import { NextRequest, NextResponse } from 'next/server';
 import { construirMenuDoDia, construirRespostaInterativa, type BotAction } from '@/lib/whatsapp-bot';
 
-// Webhook do WhatsApp Cloud API (Meta) para o número "Caseirinhas Da Tatá".
+// Webhook do WhatsApp Cloud API (Meta) — atende qualquer número inscrito
+// nesse app (hoje: "Caseirinhas Da Tatá" e "Tânia Garbini"), sempre
+// respondendo pelo mesmo número que recebeu a mensagem (via
+// value.metadata.phone_number_id do payload), nunca por um número fixo.
 // Documentação: https://developers.facebook.com/docs/whatsapp/cloud-api/guides/set-up-webhooks
 //
 // Variáveis de ambiente necessárias (configurar no Vercel, nunca no código):
-//   WHATSAPP_VERIFY_TOKEN   — string escolhida por você, usada só na etapa
-//                             de verificação do webhook no painel da Meta.
-//   WHATSAPP_TOKEN          — token de acesso permanente (System User) com
-//                             permissão whatsapp_business_messaging.
-//   WHATSAPP_PHONE_NUMBER_ID — ID do número de telefone (não é o número em
-//                             si) mostrado em WhatsApp > Configuração da API.
-//   WHATSAPP_APP_SECRET     — segredo do app, usado para validar que as
-//                             requisições recebidas realmente vêm da Meta.
+//   WHATSAPP_VERIFY_TOKEN — string escolhida por você, usada só na etapa
+//                           de verificação do webhook no painel da Meta.
+//   WHATSAPP_TOKEN        — token de acesso permanente (System User) com
+//                           permissão whatsapp_business_messaging nas WABAs.
+//   WHATSAPP_APP_SECRET   — segredo do app, usado para validar que as
+//                           requisições recebidas realmente vêm da Meta.
 
 const GRAPH_API = 'https://graph.facebook.com/v21.0';
 
@@ -59,23 +60,30 @@ export async function POST(req: NextRequest) {
   }
 
   const de = mensagem.from as string;
+  // ID do número que RECEBEU a mensagem — usado para responder pelo mesmo
+  // número, já que o app pode estar inscrito em mais de uma WABA/número.
+  const phoneNumberId = valor?.metadata?.phone_number_id as string | undefined;
   const idResposta = mensagem.interactive?.button_reply?.id ?? mensagem.interactive?.list_reply?.id;
+
+  if (!phoneNumberId) {
+    console.error('WhatsApp bot: payload sem metadata.phone_number_id.');
+    return NextResponse.json({ ok: true });
+  }
 
   const acoes = idResposta ? construirRespostaInterativa(idResposta) : construirMenuDoDia();
 
   for (const acao of acoes) {
-    await enviarMensagemWhatsApp(de, acao);
+    await enviarMensagemWhatsApp(de, acao, phoneNumberId);
   }
 
   return NextResponse.json({ ok: true });
 }
 
-async function enviarMensagemWhatsApp(para: string, acao: BotAction) {
+async function enviarMensagemWhatsApp(para: string, acao: BotAction, phoneNumberId: string) {
   const token = process.env.WHATSAPP_TOKEN;
-  const phoneNumberId = process.env.WHATSAPP_PHONE_NUMBER_ID;
 
-  if (!token || !phoneNumberId) {
-    console.error('WhatsApp bot: WHATSAPP_TOKEN ou WHATSAPP_PHONE_NUMBER_ID não configurados.');
+  if (!token) {
+    console.error('WhatsApp bot: WHATSAPP_TOKEN não configurado.');
     return;
   }
 

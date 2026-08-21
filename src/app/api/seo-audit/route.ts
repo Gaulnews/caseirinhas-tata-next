@@ -8,16 +8,20 @@ export const maxDuration = 60; // Estende o tempo de limite da Vercel para aguar
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
   const secret = searchParams.get('secret');
+  const segredoEsperado = process.env.SEO_AUDIT_SECRET;
 
-  // Trava de segurança para não consumirem sua API key do Apify
-  if (secret !== 'senha_secreta_tata_2026') {
+  // Trava de segurança para não consumirem sua API key do Apify — segredo
+  // vem de variável de ambiente (nunca commitado), configurada na Vercel.
+  if (!segredoEsperado || secret !== segredoEsperado) {
     return NextResponse.json({ success: false, error: 'Acesso não autorizado.' }, { status: 401 });
   }
 
   try {
-    // Insira sua API_TOKEN real do Apify nas variáveis de ambiente da Vercel
-    const apifyToken = process.env.APIFY_API_TOKEN || '<YOUR_API_TOKEN>';
-    
+    const apifyToken = process.env.APIFY_API_TOKEN;
+    if (!apifyToken) {
+      return NextResponse.json({ success: false, error: 'APIFY_API_TOKEN não configurado.' }, { status: 500 });
+    }
+
     const client = new ApifyClient({
       token: apifyToken,
     });
