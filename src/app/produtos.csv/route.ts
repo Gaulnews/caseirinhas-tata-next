@@ -16,8 +16,11 @@ const CATEGORIA = 'Food, Beverages & Tobacco > Food Items > Prepared Foods';
 
 // Mesmas coordenadas usadas no schema.org da home/entregas (endereço real
 // da loja). Raio de entrega informado pelo negócio: 10km a partir da loja.
+// availability_circle_radius precisa ser só numérico (sem unidade) — o
+// Gerenciador de Comércio da Meta rejeita "10km" com o diagnóstico
+// "property_value_non_numeric" (confirmado via ads_catalog_get_diagnostics).
 const ORIGEM_ENTREGA = '-23.26801,-51.14480';
-const RAIO_ENTREGA = '10km';
+const RAIO_ENTREGA = '10';
 
 function csvField(value: string): string {
   return `"${value.replace(/"/g, '""')}"`;
