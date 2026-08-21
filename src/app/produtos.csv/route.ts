@@ -54,7 +54,13 @@ export async function GET() {
 
   const csv = [header.join(','), ...linhas].join('\n') + '\n';
 
-  return new Response(csv, {
+  // BOM (byte-order-mark) no início do arquivo: sem ele, o Excel (e outras
+  // ferramentas que leem o CSV depois de salvo em disco, sem o header HTTP)
+  // assume a codificação padrão do sistema em vez de UTF-8 e exibe os
+  // acentos corrompidos (ex.: "Tatá" vira "TatÃ¡").
+  const csvComBom = '\uFEFF' + csv;
+
+  return new Response(csvComBom, {
     headers: {
       'Content-Type': 'text/csv; charset=utf-8',
       'Cache-Control': 'public, max-age=3600',
