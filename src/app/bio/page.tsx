@@ -22,6 +22,8 @@ export const metadata: Metadata = {
 const WHATSAPP_PEDIDOS = 'https://wa.me/5543996749607';
 const WHATSAPP_B2B = 'https://wa.me/5543999821401';
 const INSTAGRAM = 'https://instagram.com/caseirinhasdatata';
+const IFOOD = 'https://www.ifood.com.br/delivery/londrina-pr/caseirinhas-da-tata-conjunto-semiramis-barros-braga/b9d8f184-2b32-4383-acbb-964cdc14505a';
+const GRUPO_SORTEIOS = 'https://chat.whatsapp.com/FpdiveKJ4Mx8bxXk0bipxQ?s=sh&p=a&mlu=4';
 
 type LinkItem = {
   href: string;
@@ -38,6 +40,12 @@ const links: LinkItem[] = [
     external: true,
   },
   {
+    href: IFOOD,
+    label: 'Peça pelo iFood',
+    desc: 'Nossa loja no aplicativo',
+    external: true,
+  },
+  {
     href: '/cardapio',
     label: 'Cardápio da Semana',
     desc: 'Veja o prato e os tamanhos de hoje',
@@ -46,6 +54,12 @@ const links: LinkItem[] = [
     href: '/servicos',
     label: 'Nossos Serviços',
     desc: 'MarmiFlix, Company e Single',
+  },
+  {
+    href: GRUPO_SORTEIOS,
+    label: 'Grupo de Sorteios',
+    desc: 'Entre no grupo e concorra a prêmios',
+    external: true,
   },
   {
     href: WHATSAPP_B2B,
