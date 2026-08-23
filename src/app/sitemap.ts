@@ -9,6 +9,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${baseUrl}`, lastModified, changeFrequency: 'daily', priority: 1.0 },
     { url: `${baseUrl}/cardapio`, lastModified, changeFrequency: 'daily', priority: 0.9 },
     { url: `${baseUrl}/servicos`, lastModified, changeFrequency: 'weekly', priority: 0.9 },
+    { url: `${baseUrl}/bio`, lastModified, changeFrequency: 'weekly', priority: 0.8 },
     { url: `${baseUrl}/contatos`, lastModified, changeFrequency: 'monthly', priority: 0.8 },
     { url: `${baseUrl}/categorias`, lastModified, changeFrequency: 'weekly', priority: 0.7 },
     { url: `${baseUrl}/tags`, lastModified, changeFrequency: 'weekly', priority: 0.7 },
