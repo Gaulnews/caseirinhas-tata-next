@@ -1,6 +1,7 @@
 import { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
+import { WHATSAPP_PEDIDOS, WHATSAPP_B2B, INSTAGRAM, IFOOD, GRUPO_SORTEIOS, AVALIAR_GOOGLE } from '@/lib/site-data';
 
 // Página "link na bio", pensada pra ser o destino do link único no perfil do
 // Instagram (@caseirinhasdatata) — reúne num só lugar tudo que hoje está
@@ -18,13 +19,6 @@ export const metadata: Metadata = {
     url: 'https://caseirinhasdatata.shop/bio',
   },
 };
-
-const WHATSAPP_PEDIDOS = 'https://wa.me/5543996749607';
-const WHATSAPP_B2B = 'https://wa.me/5543999821401';
-const INSTAGRAM = 'https://instagram.com/caseirinhasdatata';
-const IFOOD = 'https://www.ifood.com.br/delivery/londrina-pr/caseirinhas-da-tata-conjunto-semiramis-barros-braga/b9d8f184-2b32-4383-acbb-964cdc14505a';
-const GRUPO_SORTEIOS = 'https://chat.whatsapp.com/FpdiveKJ4Mx8bxXk0bipxQ?s=sh&p=a&mlu=4';
-const AVALIAR_GOOGLE = 'https://g.page/r/CWNr7bcB5USREBM/review';
 
 type LinkItem = {
   href: string;
