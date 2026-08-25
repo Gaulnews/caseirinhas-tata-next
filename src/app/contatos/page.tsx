@@ -1,12 +1,14 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
 import { CarrosselRedesSociais } from '@/components/CarrosselRedesSociais';
+import { CardapioDestaqueTabs } from '@/components/CardapioDestaqueTabs';
 import {
   WHATSAPP_PEDIDOS,
   WHATSAPP_PEDIDOS_NUMERO,
   WHATSAPP_B2B,
   WHATSAPP_B2B_NUMERO,
   INSTAGRAM,
+  IFOOD,
   GRUPO_SORTEIOS,
   AVALIAR_GOOGLE,
   ENDERECO_COMPLETO,
@@ -46,11 +48,16 @@ export default function ContatosPage() {
           <Link href="/bio" className="text-zinc-400 hover:text-yellow-400 transition-colors">Todos os Links</Link>
         </nav>
 
-        <h1 className="text-4xl font-extrabold text-yellow-400 mb-4">Fale com a Caseirinhas da Tatá</h1>
-        <p className="text-zinc-300 text-lg mb-10 max-w-3xl">
-          Marmitas caseiras feitas com carinho, entregues na Zona Norte de Londrina — ou retiradas direto com a gente.
-          Escolha abaixo o canal certo pro seu pedido: entrega imediata, agendamento para outro dia, ou parceria comercial.
-        </p>
+        <header className="mb-10">
+          <span className="inline-block text-xs bg-[#ffc107]/10 text-[#ffc107] px-3 py-1 rounded-full border border-[#ffc107]/20 font-mono mb-4">
+            CONTATO · RETIRADA · AVALIAÇÕES
+          </span>
+          <h1 className="text-4xl font-extrabold text-yellow-400 mb-4">Fale com a Caseirinhas da Tatá</h1>
+          <p className="text-zinc-300 text-lg max-w-3xl">
+            Marmitas caseiras feitas com carinho, entregues na Zona Norte de Londrina — ou retiradas direto com a gente.
+            Escolha abaixo o canal certo pro seu pedido: entrega imediata, agendamento para outro dia, ou parceria comercial.
+          </p>
+        </header>
 
         {/* Canais de WhatsApp */}
         <section aria-labelledby="whatsapp-heading" className="mb-14">
@@ -63,17 +70,27 @@ export default function ContatosPage() {
             <div className="bg-zinc-900 border border-zinc-800 p-6 rounded-xl flex flex-col">
               <h3 className="text-xl font-bold text-zinc-100 mb-1">Peça Agora</h3>
               <p className="text-zinc-400 text-sm mb-4 flex-1">
-                Direto pela loja: escolha o tamanho da marmita, informe seu bairro e receba quentinho ainda hoje.
+                Duas formas de pedir: direto pela loja (WhatsApp) ou pelo aplicativo do iFood — escolha a que for mais fácil pra você.
               </p>
               <p className="text-2xl font-bold text-green-400 mb-4">{WHATSAPP_PEDIDOS_NUMERO}</p>
-              <a
-                href={WHATSAPP_PEDIDOS}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="block w-full py-3 bg-green-500 text-zinc-950 text-center font-bold rounded-lg hover:bg-green-400"
-              >
-                Pedir agora
-              </a>
+              <div className="flex flex-col gap-2">
+                <a
+                  href={WHATSAPP_PEDIDOS}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block w-full py-3 bg-green-500 text-zinc-950 text-center font-bold rounded-lg hover:bg-green-400"
+                >
+                  Pedir pela loja
+                </a>
+                <a
+                  href={IFOOD}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block w-full py-3 bg-zinc-800 text-white text-center font-bold rounded-lg hover:bg-zinc-700 ring-1 ring-[#ffc107]/40"
+                >
+                  Pedir pelo iFood
+                </a>
+              </div>
             </div>
 
             <div className="bg-zinc-900 border border-zinc-800 p-6 rounded-xl flex flex-col">
@@ -107,6 +124,19 @@ export default function ContatosPage() {
                 Falar com o comercial
               </a>
             </div>
+          </div>
+        </section>
+
+        {/* Cardápio em destaque (vídeos reais) */}
+        <section aria-labelledby="destaque-heading" className="mb-14">
+          <h2 id="destaque-heading" className="text-2xl font-bold text-zinc-100 mb-1 border-l-4 border-yellow-400 pl-3">
+            Cardápio em Destaque
+          </h2>
+          <p className="text-zinc-500 text-sm mb-6 pl-4">
+            Dá o play e veja o prato de cada dia antes de pedir — clique nas abas pra explorar a semana.
+          </p>
+          <div className="bg-zinc-900 border border-zinc-800 p-6 rounded-xl">
+            <CardapioDestaqueTabs />
           </div>
         </section>
 
