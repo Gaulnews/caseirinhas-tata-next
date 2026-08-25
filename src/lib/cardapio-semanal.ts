@@ -252,6 +252,24 @@ export const cardapioSemanal: Record<DiaSemanaKey, PratoDoDia | null> = {
   },
 };
 
+// Opção fixa, disponível em qualquer dia da semana (inclusive nos dias com
+// prato único), além do prato do dia — não substitui o cardápio rotativo.
+export const saladaCaesarDiaria: OpcaoPrato = {
+  id: 'salada-caesar-diaria',
+  tema: 'Salada Caesar (Mounjaro Fit)',
+  ingredientes: [
+    'Alface Americana',
+    'Alface Roxa',
+    'Cenoura Ralada',
+    'Cebola Roxa',
+    'Frango em Cubos',
+    'Crutons',
+    'Molho de Parmesão Fit Low',
+    'Queijo Colonial',
+  ],
+  video: '/cardapio/domingo-salada-mounjaro.mp4',
+};
+
 export type Tamanho = {
   id: 'mini' | 'media' | 'grande';
   nome: string;

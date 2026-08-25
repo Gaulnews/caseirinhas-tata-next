@@ -9,6 +9,7 @@ import {
   tamanhos,
   formatarPreco,
   getDiaSemanaAtual,
+  saladaCaesarDiaria,
 } from '@/lib/cardapio-semanal';
 
 // Revalida a cada hora: o cardápio muda todo dia, mas a página continua
@@ -63,6 +64,9 @@ export default function CardapioPage() {
   const diaAtual = getDiaSemanaAtual();
   const pratoHoje = cardapioSemanal[diaAtual];
   const diaAtualLabel = diasSemana.find((d) => d.key === diaAtual)?.label ?? diaAtual;
+  // Domingo já oferece a Salada Caesar como uma das 3 opções do dia — evita
+  // repetir a mesma oferta duas vezes na mesma página.
+  const mostrarSaladaCaesarDiaria = diaAtual !== 'domingo';
 
   const videoObjects: Record<string, unknown>[] = [];
   if (pratoHoje?.video) {
@@ -93,39 +97,64 @@ export default function CardapioPage() {
       });
     }
   });
+  if (mostrarSaladaCaesarDiaria && saladaCaesarDiaria.video) {
+    videoObjects.push({
+      '@type': 'VideoObject',
+      name: `${saladaCaesarDiaria.tema} - Caseirinhas da Tatá`,
+      description: saladaCaesarDiaria.ingredientes.join(', '),
+      uploadDate: '2026-08-25',
+      contentUrl: `${SITE_URL}${saladaCaesarDiaria.video}`,
+    });
+  }
+
+  const secoesMenu: Record<string, unknown>[] = pratoHoje
+    ? pratoHoje.opcoes
+      ? pratoHoje.opcoes.map((opcao) => ({
+          '@type': 'MenuSection',
+          name: `Cardápio de ${diaAtualLabel} - ${opcao.tema}`,
+          description: opcao.ingredientes.join(', '),
+          hasMenuItem: tamanhos.map((t) => ({
+            '@type': 'MenuItem',
+            name: `${opcao.tema} - Tamanho ${t.nome}`,
+            description: opcao.ingredientes.join(', '),
+            offers: { '@type': 'Offer', priceCurrency: 'BRL', price: t.preco.toFixed(2) },
+          })),
+        }))
+      : [
+          {
+            '@type': 'MenuSection',
+            name: `Cardápio de ${diaAtualLabel}`,
+            description: pratoHoje.tema,
+            hasMenuItem: tamanhos.map((t) => ({
+              '@type': 'MenuItem',
+              name: `${pratoHoje.tema} - Tamanho ${t.nome}`,
+              description: pratoHoje.ingredientes.join(', '),
+              offers: { '@type': 'Offer', priceCurrency: 'BRL', price: t.preco.toFixed(2) },
+            })),
+          },
+        ]
+    : [];
+
+  if (mostrarSaladaCaesarDiaria) {
+    secoesMenu.push({
+      '@type': 'MenuSection',
+      name: `${saladaCaesarDiaria.tema} - Disponível Todos os Dias`,
+      description: saladaCaesarDiaria.ingredientes.join(', '),
+      hasMenuItem: tamanhos.map((t) => ({
+        '@type': 'MenuItem',
+        name: `${saladaCaesarDiaria.tema} - Tamanho ${t.nome}`,
+        description: saladaCaesarDiaria.ingredientes.join(', '),
+        offers: { '@type': 'Offer', priceCurrency: 'BRL', price: t.preco.toFixed(2) },
+      })),
+    });
+  }
 
   const jsonLd = {
     '@context': 'https://schema.org',
     '@type': 'Menu',
     name: 'Cardápio Oficial - Caseirinhas da Tatá',
     url: `${SITE_URL}/cardapio`,
-    ...(pratoHoje
-      ? {
-          hasMenuSection: pratoHoje.opcoes
-            ? pratoHoje.opcoes.map((opcao) => ({
-                '@type': 'MenuSection',
-                name: `Cardápio de ${diaAtualLabel} - ${opcao.tema}`,
-                description: opcao.ingredientes.join(', '),
-                hasMenuItem: tamanhos.map((t) => ({
-                  '@type': 'MenuItem',
-                  name: `${opcao.tema} - Tamanho ${t.nome}`,
-                  description: opcao.ingredientes.join(', '),
-                  offers: { '@type': 'Offer', priceCurrency: 'BRL', price: t.preco.toFixed(2) },
-                })),
-              }))
-            : {
-                '@type': 'MenuSection',
-                name: `Cardápio de ${diaAtualLabel}`,
-                description: pratoHoje.tema,
-                hasMenuItem: tamanhos.map((t) => ({
-                  '@type': 'MenuItem',
-                  name: `${pratoHoje.tema} - Tamanho ${t.nome}`,
-                  description: pratoHoje.ingredientes.join(', '),
-                  offers: { '@type': 'Offer', priceCurrency: 'BRL', price: t.preco.toFixed(2) },
-                })),
-              },
-        }
-      : {}),
+    ...(secoesMenu.length > 0 ? { hasMenuSection: secoesMenu } : {}),
   };
 
   return (
@@ -276,6 +305,34 @@ export default function CardapioPage() {
               A opção de hoje ainda está sendo publicada. Fale com a gente no WhatsApp pra saber o prato do dia — os tamanhos e preços abaixo já valem para o pedido.
             </p>
             <SeletorTamanho pratoNome={`Prato do dia - ${diaAtualLabel}`} />
+          </section>
+        )}
+
+        {mostrarSaladaCaesarDiaria && (
+          <section aria-labelledby="salada-caesar-heading" className="mb-14 grid gap-8 rounded-2xl border border-zinc-800 bg-zinc-900 p-6 md:grid-cols-2 md:p-8">
+            <ScrollVideo
+              src={saladaCaesarDiaria.video!}
+              className="w-full rounded-2xl border border-zinc-800"
+            >
+              Seu navegador não suporta vídeo. Confira a {saladaCaesarDiaria.tema} no WhatsApp.
+            </ScrollVideo>
+            <div>
+              <span className="inline-block text-xs bg-[#ffc107]/10 text-[#ffc107] px-3 py-1 rounded-full border border-[#ffc107]/20 font-mono mb-3">
+                DISPONÍVEL TODOS OS DIAS
+              </span>
+              <h2 id="salada-caesar-heading" className="text-2xl font-bold text-zinc-100 mb-4">{saladaCaesarDiaria.tema}</h2>
+              <ul className="mb-6 flex flex-wrap gap-2">
+                {saladaCaesarDiaria.ingredientes.map((item) => (
+                  <li
+                    key={item}
+                    className="rounded-full border border-zinc-700 bg-zinc-950 px-3 py-1.5 text-sm text-zinc-300"
+                  >
+                    {item}
+                  </li>
+                ))}
+              </ul>
+              <SeletorTamanho pratoNome={saladaCaesarDiaria.tema} />
+            </div>
           </section>
         )}
 
