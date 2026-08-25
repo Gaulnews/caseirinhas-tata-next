@@ -1,4 +1,5 @@
 import { Metadata } from 'next';
+import Image from 'next/image';
 import Link from 'next/link';
 import { CarrosselRedesSociais } from '@/components/CarrosselRedesSociais';
 import { CardapioDestaqueTabs } from '@/components/CardapioDestaqueTabs';
@@ -114,6 +115,19 @@ export default function ContatosPage() {
               <p className="text-zinc-400 text-sm mb-4 flex-1">
                 MarmiFlix, Company ou Single para sua empresa: atendimento direto com o setor comercial para fechar contratos e planos de assinatura.
               </p>
+              <div className="mb-4 flex items-center gap-3">
+                <Image
+                  src="/contatos/tania-garbini-representante-comercial.jpg"
+                  alt="Tânia Garbini, Representante Comercial da Caseirinhas da Tatá"
+                  width={64}
+                  height={64}
+                  className="h-16 w-16 rounded-full border-2 border-yellow-400 object-cover"
+                />
+                <div>
+                  <p className="text-sm font-bold text-zinc-100">Tânia Garbini</p>
+                  <p className="text-xs text-zinc-500">Representante Comercial</p>
+                </div>
+              </div>
               <p className="text-2xl font-bold text-yellow-400 mb-4">{WHATSAPP_B2B_NUMERO}</p>
               <a
                 href={WHATSAPP_B2B}
