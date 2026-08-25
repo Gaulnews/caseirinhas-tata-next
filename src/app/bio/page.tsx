@@ -24,6 +24,7 @@ const WHATSAPP_B2B = 'https://wa.me/5543999821401';
 const INSTAGRAM = 'https://instagram.com/caseirinhasdatata';
 const IFOOD = 'https://www.ifood.com.br/delivery/londrina-pr/caseirinhas-da-tata-conjunto-semiramis-barros-braga/b9d8f184-2b32-4383-acbb-964cdc14505a';
 const GRUPO_SORTEIOS = 'https://chat.whatsapp.com/FpdiveKJ4Mx8bxXk0bipxQ?s=sh&p=a&mlu=4';
+const AVALIAR_GOOGLE = 'https://g.page/r/CWNr7bcB5USREBM/review';
 
 type LinkItem = {
   href: string;
@@ -43,6 +44,12 @@ const links: LinkItem[] = [
     href: IFOOD,
     label: 'Peça pelo iFood',
     desc: 'Nossa loja no aplicativo',
+    external: true,
+  },
+  {
+    href: AVALIAR_GOOGLE,
+    label: 'Avaliar no Google ⭐',
+    desc: 'Já pediu com a gente? Deixe sua avaliação',
     external: true,
   },
   {
