@@ -24,6 +24,20 @@ export function tagSlug(tag: string): string {
   return tag.replace('#', '').toLowerCase();
 }
 
+// Contatos e links oficiais — fonte única usada por /bio, /contatos e pelo
+// schema.org, pra nunca haver dois números/links diferentes em páginas
+// diferentes.
+export const WHATSAPP_PEDIDOS = 'https://wa.me/5543996749607';
+export const WHATSAPP_PEDIDOS_NUMERO = '(43) 99674-9607';
+export const WHATSAPP_B2B = 'https://wa.me/5543999821401';
+export const WHATSAPP_B2B_NUMERO = '(43) 99982-1401';
+export const INSTAGRAM = 'https://instagram.com/caseirinhasdatata';
+export const IFOOD =
+  'https://www.ifood.com.br/delivery/londrina-pr/caseirinhas-da-tata-conjunto-semiramis-barros-braga/b9d8f184-2b32-4383-acbb-964cdc14505a';
+export const GRUPO_SORTEIOS = 'https://chat.whatsapp.com/FpdiveKJ4Mx8bxXk0bipxQ?s=sh&p=a&mlu=4';
+export const AVALIAR_GOOGLE = 'https://g.page/r/CWNr7bcB5USREBM/review';
+export const ENDERECO_COMPLETO = 'Rua Maria Sinopoli Francovig, 1142 - Conj. Semíramis Barros Braga, Londrina - PR, 86088-080';
+
 // Dicionário de Bairros (Alinhamento Absoluto com o Google Business Profile)
 export const bairros: Record<string, string> = {
   'centro': 'Centro',
