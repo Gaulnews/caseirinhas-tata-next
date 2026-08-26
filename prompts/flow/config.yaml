@@ -1,0 +1,32 @@
+# Reference config for labs.google/fx/tools/flow
+# project c8206598-7232-445a-9ba5-39a26e6ac8e5 (Caseirinhas da Tata)
+# Aplicado manualmente na UI do Flow — nao existe API publica para este recurso.
+
+project:
+  id: "c8206598-7232-445a-9ba5-39a26e6ac8e5"
+  name: "Caseirinhas da Tata"
+
+agent_settings:
+  confirm_before_generating: "Always"
+  default_image_model: "Imagen 4"
+  default_video_model: "Veo 3.1 - Quality"
+
+generation_defaults:
+  aspect_ratio: "9:16"
+  duration_seconds: 8
+  outputs_per_prompt: 2
+  orientation: "portrait"
+
+view_settings:
+  mode: "batch"
+  show_tile_details: true
+  clear_prompt_on_submit: false
+
+output_pipeline:
+  export_to: "google_drive"
+  drive_folder: "/Caseirinhas da Tata/Flow Assets/"
+  publish_targets:
+    - facebook_pages
+    - google_my_business
+  version_control: "github"
+  repo: "Gaulnews/caseirinhas-tata-next"
