@@ -7,13 +7,15 @@ type ScrollVideoProps = {
   poster?: string;
   className?: string;
   children?: React.ReactNode;
+  /** Chamado uma vez, na primeira vez que o vídeo entra na área visível. */
+  onEmTela?: () => void;
 };
 
 // Vídeo que inicia automaticamente quando entra parcialmente na tela (scroll)
 // e pausa assim que sai da área visível — evita reprodução desnecessária em
 // background (melhor para performance/dados do usuário) e melhora o
 // engajamento ao já mostrar o prato em movimento.
-export function ScrollVideo({ src, poster, className, children }: ScrollVideoProps) {
+export function ScrollVideo({ src, poster, className, children, onEmTela }: ScrollVideoProps) {
   const videoRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
@@ -24,6 +26,7 @@ export function ScrollVideo({ src, poster, className, children }: ScrollVideoPro
       ([entry]) => {
         if (entry.isIntersecting) {
           video.play().catch(() => {});
+          onEmTela?.();
         } else {
           video.pause();
         }
@@ -33,7 +36,7 @@ export function ScrollVideo({ src, poster, className, children }: ScrollVideoPro
 
     observer.observe(video);
     return () => observer.disconnect();
-  }, []);
+  }, [onEmTela]);
 
   return (
     <video

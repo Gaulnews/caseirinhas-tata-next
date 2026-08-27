@@ -3,6 +3,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { CarrosselRedesSociais } from '@/components/CarrosselRedesSociais';
 import { CardapioDestaqueTabs } from '@/components/CardapioDestaqueTabs';
+import { PromocoesAtivas } from '@/components/PromocoesAtivas';
 import {
   WHATSAPP_PEDIDOS,
   WHATSAPP_PEDIDOS_NUMERO,
@@ -29,6 +30,9 @@ export const metadata: Metadata = {
     'retirada marmita londrina',
     'agendar pedido marmita londrina',
     'avaliações caseirinhas da tata google',
+    'promoção marmita londrina',
+    'refri grátis marmita londrina',
+    'salada caesar fit londrina',
   ],
   alternates: { canonical: `${SITE_URL}/contatos` },
   openGraph: {
@@ -38,9 +42,52 @@ export const metadata: Metadata = {
   },
 };
 
+const promocoesJsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'Offer',
+      name: '1 Refri Grátis nas Marmitas Caseiras',
+      description:
+        'Peça 2 marmitas caseiras da Caseirinhas da Tatá e ganhe 1 refrigerante grátis. Comida caseira entregue na Zona Norte de Londrina.',
+      url: `${SITE_URL}/cardapio`,
+      priceCurrency: 'BRL',
+      price: '0',
+      availabilityStarts: '2026-08-27',
+      seller: { '@type': 'FoodEstablishment', name: 'Caseirinhas da Tatá' },
+    },
+    {
+      '@type': 'Offer',
+      name: 'Salada Caesar Mounjaro Fit Grátis no 1º Pedido',
+      description:
+        'Novos clientes ganham uma Salada Caesar (Mounjaro Fit) grátis no primeiro pedido na Caseirinhas da Tatá, delivery de marmita caseira na Zona Norte de Londrina.',
+      url: `${SITE_URL}/cardapio#salada-caesar-heading`,
+      priceCurrency: 'BRL',
+      price: '0',
+      availabilityStarts: '2026-08-27',
+      seller: { '@type': 'FoodEstablishment', name: 'Caseirinhas da Tatá' },
+    },
+    {
+      '@type': 'VideoObject',
+      name: '1 Refri Grátis nas Marmitas Caseiras - Caseirinhas da Tatá',
+      description: 'Peça 2 marmitas caseiras e ganhe 1 refrigerante grátis na Caseirinhas da Tatá, Zona Norte de Londrina.',
+      uploadDate: '2026-08-26',
+      contentUrl: `${SITE_URL}/contatos/promo-refri-gratis.mp4`,
+    },
+    {
+      '@type': 'VideoObject',
+      name: 'Salada Caesar Mounjaro Fit Grátis no 1º Pedido - Caseirinhas da Tatá',
+      description: 'Novos clientes ganham uma Salada Caesar (Mounjaro Fit) grátis no primeiro pedido na Caseirinhas da Tatá.',
+      uploadDate: '2026-08-27',
+      contentUrl: `${SITE_URL}/contatos/promo-salada-caesar-primeiro-pedido.mp4`,
+    },
+  ],
+};
+
 export default function ContatosPage() {
   return (
     <main className="min-h-screen bg-zinc-950 text-gray-100 p-6 md:p-12">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(promocoesJsonLd) }} />
       <div className="max-w-5xl mx-auto">
         <nav className="mb-10 flex flex-wrap gap-4 text-sm border-b border-zinc-800 pb-4">
           <Link href="/" className="text-zinc-400 hover:text-yellow-400 transition-colors">&larr; Voltar para Home</Link>
@@ -194,9 +241,11 @@ export default function ContatosPage() {
           <h2 id="promo-heading" className="text-2xl font-bold text-zinc-100 mb-1 border-l-4 border-yellow-400 pl-3">
             Promoções Ativas
           </h2>
-          <p className="text-zinc-500 text-sm mb-6 pl-4">Entre no grupo oficial e não perca nenhuma novidade.</p>
+          <p className="text-zinc-500 text-sm mb-6 pl-4">Confira as ofertas em vídeo e entre no grupo oficial pra não perder nenhuma novidade.</p>
 
-          <div className="bg-zinc-900 border border-zinc-800 p-6 rounded-xl md:flex md:items-center md:justify-between gap-6">
+          <PromocoesAtivas />
+
+          <div className="mt-6 bg-zinc-900 border border-zinc-800 p-6 rounded-xl md:flex md:items-center md:justify-between gap-6">
             <div className="mb-4 md:mb-0">
               <h3 className="text-xl font-bold text-zinc-100 mb-1">🎁 Grupo de Sorteios da Caseirinhas da Tatá</h3>
               <p className="text-zinc-400 max-w-2xl">
