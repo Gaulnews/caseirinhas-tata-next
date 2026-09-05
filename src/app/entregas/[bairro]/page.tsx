@@ -223,7 +223,7 @@ export default async function LocationPage({ params }: Props) {
                   CARDÁPIO DE {diaAtualLabel.toUpperCase()}
                 </span>
                 <h2 className="text-xl font-bold text-zinc-100 mb-3">
-                  {pratoHoje.opcoes ? "Hoje tem 3 Opções Especiais" : pratoHoje.tema}
+                  {pratoHoje.opcoes ? `Hoje tem ${pratoHoje.opcoes.length} Opções Especiais` : pratoHoje.tema}
                 </h2>
                 {pratoHoje.imagem && (
                   <div className="mb-4 overflow-hidden rounded-xl border border-zinc-800">

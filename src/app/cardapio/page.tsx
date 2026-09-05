@@ -26,11 +26,11 @@ export async function generateMetadata(): Promise<Metadata> {
 
   if (prato) {
     const descricao = prato.opcoes
-      ? `Domingo tem 3 opções especiais: ${prato.opcoes.map((o) => o.tema).join(', ')}. Marmitas Mini, Média e Grande a partir de R$ ${formatarPreco(tamanhos[0].preco)}. Peça agora com entrega rápida na Zona Norte de Londrina!`
+      ? `${diaLabel} tem ${prato.opcoes.length} opções especiais: ${prato.opcoes.map((o) => o.tema).join(', ')}. Marmitas Mini, Média e Grande a partir de R$ ${formatarPreco(tamanhos[0].preco)}. Peça agora com entrega rápida na Zona Norte de Londrina!`
       : `${prato.ingredientes.join(', ')}. Marmitas Mini, Média e Grande a partir de R$ ${formatarPreco(tamanhos[0].preco)}. Peça agora com entrega rápida na Zona Norte de Londrina!`;
 
     return {
-      title: prato.opcoes ? `Cardápio de ${diaLabel}: 3 Opções Especiais` : `Cardápio de ${diaLabel}: ${prato.tema}`,
+      title: prato.opcoes ? `Cardápio de ${diaLabel}: ${prato.opcoes.length} Opções Especiais` : `Cardápio de ${diaLabel}: ${prato.tema}`,
       description: descricao,
       keywords: prato.palavrasChave,
       alternates: { canonical: `${SITE_URL}/cardapio` },
@@ -212,7 +212,7 @@ export default function CardapioPage() {
               <div>
                 <h2 className="text-3xl font-bold text-zinc-100 mb-4">{pratoHoje.tema}</h2>
                 <p className="text-zinc-400">
-                  Escolha uma das 3 opções especiais de domingo abaixo e o tamanho da sua marmita.
+                  Escolha uma das {pratoHoje.opcoes.length} opções especiais abaixo e o tamanho da sua marmita.
                 </p>
               </div>
             </div>
@@ -354,7 +354,7 @@ export default function CardapioPage() {
                     {dia.label}
                   </p>
                   <p className="text-sm text-zinc-300">
-                    {prato ? (prato.opcoes ? '3 opções especiais' : prato.tema) : 'Em breve'}
+                    {prato ? (prato.opcoes ? `${prato.opcoes.length} opções especiais` : prato.tema) : 'Em breve'}
                   </p>
                 </div>
               );

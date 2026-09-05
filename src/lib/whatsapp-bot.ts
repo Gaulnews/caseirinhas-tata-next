@@ -37,6 +37,8 @@ const ROTULO_CURTO_OPCAO: Record<string, string> = {
   'salada-mounjaro': 'Salada Mounjaro',
   'tradicional-domingo': 'Tradicional de Domingo',
   feijoada: 'Feijoada (Fejuca)',
+  'bife-pernil-sabado': 'Bife com Pernil',
+  'feijoada-sabado': 'Feijoada Completa',
 };
 
 function diaLabel(dia: DiaSemanaKey): string {
@@ -61,16 +63,16 @@ export function construirMenuDoDia(): BotAction[] {
   if (prato.opcoes) {
     const saudacao: BotAction = {
       kind: 'text',
-      text: `Olá! Aqui é a ${NOME_LOJA} 💛\nHoje é ${label} e temos 3 opções especiais no cardápio. Escolha uma para ver os tamanhos e preços:`,
+      text: `Olá! Aqui é a ${NOME_LOJA} 💛\nHoje é ${label} e temos ${prato.opcoes.length} opções especiais no cardápio. Escolha uma para ver os tamanhos e preços:`,
     };
     const lista: BotAction = {
       kind: 'list',
-      text: 'Cardápio de domingo — escolha sua opção:',
+      text: `Cardápio de ${label.toLowerCase()} — escolha sua opção:`,
       buttonLabel: 'Ver opções',
       sections: [
         {
           rows: prato.opcoes.map((opcao) => ({
-            id: `escolha_opcao|${opcao.id}`,
+            id: `escolha_opcao|${dia}|${opcao.id}`,
             title: ROTULO_CURTO_OPCAO[opcao.id] ?? opcao.tema.slice(0, 24),
             description: opcao.ingredientes.join(', ').slice(0, 72),
           })),
@@ -163,11 +165,10 @@ export function construirRespostaInterativa(replyId: string): BotAction[] {
 
   if (tipo === 'escolha_opcao') {
     // A lista de opções só é enviada quando o prato do dia tem `opcoes`
-    // (hoje, só acontece aos domingos) — não usamos getDiaSemanaAtual() de
-    // novo aqui para não trocar de dia se o cliente tocar o botão depois
-    // da virada da meia-noite.
-    const [opcaoId] = resto;
-    return [construirBotoesTamanho('domingo', opcaoId)];
+    // O dia segue no id para não trocar o cardápio caso o cliente toque
+    // na opção depois da virada da meia-noite.
+    const [dia, opcaoId] = resto;
+    return [construirBotoesTamanho(dia as DiaSemanaKey, opcaoId)];
   }
 
   if (tipo === 'tamanho') {

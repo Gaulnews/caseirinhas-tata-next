@@ -5,7 +5,7 @@ import { cardapioSemanal, diasSemana, tamanhos } from '@/lib/cardapio-semanal';
 // Referência: https://www.facebook.com/business/help/120325381656392
 //
 // Espelha integralmente o cardápio semanal do site (/cardapio): um produto
-// por combinação de prato (ou opção, no caso de domingo) × tamanho, com
+// por combinação de prato ou opção do dia × tamanho, com
 // foto real, ingredientes e link direto para o dia correspondente. Produtos
 // do mesmo prato são agrupados por item_group_id, com o tamanho como
 // variante — mesmo padrão de catálogo com variantes recomendado pela Meta.
@@ -70,10 +70,10 @@ export async function GET() {
         const imagem = opcao.imagem ?? prato.imagem ?? `${SITE_URL}/logo-caseirinhas-da-tata.jpg`;
         for (const t of tamanhos) {
           produtos.push({
-            id: `cardapio-domingo-${opcao.id}-${t.id}`,
-            itemGroupId: `cardapio-domingo-${opcao.id}`,
-            title: `${opcao.tema} (Domingo) - ${t.nome} - Caseirinhas da Tatá`,
-            description: `${opcao.ingredientes.join(', ')}. Uma das 3 opções especiais de domingo da Caseirinhas da Tatá. Marmita caseira feita na hora, entrega rápida na Zona Norte de Londrina.`,
+            id: `cardapio-${dia.key}-${opcao.id}-${t.id}`,
+            itemGroupId: `cardapio-${dia.key}-${opcao.id}`,
+            title: `${opcao.tema} (${dia.label}) - ${t.nome} - Caseirinhas da Tatá`,
+            description: `${opcao.ingredientes.join(', ')}. Uma das ${prato.opcoes.length} opções especiais de ${dia.label.toLowerCase()} da Caseirinhas da Tatá. Marmita caseira feita na hora, entrega rápida na Zona Norte de Londrina.`,
             price: t.preco,
             link: linkDia,
             imageLink: imagem.startsWith('http') ? imagem : `${SITE_URL}${imagem}`,

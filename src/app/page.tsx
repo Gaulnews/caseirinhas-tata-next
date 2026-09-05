@@ -175,7 +175,7 @@ export default function Home() {
                   CARDÁPIO DE {diaAtualLabel.toUpperCase()}
                 </span>
                 <h2 className="mb-4 text-3xl font-bold text-white">
-                  {pratoHoje.opcoes ? "Hoje tem 3 Opções Especiais" : pratoHoje.tema}
+                  {pratoHoje.opcoes ? `Hoje tem ${pratoHoje.opcoes.length} Opções Especiais` : pratoHoje.tema}
                 </h2>
                 {pratoHoje.imagem && (
                   <div className="mx-auto mb-6 max-w-md overflow-hidden rounded-2xl border border-zinc-700">
