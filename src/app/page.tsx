@@ -2,7 +2,7 @@ import { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { SiteHeader } from "@/components/SiteHeader";
-import { bairros } from "@/lib/site-data";
+import { bairros, GRUPO_SORTEIOS } from "@/lib/site-data";
 import {
   tamanhos,
   formatarPreco,
@@ -46,6 +46,20 @@ export default function Home() {
     "url": "https://caseirinhasdatata.shop",
     "priceRange": "$$",
     "hasMenu": "https://caseirinhasdatata.shop/cardapio",
+    "openingHoursSpecification": [
+      {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+        "opens": "11:00",
+        "closes": "14:35"
+      },
+      {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": "Saturday",
+        "opens": "11:30",
+        "closes": "15:00"
+      }
+    ],
     "address": {
       "@type": "PostalAddress",
       "streetAddress": "Rua Maria Sinopoli Francovig, 1142 - Conj. Semíramis Barros Braga",
@@ -107,7 +121,7 @@ export default function Home() {
         "name": "Quais bairros de Londrina a Caseirinhas da Tatá entrega?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": `Entregamos em toda a Zona Norte de Londrina, incluindo ${Object.values(bairros).join(", ")}.`
+          "text": `Entregamos em toda a Zona Norte de Londrina e em bairros próximos, incluindo ${Object.values(bairros).join(", ")}.`
         }
       }
     ]
@@ -249,7 +263,7 @@ export default function Home() {
             <div className="mx-auto max-w-4xl">
               <h2 className="mb-4 text-3xl font-bold text-white">Áreas Atendidas em Londrina</h2>
               <p className="mx-auto mb-8 max-w-2xl text-zinc-400">
-                Entregamos marmitas caseiras quentinhas em toda a Zona Norte de Londrina:
+                Entregamos marmitas caseiras quentinhas em toda a Zona Norte de Londrina e em bairros próximos:
               </p>
               <div className="flex flex-wrap justify-center gap-3">
                 {Object.entries(bairros).map(([slug, nome]) => (
@@ -314,7 +328,7 @@ export default function Home() {
                 <h4 className="mb-2 text-xl font-bold">🎁 Concorra a Marmitas Grátis!</h4>
                 <p className="mb-6">Entre no nosso grupo e participe do sorteio diário</p>
                 <a
-                  href="https://chat.whatsapp.com/Jb1zGlNNCR11iObZS6oNxk"
+                  href={GRUPO_SORTEIOS}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-block rounded-lg bg-black px-6 py-3 font-bold text-white transition-colors hover:bg-zinc-800"
