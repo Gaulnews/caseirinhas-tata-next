@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import './globals.css';
+import { MetaPixel } from '@/components/MetaPixel';
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://caseirinhasdatata.shop'),
@@ -56,6 +57,7 @@ export default function RootLayout({
     <html lang="pt-BR" className="scroll-smooth">
       <body className="bg-zinc-950 text-gray-100 antialiased selection:bg-yellow-400 selection:text-zinc-950">
         {children}
+        <MetaPixel />
       </body>
     </html>
   );

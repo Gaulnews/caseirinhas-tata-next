@@ -1,9 +1,18 @@
 import { NextResponse } from 'next/server';
+import { createHash, timingSafeEqual } from 'crypto';
 import { ApifyClient } from 'apify-client';
 
 // Força a execução no lado do servidor para evitar problemas de CORS e Cache
 export const dynamic = 'force-dynamic';
 export const maxDuration = 60; // Estende o tempo de limite da Vercel para aguardar o Apify
+
+// Comparação em tempo constante: hashes de tamanho fixo evitam vazar o
+// comprimento e o conteúdo do segredo pelo tempo de resposta.
+function segredoConfere(recebido: string, esperado: string): boolean {
+  const a = createHash('sha256').update(recebido).digest();
+  const b = createHash('sha256').update(esperado).digest();
+  return timingSafeEqual(a, b);
+}
 
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
@@ -12,6 +21,11 @@ export async function GET(request: Request) {
 
   // Trava de segurança para não consumirem sua API key do Apify — segredo
   // vem de variável de ambiente (nunca commitado), configurada na Vercel.
+  // Verificação adicional em tempo constante, antes da comparação original.
+  if (!segredoEsperado || !secret || !segredoConfere(secret, segredoEsperado)) {
+    return NextResponse.json({ success: false, error: 'Acesso não autorizado.' }, { status: 401 });
+  }
+
   if (!segredoEsperado || secret !== segredoEsperado) {
     return NextResponse.json({ success: false, error: 'Acesso não autorizado.' }, { status: 401 });
   }

@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import { GRUPO_SORTEIOS } from '@/lib/site-data';
 
 // Carrossel autoral, dinâmico (rotação automática + navegação por bolinhas),
 // mas SEM inventar conteúdo: cada slide é uma chamada real pra um link real
@@ -33,7 +34,7 @@ const slides: Slide[] = [
     emoji: '🎁',
     titulo: 'Promoções e Sorteios',
     desc: 'Entre no grupo oficial de promoções da Caseirinhas da Tatá pelo WhatsApp e fique por dentro de cada sorteio.',
-    href: 'https://chat.whatsapp.com/FpdiveKJ4Mx8bxXk0bipxQ?s=sh&p=a&mlu=4',
+    href: GRUPO_SORTEIOS,
     cta: 'Entrar no grupo',
   },
   {

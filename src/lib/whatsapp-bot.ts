@@ -111,18 +111,24 @@ function rotuloBairroCurto(nome: string): string {
   return abreviado.length <= 24 ? abreviado : abreviado.slice(0, 24);
 }
 
+// A Cloud API aceita no máximo 10 linhas por mensagem de lista. Com 21
+// bairros, dividir ao meio gerava uma lista de 11 linhas, recusada pela API.
+const MAX_LINHAS_LISTA = 10;
+
 function construirListasBairro(dia: DiaSemanaKey, opcaoId: string | null, tamanhoId: string): BotAction[] {
   const entradas = Object.entries(bairros);
-  const metade = Math.ceil(entradas.length / 2);
-  const grupos = [entradas.slice(0, metade), entradas.slice(metade)];
+  const grupos: (typeof entradas)[] = [];
+  for (let i = 0; i < entradas.length; i += MAX_LINHAS_LISTA) {
+    grupos.push(entradas.slice(i, i + MAX_LINHAS_LISTA));
+  }
 
   return grupos.map((grupo, indice) => ({
     kind: 'list',
     text:
       indice === 0
         ? 'Perfeito! Em qual bairro é a entrega?'
-        : 'Não achou seu bairro na primeira lista? Veja esta:',
-    buttonLabel: `Bairros (${indice + 1}/2)`,
+        : 'Não achou seu bairro nas listas anteriores? Veja esta:',
+    buttonLabel: `Bairros (${indice + 1}/${grupos.length})`,
     sections: [
       {
         rows: grupo.map(([slug, nome]) => ({
