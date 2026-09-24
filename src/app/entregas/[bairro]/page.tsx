@@ -148,7 +148,7 @@ export default async function LocationPage({ params }: Props) {
         "name": `Vocês entregam marmita no ${nomeBairro}?`,
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": `Sim! A Caseirinhas da Tatá entrega marmitas caseiras quentinhas no ${nomeBairro}. Atendemos toda a Zona Norte de Londrina e bairros próximos, como Centro e Gleba Palhano.`,
+          "text": `Sim! A Caseirinhas da Tatá entrega marmitas caseiras quentinhas em ${nomeBairro}. Atendemos toda a Zona Norte de Londrina e bairros próximos.`,
         },
       },
       {
