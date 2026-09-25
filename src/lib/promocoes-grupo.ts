@@ -50,7 +50,15 @@ export function dataCurta(iso: string): string {
   return `${dia}/${mes}`;
 }
 
+export type StatusPromocao = 'futura' | 'vigente' | 'encerrada';
+
 // Comparação lexicográfica funciona para YYYY-MM-DD.
+export function statusPromocao(p: PromocaoGrupo, hojeIso: string): StatusPromocao {
+  if (hojeIso < p.inicio) return 'futura';
+  if (hojeIso > p.fim) return 'encerrada';
+  return 'vigente';
+}
+
 export function promocoesEncerradas(hojeIso: string): boolean {
   return hojeIso > promocoesGrupo[promocoesGrupo.length - 1].fim;
 }

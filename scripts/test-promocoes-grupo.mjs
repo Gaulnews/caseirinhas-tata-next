@@ -1,8 +1,18 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import {
-  promocoesGrupo, RETIRADA_A_PARTIR_DE, dataCurta, promocoesEncerradas, mensagemGrupo,
+  promocoesGrupo, RETIRADA_A_PARTIR_DE, dataCurta, promocoesEncerradas, mensagemGrupo, statusPromocao,
 } from '../src/lib/promocoes-grupo.ts';
+
+test('statusPromocao marca futura, vigente e encerrada pelo dia de Londrina', () => {
+  const [facas, ferramentas] = promocoesGrupo;
+  assert.equal(statusPromocao(facas, '2026-09-27'), 'futura');
+  assert.equal(statusPromocao(facas, '2026-09-28'), 'vigente');
+  assert.equal(statusPromocao(facas, '2026-10-05'), 'vigente');
+  assert.equal(statusPromocao(facas, '2026-10-06'), 'encerrada');
+  assert.equal(statusPromocao(ferramentas, '2026-10-06'), 'vigente');
+  assert.equal(statusPromocao(ferramentas, '2026-10-13'), 'encerrada');
+});
 
 // Diferença em dias entre duas datas YYYY-MM-DD (ambas em UTC, sem fuso).
 const dias = (a, b) => {

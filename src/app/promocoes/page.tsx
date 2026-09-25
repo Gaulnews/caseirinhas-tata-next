@@ -1,8 +1,17 @@
 import { Metadata } from 'next';
+import Link from 'next/link';
+import { SiteHeader } from '@/components/SiteHeader';
 import { GRUPO_SORTEIOS, WHATSAPP_PEDIDOS, WHATSAPP_PEDIDOS_NUMERO } from '@/lib/site-data';
 import {
-  promocoesGrupo, RETIRADA_A_PARTIR_DE, dataCurta, promocoesEncerradas,
+  promocoesGrupo, RETIRADA_A_PARTIR_DE, dataCurta, promocoesEncerradas, statusPromocao,
+  type StatusPromocao,
 } from '@/lib/promocoes-grupo';
+
+const ROTULO_STATUS: Record<StatusPromocao, (inicio: string) => string> = {
+  vigente: () => 'Valendo agora',
+  futura: (inicio) => `Começa em ${dataCurta(inicio)}`,
+  encerrada: () => 'Encerrada',
+};
 
 // Revalida a cada hora: depois de 12/10 a página passa a dizer que o
 // período terminou, sem precisar de novo deploy.
@@ -25,9 +34,12 @@ function hojeEmLondrina(): string {
 }
 
 export default function PromocoesPage() {
-  const encerradas = promocoesEncerradas(hojeEmLondrina());
+  const hoje = hojeEmLondrina();
+  const encerradas = promocoesEncerradas(hoje);
 
   return (
+    <>
+    <SiteHeader />
     <main className="min-h-screen bg-zinc-950 px-5 py-16 text-gray-100">
       <div className="mx-auto max-w-3xl">
         <h1 className="mb-4 text-center text-3xl font-bold text-white">
@@ -50,17 +62,32 @@ export default function PromocoesPage() {
 
         {!encerradas && (
           <div className="mb-10 grid gap-5">
-            {promocoesGrupo.map((p, i) => (
-              <section key={p.id} className="rounded-2xl border border-zinc-800 bg-zinc-900 p-6">
-                <h2 className="mb-1 text-xl font-bold text-[#ffc107]">
-                  {p.emoji} Promoção {i + 1} — {p.titulo}
-                </h2>
-                <p className="mb-3 text-sm text-zinc-400">
-                  📅 De {dataCurta(p.inicio)} a {dataCurta(p.fim)}
-                </p>
-                <p className="text-zinc-200">{p.texto.replace(/\*/g, '')}</p>
-              </section>
-            ))}
+            {promocoesGrupo.map((p, i) => {
+              const status = statusPromocao(p, hoje);
+              return (
+                <section
+                  key={p.id}
+                  className={`rounded-2xl border p-6 ${
+                    status === 'vigente' ? 'border-[#ffc107] bg-zinc-900' : 'border-zinc-800 bg-zinc-900/60'
+                  } ${status === 'encerrada' ? 'opacity-60' : ''}`}
+                >
+                  <p
+                    className={`mb-2 inline-block rounded-full px-3 py-1 text-xs font-bold ${
+                      status === 'vigente' ? 'bg-[#ffc107] text-black' : 'bg-zinc-800 text-zinc-300'
+                    }`}
+                  >
+                    {ROTULO_STATUS[status](p.inicio)}
+                  </p>
+                  <h2 className="mb-1 text-xl font-bold text-[#ffc107]">
+                    {p.emoji} Promoção {i + 1} — {p.titulo}
+                  </h2>
+                  <p className="mb-3 text-sm text-zinc-400">
+                    📅 De {dataCurta(p.inicio)} a {dataCurta(p.fim)}
+                  </p>
+                  <p className="text-zinc-200">{p.texto.replace(/\*/g, '')}</p>
+                </section>
+              );
+            })}
           </div>
         )}
 
@@ -81,8 +108,12 @@ export default function PromocoesPage() {
             </a>
             . Em 12/10 (feriado), confirme o funcionamento pelo WhatsApp.
           </p>
+          <Link href="/cardapio" className="mt-4 inline-block font-bold underline">
+            Ver o cardápio da semana
+          </Link>
         </div>
       </div>
     </main>
+    </>
   );
 }
