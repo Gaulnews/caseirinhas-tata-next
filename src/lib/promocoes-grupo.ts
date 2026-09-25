@@ -46,7 +46,7 @@ export const reloginhos: Reloginho[] = [
     codigo: 'RL-BOAS', data: '2026-09-29', titulo: 'Reloginho de Boas-vindas',
     // D5 (dono, 25/09): 1 hora a partir do aviso de início.
     janela: '1 hora a partir do aviso de início no grupo', inicio: null, fim: null, revelacao: null,
-    resumo: 'Para o primeiro pedido direto de quem é do grupo. Janela anunciada no grupo.',
+    resumo: 'Para o primeiro pedido direto de quem é do grupo. Começa no aviso do grupo e vale por 1 hora.',
   },
   {
     codigo: 'RL-ECO', data: '2026-09-30', titulo: 'Reloginho Econômico',
