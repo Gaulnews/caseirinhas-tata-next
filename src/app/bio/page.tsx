@@ -58,8 +58,8 @@ const links: LinkItem[] = [
   },
   {
     href: GRUPO_SORTEIOS,
-    label: 'Grupo de Sorteios',
-    desc: 'Entre no grupo e concorra a prêmios',
+    label: 'Grupo oficial: Reloginho e Kits',
+    desc: 'Oferta relâmpago todo dia + só 5 por kit até 04/10',
     external: true,
   },
   {

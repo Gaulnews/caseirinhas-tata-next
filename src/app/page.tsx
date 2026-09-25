@@ -325,15 +325,15 @@ export default function Home() {
               </div>
 
               <div className="mb-10 rounded-2xl bg-[#ffc107] p-10 text-center text-black">
-                <h4 className="mb-2 text-xl font-bold">🎁 Concorra a Marmitas Grátis!</h4>
-                <p className="mb-6">Entre no nosso grupo e participe do sorteio diário</p>
+                <h4 className="mb-2 text-xl font-bold">⏰ Reloginho Todo o dia + Semana dos Kits: só 5 por kit!</h4>
+                <p className="mb-6">De 28/09 a 04/10. Ofertas relâmpago reveladas 30 min antes, só para quem está no grupo.</p>
                 <a
                   href={GRUPO_SORTEIOS}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-block rounded-lg bg-black px-6 py-3 font-bold text-white transition-colors hover:bg-zinc-800"
                 >
-                  Entrar no Grupão
+                  Entre e garanta o seu
                 </a>
               </div>
 

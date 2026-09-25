@@ -32,8 +32,8 @@ const slides: Slide[] = [
   },
   {
     emoji: '🎁',
-    titulo: 'Promoções e Sorteios',
-    desc: 'Entre no grupo oficial de promoções da Caseirinhas da Tatá pelo WhatsApp e fique por dentro de cada sorteio.',
+    titulo: 'Reloginho e Semana dos Kits',
+    desc: 'Oferta relâmpago todo dia e só 5 por kit até 04/10. Exclusivo do grupo oficial.',
     href: GRUPO_SORTEIOS,
     cta: 'Entrar no grupo',
   },

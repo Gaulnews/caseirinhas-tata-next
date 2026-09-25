@@ -247,9 +247,10 @@ export default function ContatosPage() {
 
           <div className="mt-6 bg-zinc-900 border border-zinc-800 p-6 rounded-xl md:flex md:items-center md:justify-between gap-6">
             <div className="mb-4 md:mb-0">
-              <h3 className="text-xl font-bold text-zinc-100 mb-1">🎁 Grupo de Sorteios da Caseirinhas da Tatá</h3>
+              <h3 className="text-xl font-bold text-zinc-100 mb-1">⏰ Grupo oficial: Reloginho Todo o dia e Semana dos Kits</h3>
               <p className="text-zinc-400 max-w-2xl">
-                Participe do nosso grupo do WhatsApp para acompanhar promoções e sorteios em primeira mão — direto da loja, sem intermediários.
+                Ofertas relâmpago de 1 hora, reveladas 30 min antes e só no grupo. Kits até 04/10, só 5 por kit.{' '}
+                <Link href="/promocoes" className="text-[#ffc107] underline">Ver promoções e regras</Link>
               </p>
             </div>
             <a
