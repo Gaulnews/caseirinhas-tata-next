@@ -1,85 +1,143 @@
-// Fonte única das promoções exclusivas do grupo de WhatsApp.
-// Texto-fonte: promo-ct.md do dono (regras inalteradas; só as datas mudam).
-// Datas alinhadas ao início dos anúncios Meta (28/09/2026), mantendo as
-// durações originais (8, 3 e 4 dias, contíguas).
-// Sem imports "@/": o teste roda direto no Node (scripts/test-promocoes-grupo.mjs).
-export type PromocaoGrupo = {
+// Fonte única da Semana Promocional 28/09–04/10/2026 do grupo oficial.
+// Fontes: manual_promocoes_caseirinhas_28set_04out_2026.pdf (estrutura,
+// Reloginhos, regras) e promo-ct.md (metas dos kits). Preço de Reloginho
+// não aparece aqui até o dono aprovar: a oferta é revelada no grupo.
+// Sem imports "@/": o teste roda direto no Node.
+export type TrilhaKit = {
   id: 'kit-facas' | 'kit-ferramentas' | 'kit-churrasqueiro';
   emoji: string;
   titulo: string;
-  inicio: string; // YYYY-MM-DD, dia civil de Londrina, inclusivo
-  fim: string; // YYYY-MM-DD, inclusivo
-  texto: string;
+  meta: string;
+  vagas: 5;
 };
 
-export const promocoesGrupo: PromocaoGrupo[] = [
+export type Reloginho = {
+  codigo: 'RL-GR' | 'RL-BOAS' | 'RL-ECO' | 'RL-DUPLA';
+  data: string; // YYYY-MM-DD, dia de Londrina
+  titulo: string;
+  janela: string | null; // texto exibido; null = a confirmar
+  inicio: string | null; // ISO com -03:00
+  fim: string | null;
+  revelacao: string | null;
+  resumo: string; // sem preço
+};
+
+// D6 (dono, 25/09): domingo 04/10 a loja abre das 10:40 às 15:00; os kits
+// encerram no fechamento.
+export const SEMANA = {
+  inicio: '2026-09-28',
+  fim: '2026-10-04',
+  encerramento: '2026-10-04T15:00:00-03:00',
+} as const;
+
+export const trilhasKits: TrilhaKit[] = [
+  { id: 'kit-facas', emoji: '🔪', titulo: 'Kit de Facas', meta: '8 Minis OU 6 Grandes', vagas: 5 },
+  { id: 'kit-ferramentas', emoji: '🧰', titulo: 'Kit de Ferramentas 46 peças', meta: '7 Minis OU 5 Grandes', vagas: 5 },
+  { id: 'kit-churrasqueiro', emoji: '🍖', titulo: 'Kit Churrasqueiro', meta: '7 Minis OU 6 Médias', vagas: 5 },
+];
+
+export const reloginhos: Reloginho[] = [
   {
-    id: 'kit-facas',
-    emoji: '🔪',
-    titulo: 'KIT DE FACAS',
-    inicio: '2026-09-28',
-    fim: '2026-10-05',
-    texto:
-      'Peça *8 Marmitas Mini* OU *6 Marmitas Grandes* dentro desse período (pode ser em pedidos separados, vale o total) e garanta seu Jogo de Facas! As 5 primeiras pessoas a bater a meta levam. 🔪',
+    codigo: 'RL-GR', data: '2026-09-28', titulo: 'Reloginho Grandão',
+    janela: 'Primeira hora após a abertura', inicio: null, fim: null, revelacao: null,
+    resumo: 'Para quem pede Grandes para retirada. Oferta revelada no grupo antes de começar.',
   },
   {
-    id: 'kit-ferramentas',
-    emoji: '🧰',
-    titulo: 'KIT DE FERRAMENTAS 46 PEÇAS',
-    inicio: '2026-10-06',
-    fim: '2026-10-08',
-    texto:
-      'Peça *5 Marmitas Grandes* OU *7 Marmitas Mini* dentro desse período e concorra ao Kit de Ferramentas 46 peças — ótimo pra casa, moto, carro e muito mais! As 5 primeiras a bater a meta ganham. 🧰',
+    codigo: 'RL-BOAS', data: '2026-09-29', titulo: 'Reloginho de Boas-vindas',
+    // D5 (dono, 25/09): 1 hora a partir do aviso de início.
+    janela: '1 hora a partir do aviso de início no grupo', inicio: null, fim: null, revelacao: null,
+    resumo: 'Para o primeiro pedido direto de quem é do grupo. Janela anunciada no grupo.',
   },
   {
-    id: 'kit-churrasqueiro',
-    emoji: '🍖',
-    titulo: 'KIT CHURRASQUEIRO',
-    inicio: '2026-10-09',
-    fim: '2026-10-12',
-    texto:
-      'Peça *7 Marmitas Mini* OU *6 Marmitas Médias* dentro desse período e leve o Kit Churrasqueiro pra casa — pronto pro seu próximo churrasco! As 5 primeiras a bater a meta levam. 🍖',
+    codigo: 'RL-ECO', data: '2026-09-30', titulo: 'Reloginho Econômico',
+    janela: '13h às 14h', inicio: '2026-09-30T13:00:00-03:00', fim: '2026-09-30T14:00:00-03:00',
+    revelacao: '2026-09-30T12:30:00-03:00',
+    resumo: 'A oferta mais em conta da semana, na Mini para retirada.',
+  },
+  {
+    codigo: 'RL-DUPLA', data: '2026-10-01', titulo: 'Reloginho Dupla',
+    janela: '13h às 14h', inicio: '2026-10-01T13:00:00-03:00', fim: '2026-10-01T14:00:00-03:00',
+    revelacao: '2026-10-01T12:30:00-03:00',
+    resumo: 'Para quem pede duas Médias juntas para retirada.',
   },
 ];
 
-export const RETIRADA_A_PARTIR_DE = '2026-10-13';
+// D7 (dono, 25/09): o "sorteio diário" é o Reloginho aplicado todo dia.
+// Não há sorteio; por isso o site não usa a palavra "sorteio" para ele.
+export const RELOGINHO_DIARIO = {
+  titulo: 'Reloginho Todo o dia',
+  texto: 'Além dos destaques da semana, todo dia tem Reloginho no grupo, em horário estratégico. A oferta é revelada no grupo 30 minutos antes.',
+};
 
-// Formata sem Date: evita deslocar o dia por fuso (UTC x America/Sao_Paulo).
+export const REGRAS_GERAIS: string[] = [
+  'Válido para quem já está no grupo oficial antes de fazer o pedido.',
+  'Contam apenas pedidos diretos pelo WhatsApp (43) 99674-9607, aceitos, pagos e não cancelados. Pedidos do iFood não contam.',
+  'Cada pedido entra em uma única promoção: kit, Reloginho, refri grátis ou Caesar do 1º pedido.',
+  'Kits: escolha uma trilha antes do primeiro pedido; não é possível trocar de trilha nem somar tamanhos diferentes.',
+  'Kits: até 5 contemplados por kit, segundo a apuração do regulamento; cumprir a meta não garante premiação.',
+  'Reloginhos: a oferta é revelada no grupo 30 minutos antes; vale para todos que pedirem dentro da janela.',
+];
+
 export function dataCurta(iso: string): string {
-  const [, mes, dia] = iso.split('-');
+  const [, mes, dia] = iso.slice(0, 10).split('-');
   return `${dia}/${mes}`;
 }
 
-export type StatusPromocao = 'futura' | 'vigente' | 'encerrada';
-
-// Comparação lexicográfica funciona para YYYY-MM-DD.
-export function statusPromocao(p: PromocaoGrupo, hojeIso: string): StatusPromocao {
-  if (hojeIso < p.inicio) return 'futura';
-  if (hojeIso > p.fim) return 'encerrada';
-  return 'vigente';
+export function hojeEmLondrina(agora: Date = new Date()): string {
+  return new Intl.DateTimeFormat('en-CA', { timeZone: 'America/Sao_Paulo' }).format(agora);
 }
 
-export function promocoesEncerradas(hojeIso: string): boolean {
-  return hojeIso > promocoesGrupo[promocoesGrupo.length - 1].fim;
+export function statusSemana(hojeIso: string): 'antes' | 'durante' | 'encerrada' {
+  if (hojeIso < SEMANA.inicio) return 'antes';
+  if (hojeIso > SEMANA.fim) return 'encerrada';
+  return 'durante';
+}
+
+export function reloginhoDoDia(hojeIso: string): Reloginho | undefined {
+  return reloginhos.find((r) => r.data === hojeIso);
+}
+
+export function formatarRestante(ms: number): string {
+  const total = Math.max(0, Math.floor(ms / 1000));
+  const h = Math.floor(total / 3600);
+  const m = Math.floor((total % 3600) / 60);
+  const s = total % 60;
+  return h > 0 ? `${h}h ${String(m).padStart(2, '0')}min` : `${m}min ${String(s).padStart(2, '0')}s`;
+}
+
+// Instantes com -03:00: o resultado não depende do fuso do aparelho.
+export function avisoReloginho(r: Reloginho, agoraMs: number): string {
+  if (!r.revelacao || !r.inicio || !r.fim) return r.janela ?? 'Janela anunciada no grupo';
+  const rev = Date.parse(r.revelacao);
+  const ini = Date.parse(r.inicio);
+  const fim = Date.parse(r.fim);
+  if (agoraMs < rev) return `Revelação em ${formatarRestante(rev - agoraMs)}`;
+  if (agoraMs < ini) return `Revelado no grupo! Começa em ${formatarRestante(ini - agoraMs)}`;
+  if (agoraMs < fim) return `Valendo agora! Termina em ${formatarRestante(fim - agoraMs)}`;
+  return 'Encerrado';
 }
 
 const SEPARADOR = '━━━━━━━━━━━━━━━';
 
 export function mensagemGrupo(): string {
-  const blocos = promocoesGrupo.map(
-    (p, i) =>
-      `${p.emoji} *PROMOÇÃO ${i + 1} — ${p.titulo}*\n📅 De *${dataCurta(p.inicio)}* a *${dataCurta(p.fim)}*\n\n${p.texto}`,
-  );
+  const kits = trilhasKits
+    .map((t) => `${t.emoji} *${t.titulo.toUpperCase()}* — meta: *${t.meta}* · só *${t.vagas}* por kit`)
+    .join('\n');
+  const agenda = reloginhos
+    .map((r) => `⏰ *${dataCurta(r.data)}* — ${r.titulo}${r.janela ? ` (${r.janela})` : ''}`)
+    .join('\n');
   return [
-    // O promo-ct.md abre sem o "*" inicial; o negrito do WhatsApp exige o par.
-    '*PROMOÇÕES EXCLUSIVAS DO GRUPO — CASEIRINHAS DA TATÁ* 🎁',
-    'Chegou a vez de quem tá aqui dentro ganhar de verdade! 🍱',
-    '📌 *Como funciona:*\nAs *5 primeiras pessoas* do grupo que baterem a meta de marmitas dentro do período de cada promoção *levam o prêmio na hora, sem sorteio* — vale a ordem de quem fez o pedido primeiro. Cada compra conta pra *uma promoção só*, sempre a que estiver rolando naquele dia.',
-    `Todos os prêmios são retirados a partir de *${dataCurta(RETIRADA_A_PARTIR_DE)}*.`,
+    '*SEMANA PROMOCIONAL DO GRUPO — CASEIRINHAS DA TATÁ* 🎁',
+    `📅 De *${dataCurta(SEMANA.inicio)}* a *${dataCurta(SEMANA.fim)}*. É só pra quem está aqui dentro!`,
     SEPARADOR,
-    blocos.join(`\n\n${SEPARADOR}\n\n`),
+    '🏆 *SEMANA DOS KITS*\nEscolha *uma* trilha antes do primeiro pedido e bata a meta até *04/10 às 15h*. As 5 primeiras pessoas de cada kit *garantem o prêmio*, sem sorteio. Entre e garanta o seu!\n' + kits,
+    '⚠️ Bater a meta depois que as 5 vagas do kit acabarem não dá prêmio: vale a ordem apurada pelo regulamento. *Consulte as regras* no site: caseirinhasdatata.shop/promocoes/regulamento',
     SEPARADOR,
-    '⚠️ *Fica de olho:*\n✅ Cada promoção vale só na sua própria data — não acumula com as outras.\n✅ Quem bate a meta primeiro (pelo horário do pedido) é quem ganha, então não deixa pra última hora!\n✅ Pra contar pra promoção, é só pedir no nosso WhatsApp de sempre: *(43) 99674-9607* 😉',
-    'Bora aproveitar? Só quem tá no grupo participa! 💛',
+    '⏰ *RELOGINHOS DA TATÁ*\nOferta relâmpago de 1 hora, revelada no grupo 30 minutos antes. Quem piscar, perde!\n' + agenda,
+    SEPARADOR,
+    '🔔 *' + RELOGINHO_DIARIO.titulo + '*\n' + RELOGINHO_DIARIO.texto + ' Ative as notificações do grupo!',
+    SEPARADOR,
+    '✅ Cada pedido vale para *uma promoção só*.\n✅ Pedidos pelo WhatsApp de sempre: *(43) 99674-9607* 😉\n✅ Pedidos do iFood não contam.',
+    'Fica de olho no grupo e não deixa pra última hora! 💛',
   ].join('\n\n');
 }
