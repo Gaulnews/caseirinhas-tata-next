@@ -1,38 +1,35 @@
-*PROMOÇÕES EXCLUSIVAS DO GRUPO — CASEIRINHAS DA TATÁ* 🎁
+*SEMANA PROMOCIONAL DO GRUPO — CASEIRINHAS DA TATÁ* 🎁
 
-Chegou a vez de quem tá aqui dentro ganhar de verdade! 🍱
-
-📌 *Como funciona:*
-As *5 primeiras pessoas* do grupo que baterem a meta de marmitas dentro do período de cada promoção *levam o prêmio na hora, sem sorteio* — vale a ordem de quem fez o pedido primeiro. Cada compra conta pra *uma promoção só*, sempre a que estiver rolando naquele dia.
-
-Todos os prêmios são retirados a partir de *13/10*.
+📅 De *28/09* a *04/10*. É só pra quem está aqui dentro!
 
 ━━━━━━━━━━━━━━━
 
-🔪 *PROMOÇÃO 1 — KIT DE FACAS*
-📅 De *28/09* a *05/10*
+🏆 *SEMANA DOS KITS*
+Escolha *uma* trilha antes do primeiro pedido e bata a meta até *04/10 às 15h*. As 5 primeiras pessoas de cada kit *garantem o prêmio*, sem sorteio. Entre e garanta o seu!
+🔪 *KIT DE FACAS* — meta: *8 Minis OU 6 Grandes* · só *5* por kit
+🧰 *KIT DE FERRAMENTAS 46 PEÇAS* — meta: *7 Minis OU 5 Grandes* · só *5* por kit
+🍖 *KIT CHURRASQUEIRO* — meta: *7 Minis OU 6 Médias* · só *5* por kit
 
-Peça *8 Marmitas Mini* OU *6 Marmitas Grandes* dentro desse período (pode ser em pedidos separados, vale o total) e garanta seu Jogo de Facas! As 5 primeiras pessoas a bater a meta levam. 🔪
-
-━━━━━━━━━━━━━━━
-
-🧰 *PROMOÇÃO 2 — KIT DE FERRAMENTAS 46 PEÇAS*
-📅 De *06/10* a *08/10*
-
-Peça *5 Marmitas Grandes* OU *7 Marmitas Mini* dentro desse período e concorra ao Kit de Ferramentas 46 peças — ótimo pra casa, moto, carro e muito mais! As 5 primeiras a bater a meta ganham. 🧰
+⚠️ Bater a meta depois que as 5 vagas do kit acabarem não dá prêmio: vale a ordem apurada pelo regulamento. *Consulte as regras* no site: caseirinhasdatata.shop/promocoes/regulamento
 
 ━━━━━━━━━━━━━━━
 
-🍖 *PROMOÇÃO 3 — KIT CHURRASQUEIRO*
-📅 De *09/10* a *12/10*
-
-Peça *7 Marmitas Mini* OU *6 Marmitas Médias* dentro desse período e leve o Kit Churrasqueiro pra casa — pronto pro seu próximo churrasco! As 5 primeiras a bater a meta levam. 🍖
+⏰ *RELOGINHOS DA TATÁ*
+Oferta relâmpago de 1 hora, revelada no grupo 30 minutos antes. Quem piscar, perde!
+⏰ *28/09* — Reloginho Grandão (Primeira hora após a abertura)
+⏰ *29/09* — Reloginho de Boas-vindas (1 hora a partir do aviso de início no grupo)
+⏰ *30/09* — Reloginho Econômico (13h às 14h)
+⏰ *01/10* — Reloginho Dupla (13h às 14h)
 
 ━━━━━━━━━━━━━━━
 
-⚠️ *Fica de olho:*
-✅ Cada promoção vale só na sua própria data — não acumula com as outras.
-✅ Quem bate a meta primeiro (pelo horário do pedido) é quem ganha, então não deixa pra última hora!
-✅ Pra contar pra promoção, é só pedir no nosso WhatsApp de sempre: *(43) 99674-9607* 😉
+🔔 *Reloginho Todo o dia*
+Além dos destaques da semana, todo dia tem Reloginho no grupo, em horário estratégico. A oferta é revelada no grupo 30 minutos antes. Ative as notificações do grupo!
 
-Bora aproveitar? Só quem tá no grupo participa! 💛
+━━━━━━━━━━━━━━━
+
+✅ Cada pedido vale para *uma promoção só*.
+✅ Pedidos pelo WhatsApp de sempre: *(43) 99674-9607* 😉
+✅ Pedidos do iFood não contam.
+
+Fica de olho no grupo e não deixa pra última hora! 💛

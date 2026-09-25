@@ -1,65 +1,96 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import {
-  promocoesGrupo, RETIRADA_A_PARTIR_DE, dataCurta, promocoesEncerradas, mensagemGrupo, statusPromocao,
+  SEMANA, trilhasKits, reloginhos, REGRAS_GERAIS, dataCurta, hojeEmLondrina,
+  statusSemana, reloginhoDoDia, mensagemGrupo, avisoReloginho,
 } from '../src/lib/promocoes-grupo.ts';
 
-test('statusPromocao marca futura, vigente e encerrada pelo dia de Londrina', () => {
-  const [facas, ferramentas] = promocoesGrupo;
-  assert.equal(statusPromocao(facas, '2026-09-27'), 'futura');
-  assert.equal(statusPromocao(facas, '2026-09-28'), 'vigente');
-  assert.equal(statusPromocao(facas, '2026-10-05'), 'vigente');
-  assert.equal(statusPromocao(facas, '2026-10-06'), 'encerrada');
-  assert.equal(statusPromocao(ferramentas, '2026-10-06'), 'vigente');
-  assert.equal(statusPromocao(ferramentas, '2026-10-13'), 'encerrada');
+test('relógio do Reloginho no fuso de Londrina', () => {
+  const eco = reloginhos.find((r) => r.codigo === 'RL-ECO');
+  const t = (hhmm) => Date.parse(`2026-09-30T${hhmm}:00-03:00`);
+  assert.equal(avisoReloginho(eco, t('12:10')), 'Revelação em 20min 00s');
+  assert.equal(avisoReloginho(eco, t('12:40')), 'Revelado no grupo! Começa em 20min 00s');
+  assert.equal(avisoReloginho(eco, t('13:30')), 'Valendo agora! Termina em 30min 00s');
+  assert.equal(avisoReloginho(eco, t('14:10')), 'Encerrado');
+  const gr = reloginhos.find((r) => r.codigo === 'RL-GR');
+  assert.equal(avisoReloginho(gr, t('12:10')), 'Primeira hora após a abertura');
 });
 
-// Diferença em dias entre duas datas YYYY-MM-DD (ambas em UTC, sem fuso).
-const dias = (a, b) => {
-  const utc = (iso) => {
-    const [y, m, d] = iso.split('-').map(Number);
-    return Date.UTC(y, m - 1, d);
-  };
-  return (utc(b) - utc(a)) / 86400000;
-};
-
-test('datas: 28/09 a 12/10, durações 8/3/4, contíguas', () => {
-  assert.deepEqual(promocoesGrupo.map((p) => [p.inicio, p.fim]), [
-    ['2026-09-28', '2026-10-05'], ['2026-10-06', '2026-10-08'], ['2026-10-09', '2026-10-12'],
+test('semana e metas conforme manual e promo-ct.md', () => {
+  // D6: domingo 04/10 a loja abre das 10:40 às 15:00; os kits encerram às 15h.
+  assert.deepEqual(SEMANA, { inicio: '2026-09-28', fim: '2026-10-04', encerramento: '2026-10-04T15:00:00-03:00' });
+  // D5: RL-BOAS vale 1 hora a partir do aviso de início no grupo.
+  assert.equal(reloginhos.find((r) => r.codigo === 'RL-BOAS').janela, '1 hora a partir do aviso de início no grupo');
+  assert.deepEqual(trilhasKits.map((t) => [t.id, t.meta, t.vagas]), [
+    ['kit-facas', '8 Minis OU 6 Grandes', 5],
+    ['kit-ferramentas', '7 Minis OU 5 Grandes', 5],
+    ['kit-churrasqueiro', '7 Minis OU 6 Médias', 5],
   ]);
-  assert.deepEqual(promocoesGrupo.map((p) => dias(p.inicio, p.fim) + 1), [8, 3, 4]);
-  for (let i = 1; i < promocoesGrupo.length; i++) {
-    assert.equal(dias(promocoesGrupo[i - 1].fim, promocoesGrupo[i].inicio), 1);
-  }
-  assert.equal(RETIRADA_A_PARTIR_DE, '2026-10-13');
 });
 
-test('dataCurta não desloca o dia por fuso', () => {
-  assert.equal(dataCurta('2026-10-05'), '05/10');
-  assert.equal(dataCurta('2026-09-28'), '28/09');
+test('Reloginhos nas datas do manual; RL-SAL fora do site', () => {
+  assert.deepEqual(reloginhos.map((r) => [r.codigo, r.data]), [
+    ['RL-GR', '2026-09-28'], ['RL-BOAS', '2026-09-29'], ['RL-ECO', '2026-09-30'], ['RL-DUPLA', '2026-10-01'],
+  ]);
+  const eco = reloginhos.find((r) => r.codigo === 'RL-ECO');
+  assert.equal(eco.inicio, '2026-09-30T13:00:00-03:00');
+  assert.equal(eco.revelacao, '2026-09-30T12:30:00-03:00');
 });
 
-test('promocoesEncerradas: só depois de 12/10', () => {
-  assert.equal(promocoesEncerradas('2026-10-12'), false);
-  assert.equal(promocoesEncerradas('2026-10-13'), true);
+test('nenhum preço de Reloginho publicado sem aprovação', () => {
+  const tudo = JSON.stringify(reloginhos) + mensagemGrupo();
+  assert.ok(!/R\$\s?(18|46)\b/.test(tudo), 'preço de teste do manual publicado');
 });
 
-test('mensagem do grupo preserva regras do promo-ct.md e usa datas novas', () => {
+test('hojeEmLondrina usa o fuso de Londrina', () => {
+  assert.equal(hojeEmLondrina(new Date('2026-09-30T02:30:00Z')), '2026-09-29');
+  assert.equal(hojeEmLondrina(new Date('2026-09-30T03:30:00Z')), '2026-09-30');
+});
+
+test('statusSemana e reloginhoDoDia', () => {
+  assert.equal(statusSemana('2026-09-27'), 'antes');
+  assert.equal(statusSemana('2026-09-28'), 'durante');
+  assert.equal(statusSemana('2026-10-04'), 'durante');
+  assert.equal(statusSemana('2026-10-05'), 'encerrada');
+  assert.equal(reloginhoDoDia('2026-09-30')?.codigo, 'RL-ECO');
+  assert.equal(reloginhoDoDia('2026-10-02'), undefined);
+  assert.equal(dataCurta('2026-10-04'), '04/10');
+});
+
+test('texto do grupo: redação aprovada, regras e sem frases proibidas', () => {
   const m = mensagemGrupo();
   for (const trecho of [
-    'As *5 primeiras pessoas* do grupo que baterem a meta de marmitas',
-    'Peça *8 Marmitas Mini* OU *6 Marmitas Grandes*',
-    'Peça *5 Marmitas Grandes* OU *7 Marmitas Mini*',
-    'Peça *7 Marmitas Mini* OU *6 Marmitas Médias*',
-    '📅 De *28/09* a *05/10*', '📅 De *06/10* a *08/10*', '📅 De *09/10* a *12/10*',
-    'Todos os prêmios são retirados a partir de *13/10*.',
-    '*(43) 99674-9607*',
-    '*PROMOÇÕES EXCLUSIVAS DO GRUPO — CASEIRINHAS DA TATÁ* 🎁',
+    'Entre e garanta o seu', 'garantem o prêmio', 'Consulte as regras',
+    'depois que as 5 vagas do kit acabarem não dá prêmio', '*28/09* a *04/10*',
+    'revelada no grupo 30 minutos antes', 'Reloginho Todo o dia', 'às 15h', '*(43) 99674-9607*',
   ]) assert.ok(m.includes(trecho), `faltou: ${trecho}`);
+  for (const proibido of ['levam o prêmio na hora', 'concorra', 'últimas vagas', 'sorteio diário', '17/08', '12/10', '13/10']) {
+    assert.ok(!m.toLowerCase().includes(proibido.toLowerCase()), `frase proibida: ${proibido}`);
+  }
   for (const linha of m.split('\n')) {
     assert.equal((linha.match(/\*/g) ?? []).length % 2, 0, `negrito sem par: ${linha}`);
   }
-  for (const antigo of ['17/08', '24/08', '25/08', '27/08', '28/08', '31/08', '01/09']) {
-    assert.ok(!m.includes(antigo), `data antiga: ${antigo}`);
-  }
+  assert.ok(REGRAS_GERAIS.some((r) => r.includes('uma única promoção')));
+});
+
+test('semanaAtiva, chamadaGrupo e horaCurta respeitam 04/10 15h', async () => {
+  const { semanaAtiva, chamadaGrupo, horaCurta } = await import('../src/lib/promocoes-grupo.ts');
+  const t = (iso) => Date.parse(iso);
+  assert.equal(horaCurta('2026-10-04T15:00:00-03:00'), '15h');
+  assert.equal(semanaAtiva(t('2026-10-04T14:59:00-03:00')), true);
+  assert.equal(semanaAtiva(t('2026-10-04T15:00:00-03:00')), false);
+  const ativa = chamadaGrupo(t('2026-10-01T12:00:00-03:00'));
+  assert.match(ativa.titulo, /Semana dos Kits/);
+  assert.match(ativa.texto, /04\/10 às 15h/);
+  assert.equal(ativa.cta, 'Entre e garanta o seu');
+  const depois = chamadaGrupo(t('2026-10-04T15:00:00-03:00'));
+  assert.doesNotMatch(`${depois.titulo} ${depois.texto}`, /kit|04\/10|só 5/i);
+  assert.match(depois.titulo, /Reloginho Todo o dia/);
+});
+
+test('regulamento traz encerramento, critério de ordem e retirada', () => {
+  const regras = REGRAS_GERAIS.join(' ');
+  assert.match(regras, /04\/10 às 15h/);
+  assert.match(regras, /pedido que completa a meta/);
+  assert.match(regras, /retirada/i);
 });

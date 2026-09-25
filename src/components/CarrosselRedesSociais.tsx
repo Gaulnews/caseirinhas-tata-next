@@ -1,7 +1,10 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useSyncExternalStore } from 'react';
 import { GRUPO_SORTEIOS } from '@/lib/site-data';
+import { semanaAtiva } from '@/lib/promocoes-grupo';
+
+const semAssinatura = () => () => {};
 
 // Carrossel autoral, dinâmico (rotação automática + navegação por bolinhas),
 // mas SEM inventar conteúdo: cada slide é uma chamada real pra um link real
@@ -32,8 +35,8 @@ const slides: Slide[] = [
   },
   {
     emoji: '🎁',
-    titulo: 'Promoções e Sorteios',
-    desc: 'Entre no grupo oficial de promoções da Caseirinhas da Tatá pelo WhatsApp e fique por dentro de cada sorteio.',
+    titulo: 'Reloginho e Semana dos Kits',
+    desc: 'Oferta relâmpago todo dia e só 5 por kit até 04/10 às 15h. Exclusivo do grupo oficial.',
     href: GRUPO_SORTEIOS,
     cta: 'Entrar no grupo',
   },
@@ -56,7 +59,12 @@ export function CarrosselRedesSociais() {
     return () => clearInterval(timer);
   }, []);
 
-  const slide = slides[indice];
+  // Depois de 04/10 às 15h o slide do grupo deixa de citar os kits.
+  const ativa = useSyncExternalStore(semAssinatura, () => semanaAtiva(), () => true);
+  const base = slides[indice];
+  const slide = base.href === GRUPO_SORTEIOS && !ativa
+    ? { ...base, titulo: 'Reloginho Todo o dia', desc: 'Ofertas relâmpago reveladas antes no grupo oficial. Quem está no grupo vê primeiro.' }
+    : base;
 
   return (
     <div className="rounded-2xl border border-zinc-800 bg-zinc-900/80 p-6">

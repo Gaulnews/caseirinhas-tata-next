@@ -2,6 +2,10 @@ import { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
 import { WHATSAPP_PEDIDOS, WHATSAPP_B2B, INSTAGRAM, IFOOD, GRUPO_SORTEIOS, AVALIAR_GOOGLE } from '@/lib/site-data';
+import { chamadaGrupo } from '@/lib/promocoes-grupo';
+
+// Revalida a cada hora: a chamada do grupo muda depois de 04/10 às 15h.
+export const revalidate = 3600;
 
 // Página "link na bio", pensada pra ser o destino do link único no perfil do
 // Instagram (@caseirinhasdatata) — reúne num só lugar tudo que hoje está
@@ -27,7 +31,7 @@ type LinkItem = {
   external?: boolean;
 };
 
-const links: LinkItem[] = [
+const linksFixos: LinkItem[] = [
   {
     href: WHATSAPP_PEDIDOS,
     label: 'Pedir pelo WhatsApp',
@@ -58,8 +62,8 @@ const links: LinkItem[] = [
   },
   {
     href: GRUPO_SORTEIOS,
-    label: 'Grupo de Sorteios',
-    desc: 'Entre no grupo e concorra a prêmios',
+    label: 'Grupo oficial',
+    desc: 'CHAMADA_GRUPO',
     external: true,
   },
   {
@@ -93,6 +97,8 @@ function IconInstagram() {
 }
 
 export default function BioPage() {
+  const chamada = chamadaGrupo();
+  const links = linksFixos.map((l) => (l.desc === 'CHAMADA_GRUPO' ? { ...l, desc: chamada.titulo } : l));
   return (
     <main className="relative min-h-screen overflow-hidden bg-zinc-950 px-5 py-14">
       <div
