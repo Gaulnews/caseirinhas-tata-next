@@ -15,6 +15,10 @@ import {
   AVALIAR_GOOGLE,
   ENDERECO_COMPLETO,
 } from '@/lib/site-data';
+import { chamadaGrupo } from '@/lib/promocoes-grupo';
+
+// Revalida a cada hora: a chamada do grupo muda depois de 04/10 às 15h.
+export const revalidate = 3600;
 
 const SITE_URL = 'https://caseirinhasdatata.shop';
 const MAPS_QUERY = encodeURIComponent(ENDERECO_COMPLETO);
@@ -85,6 +89,7 @@ const promocoesJsonLd = {
 };
 
 export default function ContatosPage() {
+  const chamada = chamadaGrupo();
   return (
     <main className="min-h-screen bg-zinc-950 text-gray-100 p-6 md:p-12">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(promocoesJsonLd) }} />
@@ -247,9 +252,9 @@ export default function ContatosPage() {
 
           <div className="mt-6 bg-zinc-900 border border-zinc-800 p-6 rounded-xl md:flex md:items-center md:justify-between gap-6">
             <div className="mb-4 md:mb-0">
-              <h3 className="text-xl font-bold text-zinc-100 mb-1">⏰ Grupo oficial: Reloginho Todo o dia e Semana dos Kits</h3>
+              <h3 className="text-xl font-bold text-zinc-100 mb-1"><span aria-hidden>⏰</span> {chamada.titulo}</h3>
               <p className="text-zinc-400 max-w-2xl">
-                Ofertas relâmpago de 1 hora, reveladas 30 min antes e só no grupo. Kits até 04/10, só 5 por kit.{' '}
+                {chamada.texto}{' '}
                 <Link href="/promocoes" className="text-[#ffc107] underline">Ver promoções e regras</Link>
               </p>
             </div>

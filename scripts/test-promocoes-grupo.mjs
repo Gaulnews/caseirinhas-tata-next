@@ -72,3 +72,25 @@ test('texto do grupo: redação aprovada, regras e sem frases proibidas', () => 
   }
   assert.ok(REGRAS_GERAIS.some((r) => r.includes('uma única promoção')));
 });
+
+test('semanaAtiva, chamadaGrupo e horaCurta respeitam 04/10 15h', async () => {
+  const { semanaAtiva, chamadaGrupo, horaCurta } = await import('../src/lib/promocoes-grupo.ts');
+  const t = (iso) => Date.parse(iso);
+  assert.equal(horaCurta('2026-10-04T15:00:00-03:00'), '15h');
+  assert.equal(semanaAtiva(t('2026-10-04T14:59:00-03:00')), true);
+  assert.equal(semanaAtiva(t('2026-10-04T15:00:00-03:00')), false);
+  const ativa = chamadaGrupo(t('2026-10-01T12:00:00-03:00'));
+  assert.match(ativa.titulo, /Semana dos Kits/);
+  assert.match(ativa.texto, /04\/10 às 15h/);
+  assert.equal(ativa.cta, 'Entre e garanta o seu');
+  const depois = chamadaGrupo(t('2026-10-04T15:00:00-03:00'));
+  assert.doesNotMatch(`${depois.titulo} ${depois.texto}`, /kit|04\/10|só 5/i);
+  assert.match(depois.titulo, /Reloginho Todo o dia/);
+});
+
+test('regulamento traz encerramento, critério de ordem e retirada', () => {
+  const regras = REGRAS_GERAIS.join(' ');
+  assert.match(regras, /04\/10 às 15h/);
+  assert.match(regras, /pedido que completa a meta/);
+  assert.match(regras, /retirada/i);
+});

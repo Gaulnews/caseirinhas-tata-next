@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { SiteHeader } from "@/components/SiteHeader";
 import { bairros, GRUPO_SORTEIOS } from "@/lib/site-data";
+import { chamadaGrupo } from "@/lib/promocoes-grupo";
 import {
   tamanhos,
   formatarPreco,
@@ -32,6 +33,7 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default function Home() {
+  const chamada = chamadaGrupo();
   const diaAtual = getDiaSemanaAtual();
   const diaAtualLabel = diasSemana.find((d) => d.key === diaAtual)?.label ?? diaAtual;
   const pratoHoje = cardapioSemanal[diaAtual];
@@ -325,15 +327,15 @@ export default function Home() {
               </div>
 
               <div className="mb-10 rounded-2xl bg-[#ffc107] p-10 text-center text-black">
-                <h4 className="mb-2 text-xl font-bold">⏰ Reloginho Todo o dia + Semana dos Kits: só 5 por kit!</h4>
-                <p className="mb-6">De 28/09 a 04/10. Ofertas relâmpago reveladas 30 min antes, só para quem está no grupo.</p>
+                <h4 className="mb-2 text-xl font-bold"><span aria-hidden>⏰</span> {chamada.titulo}</h4>
+                <p className="mb-6">{chamada.texto}</p>
                 <a
                   href={GRUPO_SORTEIOS}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-block rounded-lg bg-black px-6 py-3 font-bold text-white transition-colors hover:bg-zinc-800"
                 >
-                  Entre e garanta o seu
+                  {chamada.cta}
                 </a>
               </div>
 

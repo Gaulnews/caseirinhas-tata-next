@@ -3,12 +3,18 @@
 import { useState, useSyncExternalStore } from 'react';
 import Link from 'next/link';
 import { GRUPO_SORTEIOS } from '@/lib/site-data';
-import { SEMANA, trilhasKits, dataCurta, hojeEmLondrina, statusSemana, type TrilhaKit } from '@/lib/promocoes-grupo';
+import { SEMANA, trilhasKits, dataCurta, horaCurta, hojeEmLondrina, statusSemana, type TrilhaKit } from '@/lib/promocoes-grupo';
 
 // Sem assinatura: a data de hoje e a trilha salva só são lidas no navegador.
 // No servidor (e sem JavaScript) o snapshot é null e a página mostra o texto
 // estático "De 28/09 a 04/10".
 const semAssinatura = () => () => {};
+// Relê data e encerramento a cada minuto: quem deixa a página aberta vê o
+// dia virar e o encerramento às 15h sem recarregar.
+const assinarMinuto = (avisar: () => void) => {
+  const id = setInterval(avisar, 60_000);
+  return () => clearInterval(id);
+};
 const lerTrilhaSalva = (): TrilhaKit['id'] | null => {
   try {
     return localStorage.getItem('trilha-kit') as TrilhaKit['id'] | null;
@@ -21,10 +27,10 @@ const lerTrilhaSalva = (): TrilhaKit['id'] | null => {
 // pretende escolher no grupo. Não envia nada e não mostra contador de
 // participantes — o número real de contemplados é apurado pela loja.
 export function SemanaDosKits() {
-  const hoje = useSyncExternalStore(semAssinatura, () => hojeEmLondrina(), () => null);
+  const hoje = useSyncExternalStore(assinarMinuto, () => hojeEmLondrina(), () => null);
   // Encerra no fechamento de 04/10 (15h), não à meia-noite.
   const passouEncerramento = useSyncExternalStore(
-    semAssinatura,
+    assinarMinuto,
     () => Date.now() >= Date.parse(SEMANA.encerramento),
     () => false,
   );
@@ -61,7 +67,7 @@ export function SemanaDosKits() {
           ? <>De <strong className="text-[#ffc107]">{dataCurta(SEMANA.inicio)}</strong> a <strong className="text-[#ffc107]">{dataCurta(SEMANA.fim)}</strong>. Só 5 por kit.</>
           : status === 'antes'
           ? <>Começa em <strong className="text-[#ffc107]">{dataCurta(SEMANA.inicio)}</strong>. Quem já está no grupo sai na frente.</>
-          : <>{diasRestantes === 0 ? <strong className="text-[#ffc107]">Último dia! Encerra hoje às 15h.</strong> : <>Faltam <strong className="text-[#ffc107]">{diasRestantes} dia{diasRestantes === 1 ? '' : 's'}</strong>.</>} Só 5 por kit.</>}
+          : <>{diasRestantes === 0 ? <strong className="text-[#ffc107]">Último dia! Encerra hoje às {horaCurta(SEMANA.encerramento)}.</strong> : <>Faltam <strong className="text-[#ffc107]">{diasRestantes} dia{diasRestantes === 1 ? '' : 's'}</strong>.</>} Só 5 por kit.</>}
       </p>
       <div className="grid gap-5 md:grid-cols-3">
         {trilhasKits.map((t) => {

@@ -32,7 +32,7 @@ export function AgendaReloginhos() {
             <p className="text-xs font-bold uppercase tracking-wide text-zinc-500">{dataCurta(r.data)}{ehHoje ? ' · hoje' : ''}</p>
             <h3 className="mb-1 font-bold text-zinc-100"><span aria-hidden>⏰</span> {r.titulo}</h3>
             <p className="mb-3 text-sm text-zinc-400">{r.resumo}</p>
-            <p className={`text-sm font-bold ${ehHoje ? 'text-[#ffc107]' : 'text-zinc-300'}`} aria-live={ehHoje ? 'polite' : undefined}>
+            <p className={`text-sm font-bold ${ehHoje ? 'text-[#ffc107]' : 'text-zinc-300'}`}>
               {passou ? 'Encerrado' : aviso}
             </p>
           </li>

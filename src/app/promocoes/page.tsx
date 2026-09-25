@@ -5,10 +5,10 @@ import { SemanaDosKits } from '@/components/SemanaDosKits';
 import { AgendaReloginhos } from '@/components/AgendaReloginhos';
 import { PromocoesAtivas } from '@/components/PromocoesAtivas';
 import { GRUPO_SORTEIOS, WHATSAPP_PEDIDOS, WHATSAPP_PEDIDOS_NUMERO } from '@/lib/site-data';
-import { SEMANA, RELOGINHO_DIARIO, dataCurta } from '@/lib/promocoes-grupo';
+import { SEMANA, RELOGINHO_DIARIO, dataCurta, semanaAtiva, chamadaGrupo } from '@/lib/promocoes-grupo';
 
-// Revalida a cada hora: textos que dependem do dia continuam certos sem
-// novo deploy. Contagens e relógio rodam no navegador (componentes cliente).
+// Revalida a cada hora: o topo troca para a chamada neutra depois de 04/10
+// às 15h sem novo deploy. Contagens e relógio rodam no navegador.
 export const revalidate = 3600;
 
 export const metadata: Metadata = {
@@ -24,6 +24,8 @@ export const metadata: Metadata = {
 };
 
 export default function PromocoesPage() {
+  const ativa = semanaAtiva();
+  const chamada = chamadaGrupo();
   return (
     <>
       <SiteHeader />
@@ -31,14 +33,13 @@ export default function PromocoesPage() {
         <div className="max-w-5xl mx-auto">
           <header className="mb-10">
             <span className="inline-block text-xs bg-[#ffc107]/10 text-[#ffc107] px-3 py-1 rounded-full border border-[#ffc107]/20 font-mono mb-4">
-              SÓ PARA QUEM ESTÁ NO GRUPO · {dataCurta(SEMANA.inicio)} A {dataCurta(SEMANA.fim)}
+              SÓ PARA QUEM ESTÁ NO GRUPO{ativa ? ` · ${dataCurta(SEMANA.inicio)} A ${dataCurta(SEMANA.fim)}` : ''}
             </span>
             <h1 className="text-4xl font-extrabold text-yellow-400 mb-4">
-              <span aria-hidden>⏰</span> {RELOGINHO_DIARIO.titulo} + Semana dos Kits
+              <span aria-hidden>⏰</span> {chamada.titulo}
             </h1>
             <p className="text-zinc-300 text-lg max-w-3xl mb-6">
-              Ofertas relâmpago reveladas no grupo 30 minutos antes, e só 5 kits de cada até{' '}
-              {dataCurta(SEMANA.fim)} às 15h. Quem está no grupo vê primeiro — e quem piscar, perde.
+              {chamada.texto}{ativa ? ' Quem piscar, perde.' : ''}
             </p>
             <a
               href={GRUPO_SORTEIOS}
@@ -46,7 +47,7 @@ export default function PromocoesPage() {
               rel="noopener noreferrer"
               className="inline-block rounded-lg bg-[#ffc107] px-6 py-3 font-bold text-zinc-950 hover:bg-[#ffca28]"
             >
-              Entre e garanta o seu
+              {chamada.cta}
             </a>
           </header>
 

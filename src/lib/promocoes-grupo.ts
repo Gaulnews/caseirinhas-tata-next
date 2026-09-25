@@ -74,13 +74,44 @@ export const REGRAS_GERAIS: string[] = [
   'Contam apenas pedidos diretos pelo WhatsApp (43) 99674-9607, aceitos, pagos e não cancelados. Pedidos do iFood não contam.',
   'Cada pedido entra em uma única promoção: kit, Reloginho, refri grátis ou Caesar do 1º pedido.',
   'Kits: escolha uma trilha antes do primeiro pedido; não é possível trocar de trilha nem somar tamanhos diferentes.',
-  'Kits: até 5 contemplados por kit, segundo a apuração do regulamento; cumprir a meta não garante premiação.',
-  'Reloginhos: a oferta é revelada no grupo 30 minutos antes; vale para todos que pedirem dentro da janela.',
+  `Kits: valem pedidos de ${dataCurta(SEMANA.inicio)} até ${dataCurta(SEMANA.fim)} às ${horaCurta(SEMANA.encerramento)}.`,
+  // Critério do manual (§4): o pedido que completa a meta define a ordem.
+  'Kits: até 5 contemplados por kit. A ordem é definida pelo horário do pedido que completa a meta, segundo o registro da loja; cumprir a meta depois das 5 vagas não garante premiação.',
+  'Kits: data e forma de retirada do prêmio são informadas no grupo ao fim da apuração.',
+  'Reloginhos: a oferta é revelada no grupo antes de começar, com a janela informada no aviso; vale para todos que pedirem dentro da janela.',
 ];
 
 export function dataCurta(iso: string): string {
   const [, mes, dia] = iso.slice(0, 10).split('-');
   return `${dia}/${mes}`;
+}
+
+// '2026-10-04T15:00:00-03:00' → '15h'; '...T10:40...' → '10h40'. Lê a hora
+// local do próprio texto ISO, sem Date, para não mudar com o fuso.
+export function horaCurta(iso: string): string {
+  const [h, m] = iso.slice(11, 16).split(':');
+  return m === '00' ? `${Number(h)}h` : `${Number(h)}h${m}`;
+}
+
+export function semanaAtiva(agoraMs: number = Date.now()): boolean {
+  return agoraMs < Date.parse(SEMANA.encerramento);
+}
+
+// Chamada do grupo usada na home, bio, contatos, carrossel e /promocoes.
+// Depois do encerramento dos kits vira uma chamada neutra, sem prazo vencido.
+export function chamadaGrupo(agoraMs: number = Date.now()): { titulo: string; texto: string; cta: string } {
+  if (semanaAtiva(agoraMs)) {
+    return {
+      titulo: `${RELOGINHO_DIARIO.titulo} + Semana dos Kits: só 5 por kit!`,
+      texto: `De ${dataCurta(SEMANA.inicio)} a ${dataCurta(SEMANA.fim)} às ${horaCurta(SEMANA.encerramento)}. Ofertas relâmpago reveladas 30 min antes, só para quem está no grupo.`,
+      cta: 'Entre e garanta o seu',
+    };
+  }
+  return {
+    titulo: `${RELOGINHO_DIARIO.titulo} no grupo oficial`,
+    texto: 'Ofertas relâmpago reveladas no grupo antes de começar. Quem está no grupo vê primeiro.',
+    cta: 'Entrar no grupo',
+  };
 }
 
 export function hojeEmLondrina(agora: Date = new Date()): string {
@@ -130,7 +161,7 @@ export function mensagemGrupo(): string {
     '*SEMANA PROMOCIONAL DO GRUPO — CASEIRINHAS DA TATÁ* 🎁',
     `📅 De *${dataCurta(SEMANA.inicio)}* a *${dataCurta(SEMANA.fim)}*. É só pra quem está aqui dentro!`,
     SEPARADOR,
-    '🏆 *SEMANA DOS KITS*\nEscolha *uma* trilha antes do primeiro pedido e bata a meta até *04/10 às 15h*. As 5 primeiras pessoas de cada kit *garantem o prêmio*, sem sorteio. Entre e garanta o seu!\n' + kits,
+    '🏆 *SEMANA DOS KITS*\nEscolha *uma* trilha antes do primeiro pedido e bata a meta até *' + dataCurta(SEMANA.fim) + ' às ' + horaCurta(SEMANA.encerramento) + '*. As 5 primeiras pessoas de cada kit *garantem o prêmio*, sem sorteio. Entre e garanta o seu!\n' + kits,
     '⚠️ Bater a meta depois que as 5 vagas do kit acabarem não dá prêmio: vale a ordem apurada pelo regulamento. *Consulte as regras* no site: caseirinhasdatata.shop/promocoes/regulamento',
     SEPARADOR,
     '⏰ *RELOGINHOS DA TATÁ*\nOferta relâmpago de 1 hora, revelada no grupo 30 minutos antes. Quem piscar, perde!\n' + agenda,

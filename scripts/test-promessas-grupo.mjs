@@ -27,9 +27,9 @@ test('superfícies de kit remetem às regras', () => {
   }
 });
 
-test('chamadas do grupo citam Reloginho e Semana dos Kits', () => {
-  for (const f of ['src/app/page.tsx', 'src/app/bio/page.tsx', 'src/app/contatos/page.tsx', 'src/components/CarrosselRedesSociais.tsx']) {
-    const t = readFileSync(f, 'utf8');
-    assert.ok(/Reloginho/.test(t) && /(Semana dos )?Kits/.test(t), `${f} sem a nova chamada`);
+test('chamadas do grupo vêm de chamadaGrupo/semanaAtiva (expiram em 04/10 15h)', () => {
+  for (const f of ['src/app/page.tsx', 'src/app/bio/page.tsx', 'src/app/contatos/page.tsx', 'src/app/promocoes/page.tsx']) {
+    assert.ok(/chamadaGrupo\(\)/.test(readFileSync(f, 'utf8')), `${f} não usa chamadaGrupo()`);
   }
+  assert.ok(/semanaAtiva\(\)/.test(readFileSync('src/components/CarrosselRedesSociais.tsx', 'utf8')), 'carrossel não expira');
 });
