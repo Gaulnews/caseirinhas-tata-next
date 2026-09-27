@@ -5,10 +5,15 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import QRCode from 'qrcode';
 import sharp from 'sharp';
+import { vencimento } from '../src/lib/vencimento.mjs';
 
 const LARGURA = 384;
+const MARGEM_MINIMA = 16; // px de cada lado (colunas 0–15 e 368–383 sempre brancas).
 const MAX_CODIGO = 9999;
 const URL_BASE = 'https://caseirinhasdatata.shop/beneficio';
+const LOGO_PATH = path.join(path.dirname(fileURLToPath(import.meta.url)), '..', 'public', 'logo-caseirinhas-da-tata.jpg');
+const LOGO_LARGURA = 200;
+const LOGO_ALTURA_PADRAO = 238; // logo original 1024x1024 dourado/branco em fundo preto, após trim.
 
 const DIAS_SEMANA_PT = ['DOM', 'SEG', 'TER', 'QUA', 'QUI', 'SEX', 'SAB'];
 
@@ -57,62 +62,95 @@ export function amanhaSaoPaulo() {
   return new Date(Date.UTC(ano, mes - 1, dia + 1, 12, 0, 0));
 }
 
+// Processa a logomarca (public/logo-caseirinhas-da-tata.jpg, dourado/branco
+// sobre preto) para preto sobre branco, compatível com impressão térmica:
+// grayscale → negate → threshold (~128) → trim do excesso → resize 200px.
+// Cacheado: a mesma logo serve para todos os cupons de uma execução.
+let logoCache = null;
+export async function prepararLogo() {
+  if (logoCache) return logoCache;
+  const buffer = await sharp(LOGO_PATH)
+    .grayscale()
+    .negate()
+    .threshold(128)
+    .trim()
+    .resize({ width: LOGO_LARGURA })
+    .png()
+    .toBuffer();
+  const metadata = await sharp(buffer).metadata();
+  logoCache = { buffer, width: metadata.width, height: metadata.height };
+  return logoCache;
+}
+
 /**
  * Monta o SVG do cupom (384 px de largura) para um código e vencimento dados.
- * Função pura, usada nos testes.
+ * Reserva no topo o espaço da logomarca (composta depois, em gerarCupons, via
+ * sharp) com `logoAltura` (px). Função pura (sem I/O), usada nos testes.
+ * Todas as linhas de texto respeitam margem mínima de 16 px de cada lado.
  */
-export async function svgCupom(codigo, venceEm) {
+export async function svgCupom(codigo, venceEm, logoAltura = LOGO_ALTURA_PADRAO) {
   const url = `${URL_BASE}?c=${codigo}`;
   const qrSvgBruto = await QRCode.toString(url, {
     type: 'svg',
     errorCorrectionLevel: 'M',
-    margin: 0,
+    margin: 4, // quiet zone própria do QR.
     color: { dark: '#000000', light: '#ffffff' },
   });
 
   // Extrai o miolo do SVG do QR (paths) para embutir num <g> com posição/escala.
-  const qrTamanho = 220; // >= 200 px, ~25 mm a 203 dpi.
+  const qrTamanho = 220; // >= 200 px, ~25 mm a 203 dpi (já inclui a quiet zone).
   const qrInnerMatch = qrSvgBruto.match(/viewBox="0 0 (\d+) \1"[^>]*>([\s\S]*)<\/svg>/);
   const qrViewBox = qrInnerMatch ? Number(qrInnerMatch[1]) : 0;
   const qrConteudo = qrInnerMatch ? qrInnerMatch[2] : '';
   const escala = qrViewBox ? qrTamanho / qrViewBox : 1;
 
   const venceTexto = formatarVencimento(venceEm);
-  const larguraQr = qrTamanho;
-  const xQr = (LARGURA - larguraQr) / 2;
+  const xQr = (LARGURA - qrTamanho) / 2;
+  const centroX = LARGURA / 2;
 
-  const alturaTotal = 620;
+  // Layout vertical: topo reservado para a logo (composta depois), seguido do
+  // texto de chamada em 2 linhas, QR, código, vencimento, regra e chamada
+  // final também em 2 linhas — todas dentro da margem mínima de 16 px.
+  const margemTopoLogo = 16;
+  let y = margemTopoLogo + logoAltura + 30;
+  const yChamada1 = y;
+  y += 20;
+  const yChamada2 = y;
+  y += 26;
+  const yQr = y;
+  y += qrTamanho + 44;
+  const yCodigo = y;
+  y += 32;
+  const yVence = y;
+  y += 28;
+  const yRegra = y;
+  y += 24;
+  const yAponte1 = y;
+  y += 20;
+  const yAponte2 = y;
+  const alturaTotal = y + 24;
 
   return `<svg xmlns="http://www.w3.org/2000/svg" width="${LARGURA}" viewBox="0 0 ${LARGURA} ${alturaTotal}">
   <desc>${escapeXml(url)}</desc>
   <rect x="0" y="0" width="${LARGURA}" height="${alturaTotal}" fill="#ffffff" />
-  <text x="${LARGURA / 2}" y="42" text-anchor="middle" font-family="sans-serif" font-weight="bold" font-size="30" fill="#000000">${escapeXml('CASEIRINHAS DA TATÁ')}</text>
-  <text x="${LARGURA / 2}" y="78" text-anchor="middle" font-family="sans-serif" font-weight="bold" font-size="20" fill="#000000">${escapeXml('PRESENTE NA SUA PRÓXIMA COMPRA')}</text>
-  <g transform="translate(${xQr}, 100) scale(${escala})">
+  <text x="${centroX}" y="${yChamada1}" text-anchor="middle" font-family="sans-serif" font-weight="bold" font-size="16" fill="#000000">${escapeXml('PRESENTE NA SUA')}</text>
+  <text x="${centroX}" y="${yChamada2}" text-anchor="middle" font-family="sans-serif" font-weight="bold" font-size="16" fill="#000000">${escapeXml('PRÓXIMA COMPRA')}</text>
+  <g transform="translate(${xQr}, ${yQr}) scale(${escala})">
     ${qrConteudo}
   </g>
-  <text x="${LARGURA / 2}" y="${100 + qrTamanho + 50}" text-anchor="middle" font-family="sans-serif" font-weight="bold" font-size="34" fill="#000000">${escapeXml(codigo)}</text>
-  <text x="${LARGURA / 2}" y="${100 + qrTamanho + 100}" text-anchor="middle" font-family="sans-serif" font-weight="bold" font-size="26" fill="#000000">${escapeXml(`VENCE ${venceTexto}`)}</text>
-  <text x="${LARGURA / 2}" y="${100 + qrTamanho + 140}" text-anchor="middle" font-family="sans-serif" font-size="18" fill="#000000">${escapeXml('Cupom numerado · 1 por cliente')}</text>
-  <text x="${LARGURA / 2}" y="${100 + qrTamanho + 175}" text-anchor="middle" font-family="sans-serif" font-size="16" fill="#000000">${escapeXml('Aponte a câmera e entre no grupo de promoções')}</text>
+  <text x="${centroX}" y="${yCodigo}" text-anchor="middle" font-family="sans-serif" font-weight="bold" font-size="28" fill="#000000">${escapeXml(codigo)}</text>
+  <text x="${centroX}" y="${yVence}" text-anchor="middle" font-family="sans-serif" font-weight="bold" font-size="17" fill="#000000">${escapeXml(`VENCE ${venceTexto}`)}</text>
+  <text x="${centroX}" y="${yRegra}" text-anchor="middle" font-family="sans-serif" font-size="14" fill="#000000">${escapeXml('Cupom numerado · 1 por cliente')}</text>
+  <text x="${centroX}" y="${yAponte1}" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#000000">${escapeXml('Aponte a câmera e entre')}</text>
+  <text x="${centroX}" y="${yAponte2}" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#000000">${escapeXml('no grupo de promoções')}</text>
 </svg>`;
-}
-
-// Calcula o vencimento (23:59:59 do dia seguinte ao pedido, -03:00) sem
-// depender de import "@/" — reimplementado aqui para o script rodar isolado.
-function vencimento(dataPedido) {
-  const hojeIso = new Intl.DateTimeFormat('en-CA', { timeZone: 'America/Sao_Paulo' }).format(dataPedido);
-  const [ano, mes, dia] = hojeIso.split('-').map(Number);
-  const proximoDia = new Date(Date.UTC(ano, mes - 1, dia + 1));
-  const y = proximoDia.getUTCFullYear();
-  const m = String(proximoDia.getUTCMonth() + 1).padStart(2, '0');
-  const d = String(proximoDia.getUTCDate()).padStart(2, '0');
-  return new Date(`${y}-${m}-${d}T23:59:59-03:00`);
 }
 
 /**
  * Gera `qtd` cupons PNG a partir de `inicio`, para o pedido em `dataPedido`,
  * no diretório `saidaDir` (padrão: ./cupons). Recusa faixas acima de 9999.
+ * Também grava `controle.csv` (codigo,data_pedido,vence_em,data_resgate,
+ * beneficio,valor_pedido) com uma linha por cupom.
  */
 export async function gerarCupons(inicio, qtd, dataPedido, saidaDir) {
   if (!Number.isInteger(inicio) || inicio < 1) {
@@ -129,20 +167,35 @@ export async function gerarCupons(inicio, qtd, dataPedido, saidaDir) {
   const dir = saidaDir ?? path.join(process.cwd(), 'cupons');
   await mkdir(dir, { recursive: true });
 
+  const logo = await prepararLogo();
   const venceEm = vencimento(dataPedido);
+  const dataPedidoIso = new Intl.DateTimeFormat('en-CA', { timeZone: 'America/Sao_Paulo' }).format(dataPedido);
+  const venceEmIso = venceEm.toISOString();
   const arquivos = [];
+  const linhasCsv = ['codigo,data_pedido,vence_em,data_resgate,beneficio,valor_pedido'];
 
   for (let n = inicio; n <= fim; n += 1) {
     const codigo = formatarCodigo(n);
-    const svg = await svgCupom(codigo, venceEm);
+    const svg = await svgCupom(codigo, venceEm, logo.height);
     const destino = path.join(dir, `${codigo}.png`);
-    await sharp(Buffer.from(svg))
+
+    const base = await sharp(Buffer.from(svg))
       .resize({ width: LARGURA })
       .flatten({ background: '#ffffff' })
       .png()
+      .toBuffer();
+
+    const logoLeft = Math.round((LARGURA - logo.width) / 2);
+    await sharp(base)
+      .composite([{ input: logo.buffer, top: 16, left: logoLeft }])
+      .png()
       .toFile(destino);
+
     arquivos.push(destino);
+    linhasCsv.push(`${codigo},${dataPedidoIso},${venceEmIso},,,`);
   }
+
+  await writeFile(path.join(dir, 'controle.csv'), `${linhasCsv.join('\n')}\n`, 'utf8');
 
   return arquivos;
 }

@@ -1,6 +1,8 @@
 // Cupom impresso no pedido iFood da Caseirinhas da Tatá: benefício de 2ª
 // compra, resgatado pelo WhatsApp. Sem imports "@/": o teste roda direto no
 // Node.
+export { vencimento } from './vencimento.mjs';
+
 export type Beneficio = {
   id: 'coca2l' | 'salada' | 'mini';
   titulo: string;
@@ -35,18 +37,6 @@ export const REGRAS_GERAIS: string[] = [
 ];
 
 const WHATSAPP_RESGATE = 'https://wa.me/5543996749607';
-
-// 23:59:59 do dia seguinte ao pedido, no fuso America/Sao_Paulo (-03:00).
-// Ex.: pedido 28/09 12:30 -03:00 → vencimento 29/09 23:59:59 -03:00.
-export function vencimento(dataPedido: Date): Date {
-  const hojeIso = new Intl.DateTimeFormat('en-CA', { timeZone: 'America/Sao_Paulo' }).format(dataPedido);
-  const [ano, mes, dia] = hojeIso.split('-').map(Number);
-  const proximoDia = new Date(Date.UTC(ano, mes - 1, dia + 1));
-  const y = proximoDia.getUTCFullYear();
-  const m = String(proximoDia.getUTCMonth() + 1).padStart(2, '0');
-  const d = String(proximoDia.getUTCDate()).padStart(2, '0');
-  return new Date(`${y}-${m}-${d}T23:59:59-03:00`);
-}
 
 export function mensagemResgate(codigo: string, beneficioId: string): string {
   const beneficio = BENEFICIOS.find((b) => b.id === beneficioId);
