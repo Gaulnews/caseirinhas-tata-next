@@ -1,9 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { BENEFICIOS, mensagemResgate } from '@/lib/beneficio';
-
-const REGEX_CODIGO = /^TATA-\d{4}$/;
+import { BENEFICIOS, mensagemResgate, REGEX_CODIGO } from '@/lib/beneficio';
 
 export function CupomForm({ codigoInicial }: { codigoInicial: string }) {
   const [codigo, setCodigo] = useState(codigoInicial);

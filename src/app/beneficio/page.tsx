@@ -1,10 +1,8 @@
 import { Metadata } from 'next';
 import { SiteHeader } from '@/components/SiteHeader';
-import { BENEFICIOS, REGRAS_GERAIS } from '@/lib/beneficio';
+import { BENEFICIOS, REGRAS_GERAIS, REGEX_CODIGO } from '@/lib/beneficio';
 import { GRUPO_SORTEIOS } from '@/lib/site-data';
 import { CupomForm } from './CupomForm';
-
-const REGEX_CODIGO = /^TATA-\d{4}$/;
 
 export const metadata: Metadata = {
   title: 'Seu presente da Tatá',
@@ -18,7 +16,8 @@ export default async function BeneficioPage({
   searchParams: Promise<{ c?: string }>;
 }) {
   const params = await searchParams;
-  const codigoInicial = params.c && REGEX_CODIGO.test(params.c) ? params.c : '';
+  const codigoNormalizado = params.c?.toUpperCase();
+  const codigoInicial = codigoNormalizado && REGEX_CODIGO.test(codigoNormalizado) ? codigoNormalizado : '';
 
   return (
     <>

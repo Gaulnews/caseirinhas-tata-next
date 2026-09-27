@@ -3,6 +3,9 @@
 // Node.
 export { vencimento } from './vencimento.mjs';
 
+// Formato do código impresso no cupom: TATA- seguido de 4 dígitos.
+export const REGEX_CODIGO = /^TATA-\d{4}$/;
+
 export type Beneficio = {
   id: 'coca2l' | 'salada' | 'mini';
   titulo: string;

@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { BENEFICIOS, REGRAS_GERAIS, vencimento, mensagemResgate } from '../src/lib/beneficio.ts';
+import { BENEFICIOS, REGRAS_GERAIS, vencimento, mensagemResgate, REGEX_CODIGO } from '../src/lib/beneficio.ts';
 
 test('BENEFICIOS tem os 3 benefícios da campanha', () => {
   assert.equal(BENEFICIOS.length, 3);
@@ -32,4 +32,11 @@ test('REGRAS_GERAIS cobre as regras mínimas da campanha', () => {
   assert.match(regras, /WhatsApp/);
   assert.match(regras, /não acumula/i);
   assert.match(regras, /grupo/i);
+});
+
+test('REGEX_CODIGO aceita TATA-0001 e rejeita formatos inválidos', () => {
+  assert.equal(REGEX_CODIGO.test('TATA-0001'), true);
+  assert.equal(REGEX_CODIGO.test('TATA-1'), false);
+  assert.equal(REGEX_CODIGO.test('tata-0001'), false); // minúsculo sem normalizar
+  assert.equal(REGEX_CODIGO.test('TATA-00012'), false);
 });

@@ -142,8 +142,8 @@ export async function svgCupom(codigo, venceEm, logoAltura = LOGO_ALTURA_PADRAO)
   <text x="${centroX}" y="${yCodigo}" text-anchor="middle" font-family="${FONT_FAMILY}" font-weight="bold" font-size="28" fill="#000000">${escapeXml(codigo)}</text>
   <text x="${centroX}" y="${yVence}" text-anchor="middle" font-family="${FONT_FAMILY}" font-weight="bold" font-size="17" fill="#000000">${escapeXml(`VENCE ${venceTexto}`)}</text>
   <text x="${centroX}" y="${yRegra}" text-anchor="middle" font-family="${FONT_FAMILY}" font-weight="bold" font-size="15" fill="#000000">${escapeXml('Cupom numerado · 1 por cliente')}</text>
-  <text x="${centroX}" y="${yAponte1}" text-anchor="middle" font-family="${FONT_FAMILY}" font-weight="bold" font-size="15" fill="#000000">${escapeXml('Aponte a câmera e entre')}</text>
-  <text x="${centroX}" y="${yAponte2}" text-anchor="middle" font-family="${FONT_FAMILY}" font-weight="bold" font-size="15" fill="#000000">${escapeXml('no grupo de promoções')}</text>
+  <text x="${centroX}" y="${yAponte1}" text-anchor="middle" font-family="${FONT_FAMILY}" font-weight="bold" font-size="15" fill="#000000">${escapeXml('Aponte a câmera e')}</text>
+  <text x="${centroX}" y="${yAponte2}" text-anchor="middle" font-family="${FONT_FAMILY}" font-weight="bold" font-size="15" fill="#000000">${escapeXml('veja seu presente')}</text>
 </svg>`;
 }
 
