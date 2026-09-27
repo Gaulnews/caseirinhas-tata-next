@@ -14,6 +14,7 @@ const URL_BASE = 'https://caseirinhasdatata.shop/beneficio';
 const LOGO_PATH = path.join(path.dirname(fileURLToPath(import.meta.url)), '..', 'public', 'logo-caseirinhas-da-tata.jpg');
 const LOGO_LARGURA = 200;
 const LOGO_ALTURA_PADRAO = 238; // logo original 1024x1024 dourado/branco em fundo preto, após trim.
+const FONT_FAMILY = 'Arial, Helvetica, sans-serif'; // uma única família p/ todas as linhas (fix round 2).
 
 const DIAS_SEMANA_PT = ['DOM', 'SEG', 'TER', 'QUA', 'QUI', 'SEX', 'SAB'];
 
@@ -133,16 +134,16 @@ export async function svgCupom(codigo, venceEm, logoAltura = LOGO_ALTURA_PADRAO)
   return `<svg xmlns="http://www.w3.org/2000/svg" width="${LARGURA}" viewBox="0 0 ${LARGURA} ${alturaTotal}">
   <desc>${escapeXml(url)}</desc>
   <rect x="0" y="0" width="${LARGURA}" height="${alturaTotal}" fill="#ffffff" />
-  <text x="${centroX}" y="${yChamada1}" text-anchor="middle" font-family="sans-serif" font-weight="bold" font-size="16" fill="#000000">${escapeXml('PRESENTE NA SUA')}</text>
-  <text x="${centroX}" y="${yChamada2}" text-anchor="middle" font-family="sans-serif" font-weight="bold" font-size="16" fill="#000000">${escapeXml('PRÓXIMA COMPRA')}</text>
+  <text x="${centroX}" y="${yChamada1}" text-anchor="middle" font-family="${FONT_FAMILY}" font-weight="bold" font-size="16" fill="#000000">${escapeXml('PRESENTE NA SUA')}</text>
+  <text x="${centroX}" y="${yChamada2}" text-anchor="middle" font-family="${FONT_FAMILY}" font-weight="bold" font-size="16" fill="#000000">${escapeXml('PRÓXIMA COMPRA')}</text>
   <g transform="translate(${xQr}, ${yQr}) scale(${escala})">
     ${qrConteudo}
   </g>
-  <text x="${centroX}" y="${yCodigo}" text-anchor="middle" font-family="sans-serif" font-weight="bold" font-size="28" fill="#000000">${escapeXml(codigo)}</text>
-  <text x="${centroX}" y="${yVence}" text-anchor="middle" font-family="sans-serif" font-weight="bold" font-size="17" fill="#000000">${escapeXml(`VENCE ${venceTexto}`)}</text>
-  <text x="${centroX}" y="${yRegra}" text-anchor="middle" font-family="sans-serif" font-size="14" fill="#000000">${escapeXml('Cupom numerado · 1 por cliente')}</text>
-  <text x="${centroX}" y="${yAponte1}" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#000000">${escapeXml('Aponte a câmera e entre')}</text>
-  <text x="${centroX}" y="${yAponte2}" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#000000">${escapeXml('no grupo de promoções')}</text>
+  <text x="${centroX}" y="${yCodigo}" text-anchor="middle" font-family="${FONT_FAMILY}" font-weight="bold" font-size="28" fill="#000000">${escapeXml(codigo)}</text>
+  <text x="${centroX}" y="${yVence}" text-anchor="middle" font-family="${FONT_FAMILY}" font-weight="bold" font-size="17" fill="#000000">${escapeXml(`VENCE ${venceTexto}`)}</text>
+  <text x="${centroX}" y="${yRegra}" text-anchor="middle" font-family="${FONT_FAMILY}" font-weight="bold" font-size="15" fill="#000000">${escapeXml('Cupom numerado · 1 por cliente')}</text>
+  <text x="${centroX}" y="${yAponte1}" text-anchor="middle" font-family="${FONT_FAMILY}" font-weight="bold" font-size="15" fill="#000000">${escapeXml('Aponte a câmera e entre')}</text>
+  <text x="${centroX}" y="${yAponte2}" text-anchor="middle" font-family="${FONT_FAMILY}" font-weight="bold" font-size="15" fill="#000000">${escapeXml('no grupo de promoções')}</text>
 </svg>`;
 }
 
@@ -188,6 +189,10 @@ export async function gerarCupons(inicio, qtd, dataPedido, saidaDir) {
     const logoLeft = Math.round((LARGURA - logo.width) / 2);
     await sharp(base)
       .composite([{ input: logo.buffer, top: 16, left: logoLeft }])
+      // Binarização final: impressão térmica é só preto puro, sem cinza de
+      // antialias. greyscale + threshold(128) reduz cada pixel a 0 ou 255.
+      .greyscale()
+      .threshold(128)
       .png()
       .toFile(destino);
 

@@ -75,6 +75,23 @@ test('cupom mantém margem mínima de 16 px: colunas 0-15 e 368-383 totalmente b
   }
 });
 
+test('PNG final é binarizado: todo pixel é 0 ou 255 (preto puro, sem cinza de antialias)', async () => {
+  const dir = await mkdtemp(path.join(tmpdir(), 'cupons-binario-'));
+  try {
+    const dataPedido = new Date('2026-09-28T12:00:00-03:00');
+    const [arquivo] = await gerarCupons(1, 1, dataPedido, dir);
+
+    const { data } = await sharp(arquivo).greyscale().raw().toBuffer({ resolveWithObject: true });
+    let cinzas = 0;
+    for (let i = 0; i < data.length; i += 1) {
+      if (data[i] !== 0 && data[i] !== 255) cinzas += 1;
+    }
+    assert.equal(cinzas, 0, `esperava 0 pixels cinza (valor entre 1 e 254), encontrou ${cinzas}`);
+  } finally {
+    await rm(dir, { recursive: true, force: true });
+  }
+});
+
 test('gerarCupons grava controle.csv com cabeçalho e uma linha por cupom', async () => {
   const dir = await mkdtemp(path.join(tmpdir(), 'cupons-csv-'));
   try {
